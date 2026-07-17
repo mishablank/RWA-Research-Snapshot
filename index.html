@@ -175,19 +175,19 @@
   .axis{position:absolute; left:156px; right:70px; bottom:6px; height:22px; pointer-events:none}
   .gl{position:absolute; top:0; bottom:0; width:1px; background:var(--rule)}
   .axt{position:absolute; transform:translateX(-50%); font-size:11px; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums}
-  .rows{position:relative}
-  .row{position:relative; height:42px; cursor:pointer}
-  .row .name{position:absolute; left:-150px; width:140px; top:50%; transform:translateY(-50%); text-align:right;
+  #rwaChart .rows{position:relative}
+  #rwaChart .row{position:relative; height:42px; cursor:pointer}
+  #rwaChart .row .name{position:absolute; left:-150px; width:140px; top:50%; transform:translateY(-50%); text-align:right;
     font-size:12.5px; font-weight:600; line-height:1.15}
-  .track{position:absolute; left:0; right:0; top:0; bottom:0}
-  .band{position:absolute; top:50%; transform:translateY(-50%); height:22px; background:var(--accent-soft); border-radius:3px;
+  #rwaChart .track{position:absolute; left:0; right:0; top:0; bottom:0}
+  #rwaChart .band{position:absolute; top:50%; transform:translateY(-50%); height:22px; background:var(--accent-soft); border-radius:3px;
     transition:left .55s cubic-bezier(.4,0,.2,1), width .55s cubic-bezier(.4,0,.2,1)}
-  .bar{position:absolute; left:0; top:50%; transform:translateY(-50%); height:15px; background:var(--accent); border-radius:3px;
+  #rwaChart .bar{position:absolute; left:0; top:50%; transform:translateY(-50%); height:15px; background:var(--accent); border-radius:3px;
     transition:width .55s cubic-bezier(.4,0,.2,1)}
-  .row:hover .bar{background:#A83A28}
-  .val{position:absolute; top:50%; transform:translateY(-50%); padding-left:9px; font-family:var(--serif); font-size:15px;
+  #rwaChart .row:hover .bar{background:#A83A28}
+  #rwaChart .val{position:absolute; top:50%; transform:translateY(-50%); padding-left:9px; font-family:var(--serif); font-size:15px;
     color:var(--ink); white-space:nowrap; transition:left .55s cubic-bezier(.4,0,.2,1); font-variant-numeric:tabular-nums}
-  .row:hover .val{color:var(--accent)}
+  #rwaChart .row:hover .val{color:var(--accent)}
   .chart-foot{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
     margin-top:8px; padding-top:14px; border-top:1px solid var(--rule); font-size:12px; color:var(--muted)}
   .scale-note{font-style:italic}
@@ -201,8 +201,8 @@
     .chart{padding:22px 16px 14px}
     .plot{padding:8px 44px 32px 104px}
     .gridlines,.axis{left:104px; right:44px}
-    .row .name{left:-98px; width:90px; font-size:10.5px}
-    .val{font-size:13px; padding-left:6px}
+    #rwaChart .row .name{left:-98px; width:90px; font-size:10.5px}
+    #rwaChart .val{font-size:13px; padding-left:6px}
   }
 </style>
 </head>
