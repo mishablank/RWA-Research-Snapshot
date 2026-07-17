@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The State of RWAs – Where the Research Disagrees</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231A1816'/%3E%3Crect x='14' y='18' width='12' height='6' rx='1' fill='%23F2EBDD'/%3E%3Crect x='14' y='29' width='26' height='6' rx='1' fill='%23C44A36'/%3E%3Crect x='14' y='40' width='36' height='6' rx='1' fill='%23F5E69A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2EBDD; --bg-dark:#1A1816; --ink:#1A1816; --muted:#6B6359;
+    --rule:#D9D1C0; --accent:#C44A36; --accent-soft:#F4D8CF;
+    --highlight:#F5E69A; --olive:#7A6E4F; --label:#5A5247;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility; position:relative; overflow-x:hidden;
+  }
+  /* faint graph-paper grid */
+  .grid-bg{position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(to right, rgba(122,110,79,.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(122,110,79,.05) 1px, transparent 1px);
+    background-size:calc(100%/12) 100%, 100% 84px;
+    -webkit-mask-image:linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+            mask-image:linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+  }
+  .wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 40px}
+  section{padding:96px 0; border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:0}
+
+  /* running header */
+  .runhead{display:flex; justify-content:space-between; align-items:baseline;
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--label); font-weight:600; margin-bottom:30px}
+  .runhead .count{color:var(--accent)}
+
+  /* eyebrow */
+  .eyebrow{font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:22px; display:inline-block}
+  .eyebrow.pill{background:var(--accent-soft); color:var(--accent);
+    padding:5px 11px; border-radius:3px; letter-spacing:.13em}
+  .kicker{font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--olive); margin-bottom:14px}
+
+  /* headlines */
+  h1{font-family:var(--serif); font-weight:400; font-size:clamp(44px,7vw,84px);
+    line-height:1.02; letter-spacing:-.02em; margin-bottom:28px}
+  h2{font-family:var(--serif); font-weight:400; font-size:clamp(32px,4.4vw,52px);
+    line-height:1.06; letter-spacing:-.015em; margin-bottom:22px; max-width:18ch}
+  h2.wide{max-width:24ch}
+  .it{font-style:italic}
+  .dot{color:var(--accent)}
+  .dek{font-size:clamp(17px,1.5vw,21px); color:#4a443c; line-height:1.5; max-width:66ch; margin-bottom:8px}
+  .dek strong{font-weight:600; color:var(--ink)}
+
+  /* hero layout */
+  .hero{padding-top:108px}
+  .topbar{display:flex; justify-content:space-between; align-items:center; font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--label); font-weight:600; margin-bottom:64px}
+  .tb-left{display:inline-flex; align-items:center; gap:14px}
+  .r3logo{display:inline-flex; align-items:center; text-decoration:none; transition:opacity .15s}
+  .r3logo:hover{opacity:.62}
+  .r3logo svg{height:26px; width:auto; display:block}
+  .hero-cols{display:grid; grid-template-columns:1.15fr 1fr; gap:64px; margin-top:64px; align-items:start}
+  @media(max-width:860px){.hero-cols{grid-template-columns:1fr; gap:40px}}
+
+  /* list rows */
+  .rows{margin-top:6px}
+  .row{display:flex; gap:14px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--rule)}
+  .row:first-child{border-top:1px solid var(--rule)}
+  .row b{font-weight:600; white-space:nowrap}
+  .row span{color:var(--muted); font-size:14px}
+
+  /* big stat */
+  .statbox .num{font-family:var(--serif); font-size:clamp(46px,6vw,72px); line-height:1;
+    letter-spacing:-.02em; color:var(--ink)}
+  .statbox .num em{font-style:normal; color:var(--accent)}
+  .statbox .underline{height:3px; background:var(--accent); width:100%; max-width:340px; margin:20px 0 16px}
+  .statbox .sub{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--label); font-weight:600; margin-bottom:18px}
+  .statbox p{color:#4a443c; max-width:42ch}
+
+  /* stat row */
+  .statrow{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule);
+    border:1px solid var(--rule); margin-top:44px}
+  .statrow.five{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:760px){.statrow,.statrow.five{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--bg); padding:24px 22px}
+  .stat .v{font-family:var(--serif); font-size:clamp(30px,3.4vw,40px); line-height:1; letter-spacing:-.01em}
+  .stat .v.acc{color:var(--accent)}
+  .stat .l{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.4}
+
+  /* tables */
+  .tablewrap{overflow-x:auto; margin-top:36px; border:1px solid var(--rule)}
+  table{width:100%; border-collapse:collapse; min-width:680px; font-size:14px}
+  th,td{text-align:left; padding:15px 18px; border-bottom:1px solid var(--rule); vertical-align:top}
+  thead th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--olive);
+    font-weight:600; background:rgba(122,110,79,.05)}
+  tbody tr:last-child td{border-bottom:0}
+  td.pub{font-weight:600; white-space:nowrap}
+  td .fig{font-family:var(--serif); font-size:20px; color:var(--accent); letter-spacing:-.01em}
+  td small{display:block; color:var(--muted); font-size:12.5px; margin-top:3px; font-weight:400}
+  .hl{background:var(--highlight); padding:1px 5px; border-radius:2px; font-weight:600}
+
+  /* three-column compare */
+  .threecol{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule);
+    border:1px solid var(--rule); margin-top:40px}
+  @media(max-width:820px){.threecol{grid-template-columns:1fr}}
+  .col{background:var(--bg); padding:28px 26px}
+  .col .who{font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:6px}
+  .col .pos{font-family:var(--serif); font-size:22px; line-height:1.15; margin-bottom:14px; letter-spacing:-.01em}
+  .col p{font-size:14px; color:#4a443c}
+  .col .src{font-size:12px; color:var(--muted); margin-top:14px; font-style:italic}
+
+  /* numbered points */
+  .points{margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:34px 56px}
+  @media(max-width:820px){.points{grid-template-columns:1fr}}
+  .pt{display:flex; gap:18px}
+  .pt .n{font-family:var(--serif); font-size:30px; color:var(--accent); line-height:1; min-width:42px}
+  .pt h4{font-size:15px; font-weight:600; margin-bottom:5px}
+  .pt p{font-size:14px; color:#4a443c}
+
+  /* callout */
+  .callout{margin-top:48px; padding-top:26px; border-top:2px solid var(--ink)}
+  .callout .eyebrow{color:var(--olive)}
+  .callout p{font-family:var(--serif); font-size:clamp(20px,2.3vw,28px); line-height:1.32;
+    letter-spacing:-.01em; max-width:34ch}
+  .callout.accent{border-top-color:var(--accent)}
+  .callout.accent .eyebrow{color:var(--accent)}
+
+  .src-line{font-size:12.5px; color:var(--muted); font-style:italic; margin-top:22px}
+  .tags{margin-top:10px}
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600;
+    color:var(--accent); border:1px solid var(--accent); border-radius:3px; padding:3px 9px; margin:0 6px 6px 0}
+  .tag.soft{background:var(--accent-soft); border-color:transparent}
+  .tag.mut{color:var(--olive); border-color:var(--rule)}
+
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:56px; margin-top:8px}
+  @media(max-width:820px){.two{grid-template-columns:1fr; gap:36px}}
+  .lead-list{list-style:none}
+  .lead-list li{padding:13px 0; border-bottom:1px solid var(--rule); font-size:14.5px}
+  .lead-list li:first-child{border-top:1px solid var(--rule)}
+  .lead-list b{font-weight:600}
+  .lead-list .a{color:var(--accent); font-weight:600}
+
+  footer{padding:60px 0 80px; color:var(--muted); font-size:13px}
+  footer .ft-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+    padding-bottom:24px; border-bottom:1px solid var(--rule); margin-bottom:24px}
+  footer b{color:var(--ink)}
+  .disc{font-size:12px; color:var(--muted); max-width:80ch; line-height:1.6}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .mblink{color:inherit; text-decoration:underline; text-underline-offset:2px; text-decoration-color:var(--rule); transition:.15s}
+  .mblink:hover{color:var(--ink); text-decoration-color:var(--accent)}
+
+  /* ---- interactive chart ---- */
+  .chart{margin-top:40px; border:1px solid var(--rule); background:rgba(255,255,255,.28); padding:26px 28px 18px}
+  .chart-head{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:24px}
+  .chart-head .ttl{font-family:var(--serif); font-size:23px; letter-spacing:-.01em}
+  .chart-controls{display:flex; gap:12px; flex-wrap:wrap}
+  .seg{display:inline-flex; border:1px solid var(--rule); border-radius:4px; overflow:hidden}
+  .seg button{font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    padding:7px 13px; background:transparent; color:var(--muted); border:0; border-right:1px solid var(--rule); cursor:pointer; transition:background .15s,color .15s}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--accent); color:#fff}
+  .seg button:not(.on):hover{color:var(--ink)}
+  .plot{position:relative; padding:8px 70px 32px 156px}
+  .gridlines{position:absolute; left:156px; right:70px; top:8px; bottom:32px; pointer-events:none}
+  .axis{position:absolute; left:156px; right:70px; bottom:6px; height:22px; pointer-events:none}
+  .gl{position:absolute; top:0; bottom:0; width:1px; background:var(--rule)}
+  .axt{position:absolute; transform:translateX(-50%); font-size:11px; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums}
+  .rows{position:relative}
+  .row{position:relative; height:42px; cursor:pointer}
+  .row .name{position:absolute; left:-150px; width:140px; top:50%; transform:translateY(-50%); text-align:right;
+    font-size:12.5px; font-weight:600; line-height:1.15}
+  .track{position:absolute; left:0; right:0; top:0; bottom:0}
+  .band{position:absolute; top:50%; transform:translateY(-50%); height:22px; background:var(--accent-soft); border-radius:3px;
+    transition:left .55s cubic-bezier(.4,0,.2,1), width .55s cubic-bezier(.4,0,.2,1)}
+  .bar{position:absolute; left:0; top:50%; transform:translateY(-50%); height:15px; background:var(--accent); border-radius:3px;
+    transition:width .55s cubic-bezier(.4,0,.2,1)}
+  .row:hover .bar{background:#A83A28}
+  .val{position:absolute; top:50%; transform:translateY(-50%); padding-left:9px; font-family:var(--serif); font-size:15px;
+    color:var(--ink); white-space:nowrap; transition:left .55s cubic-bezier(.4,0,.2,1); font-variant-numeric:tabular-nums}
+  .row:hover .val{color:var(--accent)}
+  .chart-foot{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+    margin-top:8px; padding-top:14px; border-top:1px solid var(--rule); font-size:12px; color:var(--muted)}
+  .scale-note{font-style:italic}
+  .tip{position:absolute; z-index:30; pointer-events:none; opacity:0; transition:opacity .12s;
+    background:var(--bg-dark); color:#F2EBDD; padding:11px 14px; border-radius:6px; max-width:252px;
+    font-size:12.5px; line-height:1.45; box-shadow:0 10px 34px rgba(26,24,22,.30)}
+  .tip .tn{font-weight:700; margin-bottom:4px}
+  .tip .tv{font-family:var(--serif); color:var(--accent-soft); font-size:18px}
+  .tip .ts{color:#C9BBA9; margin-top:6px}
+  @media(max-width:680px){
+    .chart{padding:22px 16px 14px}
+    .plot{padding:8px 44px 32px 104px}
+    .gridlines,.axis{left:104px; right:44px}
+    .row .name{left:-98px; width:90px; font-size:10.5px}
+    .val{font-size:13px; padding-left:6px}
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<!-- ============ 01 · HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <span class="tb-left"><a href="https://www.r3.com" target="_blank" rel="noopener noreferrer" class="r3logo" aria-label="R3 — visit r3.com"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.947 50" role="img" aria-label="R3"><g transform="translate(0)"><path d="M131.744,58.572a4.2,4.2,0,1,1-4.2-4.183,4.194,4.194,0,0,1,4.2,4.183" transform="translate(-65.797 -29.588)" fill="#e52328"/><path d="M65.062,17.759l5.7-8.258V1.135H52.6L46.822,9.5H60.529L53.472,19.72l4.2,7.245A8.463,8.463,0,1,1,53.421,34.3H45.014A16.92,16.92,0,1,0,65.062,17.759" transform="translate(-24.139 -1.135)" fill="#010101"/><path d="M17.315,1.136A16.881,16.881,0,0,0,8.842,3.4V1.136H.416V34.3H8.842V17.949h.007a8.445,8.445,0,0,1,8.466-8.423h0L20.138,9.5l5.777-8.366Z" transform="translate(-0.416 -1.136)" fill="#010101"/></g></svg></a>RWA Market · Cross-Study Synthesis</span>
+      <span>June 2026</span>
+    </div>
+    <div class="eyebrow">The state of tokenization · what the desks can't agree on</div>
+    <h1>Everyone agrees RWAs<br>are coming. <span class="it">Nobody<br>agrees how big</span><span class="dot">.</span></h1>
+    <p class="dek">A cross-read of <strong>61 research reports</strong> — global banks, asset managers, the Big Four, and crypto-native desks — all published in the last 90 days. They converge almost completely on the <strong>direction of travel</strong> and contradict each other on nearly everything you can put a number on.</p>
+
+    <div class="hero-cols">
+      <div>
+        <div class="kicker">The source base · 29 Mar – 27 Jun 2026</div>
+        <div class="rows">
+          <div class="row"><b>Banks</b><span>Citi · J.P. Morgan · Morgan Stanley · Standard Chartered · Deutsche Bank · HSBC · Barclays · Nomura</span></div>
+          <div class="row"><b>Managers &amp; issuers</b><span>BlackRock · Franklin Templeton · Securitize · Grayscale · 21Shares · Bitwise</span></div>
+          <div class="row"><b>Consultancies</b><span>BCG · McKinsey · PwC · Oliver Wyman · Deloitte · KPMG</span></div>
+          <div class="row"><b>Crypto research</b><span>Binance · Pantera · Messari · Galaxy · DefiLlama · CoinGecko · BeInCrypto · RWA.xyz · Keyrock</span></div>
+          <div class="row"><b>Official sector</b><span>BIS · IMF · GFMA · OMFIF</span></div>
+        </div>
+      </div>
+      <div class="statbox">
+        <div class="eyebrow pill">The headline tension</div>
+        <div class="num">$400B <em>→</em> $14T</div>
+        <div class="underline"></div>
+        <div class="sub">6 studies · same 2030 horizon</div>
+        <p>A <strong style="color:var(--accent)">35×&ndash;40× gap</strong> between the most and least conservative five-year forecasts — and an even wider range on what the market is worth <em>today</em>.</p>
+      </div>
+    </div>
+
+    <div class="statrow" style="margin-top:72px">
+      <div class="stat"><div class="v">61</div><div class="l">reports cross-read</div></div>
+      <div class="stat"><div class="v acc">~0.01%</div><div class="l">TAM penetration — the one figure everyone shares</div></div>
+      <div class="stat"><div class="v">40×</div><div class="l">spread on 2030 market size</div></div>
+      <div class="stat"><div class="v">~36×</div><div class="l">spread on <em>today's</em> market size</div></div>
+    </div>
+
+    <div class="ft-top" style="display:flex;justify-content:space-between;margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--label);font-weight:600">
+      <span>Prepared by &nbsp;·&nbsp; Mike Blank · June 2026</span>
+      <span>Read time &nbsp;·&nbsp; 9 sections · ~10 min</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · WHERE THEY AGREE ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>The state of play · what's not in dispute</span><span class="count">02 / 09</span></div>
+    <div class="eyebrow">Consensus</div>
+    <h2 class="wide">On the facts of <span class="it">today</span>, the desks roughly converge.</h2>
+    <p class="dek">Strip out the forecasts and there's a shared picture: a small, fast-growing market that is institutionalizing, anchored by tokenized Treasuries, and sitting at the very bottom of its adoption curve.</p>
+
+    <div class="statrow five">
+      <div class="stat"><div class="v acc">~5–6×</div><div class="l">growth in distributed RWAs since early 2025</div></div>
+      <div class="stat"><div class="v">~$15B</div><div class="l">tokenized U.S. Treasuries — the anchor asset</div></div>
+      <div class="stat"><div class="v">~$5B</div><div class="l">tokenized gold / commodities</div></div>
+      <div class="stat"><div class="v">$250B+</div><div class="l">stablecoins — the largest on-chain dollar instrument</div></div>
+      <div class="stat"><div class="v acc">~0.01%</div><div class="l">of a $300T+ addressable base</div></div>
+    </div>
+
+    <div class="two" style="margin-top:48px">
+      <div>
+        <div class="kicker">What every desk signs up to</div>
+        <ul class="lead-list">
+          <li><b>Institutional issuers now lead growth</b> — the market has shifted from crypto-native protocols to banks, asset managers and transfer agents.</li>
+          <li><b>Treasuries, private credit and gold are the live categories</b> — equities are inflecting from a tiny base (sub-$300M → ~$1.5B).</li>
+          <li><b>Market infrastructure is going to production in 2026</b> — DTCC, Nasdaq and major custodians are moving from pilots to live rails.</li>
+          <li><b>The market is highly concentrated</b> — only U.S. Treasuries have reached "production grade"; ~62 assets hold 88% of value and five products are half of it <em>(BeInCrypto × rwa.xyz)</em>.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="kicker">The shared catalysts</div>
+        <ul class="lead-list">
+          <li><b>U.S. stablecoin law (GENIUS Act)</b> — cited by nearly every desk as the unlock for Treasury-backed on-chain dollars.</li>
+          <li><b>DTCC tokenization service</b> — limited production July 2026, broader launch October 2026.</li>
+          <li><b>Stablecoins have hit payments scale</b> — adjusted volume past Visa; $200B+ of Treasuries now sit inside reserves.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout accent">
+      <div class="eyebrow">The one number nobody disputes</div>
+      <p>Tokenized assets are roughly <span class="hl">one basis point</span> of their addressable market. The argument is entirely about the slope from here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · DISCREPANCY 1 — THE 2030 NUMBER ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 01 · the 2030 number</span><span class="count">03 / 09</span></div>
+    <div class="eyebrow">The forecast spread</div>
+    <h2>Same horizon. A <span class="it">40× disagreement</span><span class="dot">.</span></h2>
+    <p class="dek">Six widely-cited studies, one five-year window, and headline numbers that range from a few hundred billion to fourteen trillion. The gap isn't conviction — it's that they aren't measuring the same thing.</p>
+
+    <div class="chart" id="rwaChart">
+      <div class="chart-head">
+        <div class="ttl" id="chartTtl">2030 market-size forecasts</div>
+        <div class="chart-controls">
+          <div class="seg" id="dsSeg">
+            <button data-ds="forecast" class="on">2030 forecast</button>
+            <button data-ds="today">Market today</button>
+          </div>
+          <div class="seg" id="scSeg">
+            <button data-sc="log" class="on">Log</button>
+            <button data-sc="linear">Linear</button>
+          </div>
+        </div>
+      </div>
+      <div class="plot">
+        <div class="gridlines" id="gridlines"></div>
+        <div class="rows" id="chartRows"></div>
+        <div class="axis" id="chartAxis"></div>
+      </div>
+      <div class="chart-foot">
+        <span class="scale-note" id="scaleNote">Log scale — compresses a ~35× range so every study stays visible.</span>
+        <span>Hover a bar for scope &amp; source · tap to toggle scale</span>
+      </div>
+      <div class="tip" id="chartTip"></div>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Study (date)</th><th>2030 figure</th><th>What's being counted</th><th>Implied stance</th></tr></thead>
+        <tbody>
+          <tr><td class="pub">Securitize × Keyrock<small>Apr 2026</small></td><td><span class="fig">$400B</span><small>from ~$29B today</small></td><td>Distributed RWAs, 5 asset classes (ex-stablecoins)</td><td>Narrowest / free-float only</td></tr>
+          <tr><td class="pub">Binance Research<small>May 2026</small></td><td><span class="fig">$1.6T</span><small>base ($320B–$4.8T)</small></td><td>Distributed value, ex-stablecoins, 5 core classes</td><td>Conservative base, wide scenarios</td></tr>
+          <tr><td class="pub">Standard Chartered<small>May 2026</small></td><td><span class="fig">~$4T</span><small>by 2028 (public chains)</small></td><td>Public-chain tokenized assets; $2.7T DeFi-active by 2030</td><td>Aggressive, public-chain bet</td></tr>
+          <tr><td class="pub">Citi (Citi Institute)<small>Jun 2026</small></td><td><span class="fig">$5.5T</span><small>by 2030</small></td><td>Tokenized securities — equities + Treasuries led</td><td>Securities-centric</td></tr>
+          <tr><td class="pub">BCG (Global AM Report)<small>Apr 2026</small></td><td><span class="fig">$14T</span><small>2030 · $55T by 2035</small></td><td>Broadest RWA definition, incl. funds</td><td>Most expansive</td></tr>
+          <tr><td class="pub">Binance — tail case<small>Jun 2026</small></td><td><span class="fig">$6.78T</span><small>at 4% penetration</small></td><td>Equities + commodities + ETFs (scenario)</td><td>Stretch / "exceptional"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-line">Adjacent framings that don't fit the column: PwC sizes tokenized <em>funds</em> alone at $715B by 2030 (41% CAGR); Morgan Stanley × Oliver Wyman frame it as revenue — up to $8B net-new and $82B redistributed across wholesale banking by 2030; J.P. Morgan Payments calls tokenization a ~$400B opportunity for asset management.</p>
+
+    <div class="callout">
+      <div class="eyebrow">Why the spread</div>
+      <p>It's mostly <span class="it">scope</span>: free-float vs. all-issued, public vs. permissioned, securities-only vs. plus-funds, with or without stablecoins. Line the definitions up and the forecasts move a lot closer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · DISCREPANCY 2 — THE DENOMINATOR ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 02 · the denominator</span><span class="count">04 / 09</span></div>
+    <div class="eyebrow">What even counts as an RWA</div>
+    <h2 class="wide">Even <span class="it">today's</span> number is a 36× range.</h2>
+    <p class="dek">Before you can argue about 2030, you have to agree what the market is worth now. The trackers don't. Same month, same asset class — numbers from $19 billion to $695 billion depending on the definition.</p>
+
+    <div class="callout" style="margin-top:26px">
+      <div class="eyebrow">BeInCrypto × rwa.xyz · The Real State of Tokenization 2026 · Jun 2026</div>
+      <p>&ldquo;Ask five data providers how large the tokenization market is, and you will get five different answers.&rdquo;</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Source</th><th>"Current" market size</th><th>Definition used</th></tr></thead>
+        <tbody>
+          <tr><td class="pub">CoinGecko</td><td><span class="fig">$19.3B</span><small>Q1 2026</small></td><td>Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)</td></tr>
+          <tr><td class="pub">DefiLlama</td><td><span class="fig">$25.2B</span><small>+6× in 14 months</small></td><td>"Active" RWA market cap on public chains</td></tr>
+          <tr><td class="pub">Binance / RWA.xyz</td><td><span class="fig">$31.4B</span><small>+~589% since early '25</small></td><td>Distributed (free-float, transferable) value</td></tr>
+          <tr><td class="pub">BeInCrypto · core</td><td><span class="fig">~$60B</span><small>7,000+ products · May 2026</small></td><td>Core tokenized assets across 12 asset classes (rwa.xyz data)</td></tr>
+          <tr><td class="pub">Pantera Capital</td><td><span class="fig">~$321B</span><small>542 assets · 11 classes</small></td><td>Broad — counts stablecoins and the full tokenized universe</td></tr>
+          <tr><td class="pub">21Shares</td><td><span class="fig">~$31B → ~$350B</span><small>public → incl. permissioned</small></td><td>~$31B public chains; ~$350B once Canton &amp; permissioned nets are added</td></tr>
+          <tr><td class="pub">BeInCrypto · full layer</td><td><span class="fig">~$695B</span><small>settlement layer · Apr 2026</small></td><td>Full settlement layer — represented assets + on-chain settlement positions</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-line">BeInCrypto frames the market in three layers — ~$60B of core tokenized assets, a ~$695B full settlement layer, and ~$8T of <em>monthly</em> on-chain settlement volume (Apr 2026, +268% YoY). Different layer, different number — which is precisely the point.</p>
+
+    <div class="callout accent">
+      <div class="eyebrow">The takeaway</div>
+      <p>The 36× gap is <span class="it">definitional</span>, not factual. Free-float vs. represented, public-only vs. plus-permissioned, core assets vs. the full settlement layer. Always check the denominator before you trust the forecast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · DISCREPANCY 3 — STABLECOINS ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 03 · is the base layer money?</span><span class="count">05 / 09</span></div>
+    <div class="eyebrow">Stablecoins — foundation or fault line</div>
+    <h2 class="wide">The rail one camp builds on is the risk another wants to contain.</h2>
+    <p class="dek">No disagreement is sharper. To crypto desks, stablecoins <em>are</em> the settlement layer for tokenization. To the central-banking world, they're a flawed form of money to be superseded.</p>
+
+    <div class="threecol">
+      <div class="col">
+        <div class="who">Crypto research</div>
+        <div class="pos">Stablecoins are the rail.</div>
+        <p>Binance: $200B+ of Treasuries already sit inside stablecoin reserves; adjusted volume has passed Visa and is nearing ACH. They're the on-ramp, settlement layer and the largest RWA category by reserves — the foundation everything else is built on.</p>
+        <div class="src">Binance Research · 2026</div>
+      </div>
+      <div class="col">
+        <div class="who">Banks &amp; consultancies</div>
+        <div class="pos">A three-layer coexistence.</div>
+        <p>McKinsey, Deutsche Bank and GFMA frame a stack — stablecoins, tokenized bank deposits and central-bank money side by side, each for different uses. McKinsey models ~$4T of stablecoin adoption by 2030 alongside &gt;$4T/yr in tokenized deposits.</p>
+        <div class="src">McKinsey · Deutsche Bank · GFMA · 2026</div>
+      </div>
+      <div class="col">
+        <div class="who">Official sector</div>
+        <div class="pos">A flawed form of money.</div>
+        <p>The BIS argues stablecoins fail on <em>singleness, elasticity and integrity</em>, and that the future is tokenized central-bank + commercial-bank money on a "unified ledger" (Project Agorá) — not private stablecoins at scale.</p>
+        <div class="src">BIS Annual Economic Report 2026, Ch. III</div>
+      </div>
+    </div>
+    <p class="src-line">Even within the "for" camp there's nuance: Standard Chartered notes USD stablecoins hold ~98% share and asks where <em>non-USD</em> coins can realistically scale.</p>
+  </div>
+</section>
+
+<!-- ============ 06 · DISCREPANCY 4 — LEAD ASSET ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 04 · the lead horse</span><span class="count">06 / 09</span></div>
+    <div class="eyebrow">Which asset class wins</div>
+    <h2>Treasuries lead now. After that, <span class="it">pick a fight</span><span class="dot">.</span></h2>
+    <p class="dek">Tokenized Treasuries are the consensus leader today (~half of distributed value). Project that lead forward to 2030 and the agreement evaporates.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Study</th><th>Who leads by 2030</th><th>Reasoning</th></tr></thead>
+        <tbody>
+          <tr><td class="pub">Citi</td><td><b>Equities + Treasuries</b></td><td>Public-market infra (DTCC/NYSE/Nasdaq) pulls listed securities on-chain</td></tr>
+          <tr><td class="pub">Binance Research</td><td><b>Equities (TAM) · Credit (penetration)</b></td><td>Equities have the largest addressable market; private credit has the highest current penetration; gold leads commodities</td></tr>
+          <tr><td class="pub">Securitize × Keyrock</td><td><b>Treasuries + private credit</b></td><td>Strongest near-term product-market fit and institutional demand</td></tr>
+          <tr><td class="pub">PwC</td><td><b>Tokenized funds</b></td><td>Fund AUM compounding at 41% to $715B by 2030</td></tr>
+          <tr><td class="pub">21Shares</td><td><b>Treasuries anchor</b></td><td>~$15B tokenized Treasuries underpin the public-chain market</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-line">Today's snapshot they all share: Treasuries ~half of distributed value, gold ~$5B, equities up from &lt;$300M to ~$1.5B in a year.</p>
+  </div>
+</section>
+
+<!-- ============ 07 · DISCREPANCY 5 — PUBLIC VS PERMISSIONED ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 05 · whose chain</span><span class="count">07 / 09</span></div>
+    <div class="eyebrow">Public vs. permissioned rails</div>
+    <h2 class="wide">The biggest pool of tokenized value may be the one crypto can't see.</h2>
+    <p class="dek">The trackers everyone quotes count public chains. But the banks are issuing on permissioned ledgers — and by at least one estimate that hidden layer is an order of magnitude larger.</p>
+
+    <div class="points">
+      <div class="pt"><div class="n">↗</div><div><h4>The public-chain bet</h4><p>Standard Chartered projects ~$4T of tokenized assets on <em>public</em> blockchains by 2028, positioning DeFi protocols as core infrastructure. Crypto trackers (RWA.xyz, DefiLlama, CoinGecko) measure this layer.</p></div></div>
+      <div class="pt"><div class="n">⌗</div><div><h4>The permissioned layer</h4><p>21Shares puts ~$31B on public chains but ~$350B once permissioned networks like <b>Canton</b> are included. Banks (J.P. Morgan Kinexys, Citi via DTCC) issue largely on permissioned rails that public dashboards never see.</p></div></div>
+    </div>
+
+    <div class="callout accent">
+      <div class="eyebrow">The implication</div>
+      <p>If most institutional issuance lands on permissioned ledgers, the public-chain dashboards <span class="hl">undercount the market ~10×</span> — and "RWA growth" charts measure the wrong thing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 · DISCREPANCY 6 — THE CONSTRAINT ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 06 · what unlocks it</span><span class="count">08 / 09</span></div>
+    <div class="eyebrow">The binding constraint</div>
+    <h2>Six desks, six different <span class="it">bottlenecks</span><span class="dot">.</span></h2>
+    <p class="dek">Ask what's actually holding tokenization back and you get a different answer depending on who's writing — which tells you the market is constrained on several fronts at once.</p>
+
+    <div class="points">
+      <div class="pt"><div class="n">01</div><div><h4>Citi → market infrastructure</h4><p>The unlock is incumbents embedding tokenization: DTCC production (Jul/Oct 2026), NYSE and Nasdaq pathways.</p></div></div>
+      <div class="pt"><div class="n">02</div><div><h4>Binance → convergence</h4><p>No single lever — regulation, custody, settlement, liquidity and distribution have to reinforce each other.</p></div></div>
+      <div class="pt"><div class="n">03</div><div><h4>Banks → regulatory clarity</h4><p>GENIUS Act (stablecoins), CLARITY Act (market structure) and MiCA define what institutions can actually issue.</p></div></div>
+      <div class="pt"><div class="n">04</div><div><h4>IMF → safety &amp; coordination</h4><p>Safe settlement assets, legal certainty and international coordination first — a notably more cautious framing.</p></div></div>
+      <div class="pt"><div class="n">05</div><div><h4>BIS → monetary architecture</h4><p>The real prerequisite is a unified ledger anchored in central-bank money — not better stablecoins.</p></div></div>
+      <div class="pt"><div class="n">06</div><div><h4>The shared clock</h4><p>One catalyst nearly everyone names: <b>DTCC's production launch in October 2026</b>.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 · TAKEAWAY ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>The takeaway</span><span class="count">09 / 09</span></div>
+    <div class="eyebrow pill">So what</div>
+    <h2 class="wide">The disagreements are about <span class="it">scope and clock</span>, not direction.</h2>
+    <p class="dek">Normalize the definitions and the desks tell one story: penetration is ~0.01%, Treasuries lead today, stablecoins carry the settlement layer, and the next 12–18 months set the slope. The 40× forecast spread is mostly an artifact of three choices — what counts as an RWA, public vs. permissioned, and whether stablecoins are in.</p>
+
+    <div class="statrow">
+      <div class="stat"><div class="v acc">Agree</div><div class="l">~0.01% penetration · Treasuries lead · 2026 is the inflection</div></div>
+      <div class="stat"><div class="v">40×</div><div class="l">disagree on the 2030 size</div></div>
+      <div class="stat"><div class="v">36×</div><div class="l">disagree on today's size</div></div>
+      <div class="stat"><div class="v acc">3 levers</div><div class="l">scope · chain type · stablecoins-in-or-out explain most of it</div></div>
+    </div>
+
+    <div class="two" style="margin-top:48px">
+      <div>
+        <div class="kicker">What to watch — the tie-breakers</div>
+        <ul class="lead-list">
+          <li><span class="a">DTCC production launch</span> — October 2026; tokenization inside default U.S. market plumbing.</li>
+          <li><span class="a">GENIUS Act implementation</span> — reserve &amp; disclosure rules that decide stablecoin-Treasury demand.</li>
+          <li><span class="a">Permissioned-network disclosure</span> — if Canton &amp; bank ledgers report, the "true" size resets.</li>
+          <li><span class="a">First sovereign on-chain issuance</span> — UK DIGIT, Japan pilots moving to commercial scale.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="kicker">How to read any RWA report</div>
+        <ul class="lead-list">
+          <li><b>Check the denominator first</b> — free-float, represented, or all-in incl. stablecoins?</li>
+          <li><b>Ask which chains it counts</b> — public-only numbers can undercount ~10×.</li>
+          <li><b>Separate stock from revenue</b> — "$X trillion of assets" and "$Y billion of revenue" are different claims.</li>
+          <li><b>Treat 2030 figures as scenarios</b> — the base/bull range is usually wider than the point estimate suggests.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout accent">
+      <div class="eyebrow">Bottom line</div>
+      <p>The market isn't arguing about <span class="it">whether</span> — it's arguing about <span class="it">how you count</span> and <span class="it">how fast</span>. Pin those two down and most of the contradiction disappears.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / SOURCES ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <span><b>RWA Market · Cross-Study Synthesis</b><br>Prepared by <a href="https://pl.linkedin.com/in/mishablank" target="_blank" rel="noopener noreferrer" class="mblink">Mike Blank</a> · June 2026</span>
+      <span style="text-align:right">Window: 29 Mar – 27 Jun 2026<br>61 reports cross-read · 49 archived locally</span>
+    </div>
+    <div class="tags">
+      <span class="tag">Citi $5.5T</span><span class="tag">BCG $14T / $55T</span><span class="tag">Std Chartered $4T '28</span>
+      <span class="tag">Binance $1.6T base</span><span class="tag">Securitize×Keyrock $400B</span><span class="tag">PwC funds $715B</span>
+      <span class="tag soft">McKinsey stablecoins $4T</span><span class="tag mut">BIS · unified ledger</span><span class="tag mut">IMF · Tokenized Finance</span>
+      <span class="tag mut">Pantera $321B</span><span class="tag mut">DefiLlama $25.2B</span><span class="tag mut">CoinGecko $19.3B</span><span class="tag mut">21Shares $31B→$350B</span><span class="tag soft">BeInCrypto $60B–$695B</span>
+    </div>
+    <p class="disc" style="margin-top:22px">Figures are reproduced as reported by each source on the date cited; scopes and definitions differ materially between studies and are not directly comparable — that incomparability is the subject of this brief. Synthesis of RWA &amp; tokenization research published in the trailing 90-day window; not investment advice. Design after trancheprotocol.com.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const DS={
+    forecast:{ttl:'2030 market-size forecasts',
+      note:'Log scale — compresses a ~35× range so every study stays visible.',
+      noteLin:'Linear scale — the smallest forecast nearly vanishes. <em>That</em> gap is the disagreement.',
+      items:[
+        {n:'Securitize × Keyrock', v:400e9, scope:'Distributed RWAs, 5 classes (ex-stablecoins)', src:'Apr 2026'},
+        {n:'Binance Research', v:1600e9, lo:320e9, hi:4800e9, scope:'Distributed value, ex-stablecoins · base case; band = $320B–$4.8T range', src:'May 2026'},
+        {n:'Standard Chartered', v:4000e9, scope:'Public-chain tokenized assets by 2028; $2.7T DeFi-active by 2030', src:'May 2026'},
+        {n:'Citi', v:5500e9, scope:'Tokenized securities — equities + Treasuries led', src:'Jun 2026'},
+        {n:'Binance — tail case', v:6780e9, scope:'Equities + commodities + ETFs at 4% penetration (scenario)', src:'Jun 2026'},
+        {n:'BCG', v:14000e9, scope:'Broadest RWA definition, incl. funds · $55T by 2035', src:'Apr 2026'},
+      ]},
+    today:{ttl:'Market size — today',
+      note:'Log scale — the same market, valued eight different ways.',
+      noteLin:'Linear scale — definitional choices swing today’s number ~36×.',
+      items:[
+        {n:'CoinGecko', v:19.3e9, scope:'Tokenized RWAs ex-stablecoins (Q1 2026)', src:'May 2026'},
+        {n:'DefiLlama', v:25.2e9, scope:'"Active" RWA market cap, public chains', src:'Apr 2026'},
+        {n:'21Shares · public', v:31e9, scope:'Public chains only', src:'Jun 2026'},
+        {n:'Binance / RWA.xyz', v:31.4e9, scope:'Distributed (free-float) value', src:'May/Jun 2026'},
+        {n:'BeInCrypto · core', v:60e9, scope:'Core tokenized assets, 12 classes (rwa.xyz data)', src:'Jun 2026'},
+        {n:'Pantera', v:321e9, scope:'542 assets, 11 classes — incl. stablecoins', src:'May 2026'},
+        {n:'21Shares · +permissioned', v:350e9, scope:'Incl. Canton / permissioned networks', src:'Jun 2026'},
+        {n:'BeInCrypto · full layer', v:695e9, scope:'Full settlement layer — represented + settlement positions', src:'Jun 2026'},
+      ]},
+  };
+  let ds='forecast', sc='log';
+  const $=id=>document.getElementById(id);
+  const rows=$('chartRows'), grid=$('gridlines'), axis=$('chartAxis'), tip=$('chartTip'),
+        ttl=$('chartTtl'), note=$('scaleNote'), chart=$('rwaChart');
+  function fmt(v){
+    if(v>=1e12){ let t=v/1e12; let s=t>=10?t.toFixed(0):t.toFixed(2).replace(/\.?0+$/,''); return '$'+s+'T'; }
+    let b=v/1e9; let s=b>=100?Math.round(b):b.toFixed(1).replace(/\.0$/,''); return '$'+s+'B';
+  }
+  function vals(items){ return items.flatMap(d=>[d.v,d.lo,d.hi].filter(Boolean)); }
+  function range(items){ const vs=vals(items), mn=Math.min(...vs), mx=Math.max(...vs);
+    return sc==='log' ? [Math.pow(10,Math.floor(Math.log10(mn))), Math.pow(10,Math.ceil(Math.log10(mx)))] : [0, mx*1.08]; }
+  function pos(v,a,b){ return sc==='log'
+    ? (Math.log10(v)-Math.log10(a))/(Math.log10(b)-Math.log10(a))*100
+    : (v-a)/(b-a)*100; }
+  function ticks(a,b){ const t=[];
+    if(sc==='log'){ for(let n=Math.floor(Math.log10(a)); n<=Math.ceil(Math.log10(b)); n++) for(const m of [1,2,5]){ const v=m*Math.pow(10,n); if(v>=a*0.999 && v<=b*1.001) t.push(v); } }
+    else for(let i=0;i<=4;i++) t.push(a+(b-a)*i/4);
+    return t; }
+  function showTip(d){ tip.innerHTML='<div class="tn">'+d.n+'</div><div class="tv">'+fmt(d.v)+'</div><div class="ts">'+d.scope+' · <b>'+d.src+'</b></div>'; tip.style.opacity=1; }
+  function moveTip(e){ const r=chart.getBoundingClientRect(); let x=e.clientX-r.left+16, y=e.clientY-r.top+16;
+    if(x>r.width-210) x=e.clientX-r.left-220; tip.style.left=x+'px'; tip.style.top=y+'px'; }
+  function render(){
+    const data=DS[ds], items=data.items, [a,b]=range(items);
+    ttl.textContent=data.ttl;
+    note.innerHTML = sc==='log' ? data.note : data.noteLin;
+    grid.innerHTML=''; axis.innerHTML='';
+    ticks(a,b).forEach(tv=>{ const p=pos(tv,a,b);
+      const g=document.createElement('div'); g.className='gl'; g.style.left=p+'%'; grid.appendChild(g);
+      const x=document.createElement('div'); x.className='axt'; x.style.left=p+'%'; x.textContent=fmt(tv); axis.appendChild(x); });
+    rows.innerHTML='';
+    const applies=[];
+    items.forEach(d=>{
+      const row=document.createElement('div'); row.className='row';
+      const nm=document.createElement('div'); nm.className='name'; nm.textContent=d.n;
+      const track=document.createElement('div'); track.className='track';
+      const bp=Math.max(pos(d.v,a,b),0.6);
+      let band=null, lp, hp;
+      if(d.lo&&d.hi){ band=document.createElement('div'); band.className='band';
+        lp=pos(d.lo,a,b); hp=pos(d.hi,a,b); band.style.left='0%'; band.style.width='0%'; track.appendChild(band); }
+      const bar=document.createElement('div'); bar.className='bar'; bar.style.width='0%';
+      const val=document.createElement('div'); val.className='val'; val.style.left='0%'; val.textContent=fmt(d.v);
+      track.appendChild(bar); track.appendChild(val);
+      row.appendChild(nm); row.appendChild(track);
+      row.addEventListener('mouseenter',()=>showTip(d));
+      row.addEventListener('mousemove',moveTip);
+      row.addEventListener('mouseleave',()=>{ tip.style.opacity=0; });
+      row.addEventListener('click',e=>{ showTip(d); moveTip(e); });
+      rows.appendChild(row);
+      applies.push(()=>{ bar.style.width=bp+'%'; val.style.left=bp+'%'; if(band){ band.style.left=lp+'%'; band.style.width=Math.max(hp-lp,0)+'%'; } });
+    });
+    requestAnimationFrame(()=>requestAnimationFrame(()=>applies.forEach(f=>f())));
+  }
+  $('dsSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
+    ds=btn.dataset.ds; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
+  $('scSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
+    sc=btn.dataset.sc; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
+  render();
+})();
+</script>
+</body>
+</html>
