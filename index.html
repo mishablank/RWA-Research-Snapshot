@@ -97,15 +97,56 @@
   .stat .l{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.4}
 
   /* tables */
-  .tablewrap{overflow-x:auto; margin-top:36px; border:1px solid var(--rule)}
-  table{width:100%; border-collapse:collapse; min-width:680px; font-size:14px}
+  .tablewrap{overflow-x:auto; margin-top:36px; border:1px solid var(--rule); position:relative;
+    -webkit-overflow-scrolling:touch}
+  table{width:100%; border-collapse:separate; border-spacing:0; min-width:680px; font-size:14px}
   th,td{text-align:left; padding:15px 18px; border-bottom:1px solid var(--rule); vertical-align:top}
   thead th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--olive);
     font-weight:600; background:rgba(122,110,79,.05)}
   tbody tr:last-child td{border-bottom:0}
   td.pub{font-weight:600; white-space:nowrap}
-  td .fig{font-family:var(--serif); font-size:20px; color:var(--accent); letter-spacing:-.01em}
+  td .fig{font-family:var(--serif); font-size:20px; color:var(--accent); letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums}
   td small{display:block; color:var(--muted); font-size:12.5px; margin-top:3px; font-weight:400}
+  /* numeric column: tabular figures + right-aligned so magnitudes scan vertically */
+  th.num,td.num{font-variant-numeric:tabular-nums; white-space:nowrap; width:16%; min-width:156px}
+  td.num small{white-space:normal}
+  /* pinned source column + edge fade so horizontal scroll is discoverable */
+  .tablewrap th:first-child,.tablewrap td:first-child,
+  .mxwrap th:first-child,.mxwrap td:first-child{position:sticky; left:0; z-index:2;
+    background:var(--bg); box-shadow:1px 0 0 var(--rule)}
+  .tablewrap thead th:first-child,.mxwrap thead th:first-child{z-index:3; background:#EDE5D6}
+  .mxwrap tr.grp td:first-child{background:#E9E1D1}
+  .tablewrap::after,.mxwrap::after{content:""; position:sticky; float:right; top:0; right:0;
+    width:34px; height:100%; margin-left:-34px; pointer-events:none;
+    background:linear-gradient(to right, rgba(242,235,221,0), rgba(242,235,221,.92))}
+  .scrollcue{display:none; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); margin-top:8px; font-weight:600}
+
+  /* ---- desk × question matrix ---- */
+  .mxwrap{overflow-x:auto; margin-top:36px; border:1px solid var(--rule); position:relative;
+    -webkit-overflow-scrolling:touch}
+  table.mx{min-width:760px; font-size:13px}
+  table.mx th,table.mx td{padding:0; border-bottom:1px solid var(--rule)}
+  table.mx thead th{padding:12px 10px; font-size:10px; letter-spacing:.08em; line-height:1.25;
+    vertical-align:bottom; text-align:center; width:13%}
+  table.mx thead th:first-child{text-align:left; width:22%}
+  table.mx td.desk{padding:9px 14px; font-weight:600; white-space:nowrap; font-size:13px}
+  table.mx td.desk small{display:block; font-weight:400; color:var(--muted); font-size:11px; margin-top:1px}
+  table.mx td.c{text-align:center; padding:9px 8px; vertical-align:middle}
+  table.mx tr.grp td{background:rgba(122,110,79,.07); padding:7px 14px; font-size:10px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--olive)}
+  table.mx tr.grp td span{position:sticky; left:14px; display:inline-block}
+  table.mx tbody tr:hover td:not(.desk){background:rgba(196,74,54,.05)}
+  .cell{display:inline-block; width:15px; height:15px; border-radius:50%; background:var(--m,var(--rule))}
+  .cell.n{background:transparent; box-shadow:inset 0 0 0 1px var(--rule)}
+  .cell.lbl{width:auto; height:auto; border-radius:3px; padding:3px 7px; font-size:11px; font-weight:600;
+    color:#fff; background:var(--m,var(--muted)); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .cell.out{background:transparent; color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--m,var(--muted));
+    font-style:italic; font-weight:500}
+  .mx-legend{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:16px; font-size:11.5px; color:var(--muted)}
+  .mx-legend .li{display:inline-flex; align-items:center; gap:7px}
+  .pos-a{--m:#3E6B63} .pos-b{--m:#C44A36} .pos-c{--m:#8C6A3F} .pos-d{--m:#7A3B57} .pos-e{--m:#1A1816} .pos-f{--m:#4A6FA5}
   .hl{background:var(--highlight); padding:1px 5px; border-radius:2px; font-weight:600}
 
   /* three-column compare */
@@ -184,10 +225,39 @@
     transition:left .55s cubic-bezier(.4,0,.2,1), width .55s cubic-bezier(.4,0,.2,1)}
   #rwaChart .bar{position:absolute; left:0; top:50%; transform:translateY(-50%); height:15px; background:var(--accent); border-radius:3px;
     transition:width .55s cubic-bezier(.4,0,.2,1)}
-  #rwaChart .row:hover .bar{background:#A83A28}
+  #rwaChart .row:hover .bar{filter:brightness(.86)}
+  /* log mode: position-encoded dot + hairline stem. A bar's LENGTH is meaningless
+     on a log axis (no zero), so we switch the mark rather than the scale. */
+  #rwaChart .bar.dot{height:2px; background:var(--rule); border-radius:0;
+    transition:width .55s cubic-bezier(.4,0,.2,1)}
+  #rwaChart .knob{position:absolute; top:50%; width:13px; height:13px; border-radius:50%;
+    margin-left:-6.5px; background:var(--accent); transform:translateY(-50%);
+    transition:left .55s cubic-bezier(.4,0,.2,1); box-shadow:0 0 0 3px var(--bg)}
+  #rwaChart .row:hover .knob{filter:brightness(.86)}
   #rwaChart .val{position:absolute; top:50%; transform:translateY(-50%); padding-left:9px; font-family:var(--serif); font-size:15px;
     color:var(--ink); white-space:nowrap; transition:left .55s cubic-bezier(.4,0,.2,1); font-variant-numeric:tabular-nums}
   #rwaChart .row:hover .val{color:var(--accent)}
+  #rwaChart .val .ptest{display:inline; font-family:var(--sans); font-size:10px; color:var(--muted); padding-left:5px; letter-spacing:.04em}
+  /* second, sourced figure from the SAME desk on a different scope/horizon */
+  #rwaChart .alt{position:absolute; top:50%; width:11px; height:11px; border-radius:50%; margin-left:-5.5px;
+    transform:translateY(-50%); background:var(--bg); border:2px solid var(--accent); z-index:3;
+    transition:left .55s cubic-bezier(.4,0,.2,1)}
+  /* linear: the desk's two sourced figures become a scope range — solid to the
+     lower number, tinted extension to the higher, so the bar never lies. */
+  #rwaChart .ext{position:absolute; top:50%; height:15px; transform:translateY(-50%); border-radius:3px;
+    background:var(--m,var(--accent)); opacity:.26;
+    transition:left .55s cubic-bezier(.4,0,.2,1), width .55s cubic-bezier(.4,0,.2,1)}
+  #rwaChart .link{position:absolute; top:50%; height:2px; background:var(--m,var(--accent)); opacity:.4;
+    transform:translateY(-50%); transition:left .55s cubic-bezier(.4,0,.2,1), width .55s cubic-bezier(.4,0,.2,1)}
+  /* scope encoding — the explanatory variable, given a visual channel */
+  .sc-narrow{--m:#8C6A3F} .sc-secur{--m:#C44A36} .sc-broad{--m:#7A3B57} .sc-public{--m:#3E6B63} .sc-all{--m:#1A1816}
+  #rwaChart .bar:not(.dot), #rwaChart .knob, #rwaChart .alt{background:var(--m,var(--accent))}
+  #rwaChart .alt{background:var(--bg); border-color:var(--m,var(--accent))}
+  #rwaChart .link{background:var(--m,var(--accent))}
+  .legend{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:16px; font-size:11.5px; color:var(--muted)}
+  .legend .li{display:inline-flex; align-items:center; gap:7px}
+  .legend .sw{width:11px; height:11px; border-radius:50%; background:var(--m,var(--accent)); flex:none}
+  .legend .sw.hollow{background:var(--bg); border:2px solid var(--muted)}
   .chart-foot{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
     margin-top:8px; padding-top:14px; border-top:1px solid var(--rule); font-size:12px; color:var(--muted)}
   .scale-note{font-style:italic}
@@ -203,6 +273,12 @@
     .gridlines,.axis{left:104px; right:44px}
     #rwaChart .row .name{left:-98px; width:90px; font-size:10.5px}
     #rwaChart .val{font-size:13px; padding-left:6px}
+    #rwaChart .val .ptest{display:none}
+    .scrollcue{display:block}
+    table.mx thead th{font-size:9.5px; padding:10px 6px}
+    table.mx thead th:first-child{width:118px}
+    table.mx td.desk{white-space:normal; width:118px; max-width:118px; font-size:12px; padding:9px 10px}
+    table.mx td.desk small{font-size:10px}
   }
 </style>
 </head>
@@ -236,20 +312,20 @@
         <div class="num">$400B <em>→</em> $14T</div>
         <div class="underline"></div>
         <div class="sub">6 studies · same 2030 horizon</div>
-        <p>A <strong style="color:var(--accent)">35×&ndash;40× gap</strong> between the most and least conservative five-year forecasts — and an even wider range on what the market is worth <em>today</em>.</p>
+        <p>A <strong style="color:var(--accent)">35× gap</strong> between the most and least conservative five-year forecasts — and an even wider range on what the market is worth <em>today</em>.</p>
       </div>
     </div>
 
     <div class="statrow" style="margin-top:72px">
       <div class="stat"><div class="v">61</div><div class="l">reports cross-read</div></div>
       <div class="stat"><div class="v acc">~0.01%</div><div class="l">TAM penetration — the one figure everyone shares</div></div>
-      <div class="stat"><div class="v">40×</div><div class="l">spread on 2030 market size</div></div>
+      <div class="stat"><div class="v">35×</div><div class="l">spread on 2030 market size<br>$400B → $14T</div></div>
       <div class="stat"><div class="v">~36×</div><div class="l">spread on <em>today's</em> market size</div></div>
     </div>
 
     <div class="ft-top" style="display:flex;justify-content:space-between;margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--label);font-weight:600">
       <span>Prepared by &nbsp;·&nbsp; Mike Blank · June 2026</span>
-      <span>Read time &nbsp;·&nbsp; 9 sections · ~10 min</span>
+      <span>Read time &nbsp;·&nbsp; 10 sections · ~12 min</span>
     </div>
   </div>
 </section>
@@ -257,7 +333,7 @@
 <!-- ============ 02 · WHERE THEY AGREE ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>The state of play · what's not in dispute</span><span class="count">02 / 09</span></div>
+    <div class="runhead"><span>The state of play · what's not in dispute</span><span class="count">02 / 10</span></div>
     <div class="eyebrow">Consensus</div>
     <h2 class="wide">On the facts of <span class="it">today</span>, the desks roughly converge.</h2>
     <p class="dek">Strip out the forecasts and there's a shared picture: a small, fast-growing market that is institutionalizing, anchored by tokenized Treasuries, and sitting at the very bottom of its adoption curve.</p>
@@ -297,12 +373,224 @@
   </div>
 </section>
 
-<!-- ============ 03 · DISCREPANCY 1 — THE 2030 NUMBER ============ -->
+<!-- ============ 04 · THE MATRIX ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>Discrepancy 01 · the 2030 number</span><span class="count">03 / 09</span></div>
+    <div class="runhead"><span>Who says what · the whole brief on one screen</span><span class="count">03 / 10</span></div>
+    <div class="eyebrow">The map</div>
+    <h2 class="wide">Every desk, every question<span class="dot">.</span></h2>
+    <p class="dek">The six disagreements that follow, as a single grid. Read down a column to see whether a question is settled or split; read across a row to see one desk's whole position. Empty rings are desks in the source base that took no public position on that question.</p>
+
+    <div class="mxwrap">
+      <table class="mx">
+        <thead>
+          <tr>
+            <th>Desk</th>
+            <th>2030 size</th>
+            <th>Size today</th>
+            <th>Stablecoins</th>
+            <th>Lead asset by 2030</th>
+            <th>Which rails</th>
+            <th>Binding constraint</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="grp"><td colspan="7"><span>Banks</span></td></tr>
+          <tr>
+            <td class="desk">Citi<small>Citi Institute · Jun 2026</small></td>
+            <td class="c"><span class="cell lbl sc-secur">$5.5T</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-b">Equities + Tsy</span></td>
+            <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
+            <td class="c"><span class="cell lbl pos-b">Market infra</span></td>
+          </tr>
+          <tr>
+            <td class="desk">Standard Chartered<small>May 2026</small></td>
+            <td class="c"><span class="cell lbl sc-public">$4T '28</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-b">Rail · USD only</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Public</span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">J.P. Morgan<small>Payments · Kinexys</small></td>
+            <td class="c"><span class="cell lbl out sc-narrow" title="Asset-management opportunity, not market size — different unit">$400B AM</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">Morgan Stanley<small>× Oliver Wyman</small></td>
+            <td class="c"><span class="cell lbl out pos-c" title="Revenue, not market size — different unit">$8B revenue</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">Deutsche Bank<small>2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Coexist</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+
+          <tr class="grp"><td colspan="7"><span>Managers &amp; issuers</span></td></tr>
+          <tr>
+            <td class="desk">Securitize × Keyrock<small>Apr 2026</small></td>
+            <td class="c"><span class="cell lbl sc-narrow">$400B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Tsy + credit</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">21Shares<small>Jun 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl sc-public">$31B–$350B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Treasuries</span></td>
+            <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+
+          <tr class="grp"><td colspan="7"><span>Consultancies</span></td></tr>
+          <tr>
+            <td class="desk">BCG<small>Global AM Report · Apr 2026</small></td>
+            <td class="c"><span class="cell lbl sc-broad">$14T</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">McKinsey<small>2026</small></td>
+            <td class="c"><span class="cell lbl out sc-all" title="Stablecoin adoption, not tokenized RWA market size — different unit">$4T stablecoin</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Coexist</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">PwC<small>2026</small></td>
+            <td class="c"><span class="cell lbl sc-broad">$715B funds</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-d">Funds</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+
+          <tr class="grp"><td colspan="7"><span>Crypto research &amp; trackers</span></td></tr>
+          <tr>
+            <td class="desk">Binance Research<small>May–Jun 2026</small></td>
+            <td class="c"><span class="cell lbl sc-narrow">$1.6T</span></td>
+            <td class="c"><span class="cell lbl sc-narrow">$31.4B</span></td>
+            <td class="c"><span class="cell lbl pos-b">Rail</span></td>
+            <td class="c"><span class="cell lbl pos-b">Equities / credit</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-f">Convergence</span></td>
+          </tr>
+          <tr>
+            <td class="desk">Pantera<small>May 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl sc-all">$321B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">BeInCrypto × rwa.xyz<small>Apr–Jun 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl sc-all">$60B–$695B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">DefiLlama<small>Apr 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl sc-public">$25.2B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Public</span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+          <tr>
+            <td class="desk">CoinGecko<small>Q1 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl sc-narrow">$19.3B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Public</span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+
+          <tr class="grp"><td colspan="7"><span>Official sector</span></td></tr>
+          <tr>
+            <td class="desk">BIS<small>Annual Economic Report 2026, Ch. III</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-e">Flawed money</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-d">Unified ledger</span></td>
+            <td class="c"><span class="cell lbl pos-e">Monetary arch.</span></td>
+          </tr>
+          <tr>
+            <td class="desk">IMF<small>Tokenized Finance · 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Safety first</span></td>
+          </tr>
+          <tr>
+            <td class="desk">GFMA<small>2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-a">Coexist</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="scrollcue">Scroll the grid sideways →</div>
+
+    <div class="mx-legend">
+      <span class="li"><i class="cell n"></i>No public position in this window</span>
+      <span class="li"><i class="cell lbl out" style="--m:var(--muted); font-size:10px">outlined</i>Different unit — revenue or opportunity, not market size</span><span class="li">Solid figure pills use the same scope colours as the chart in section 04</span>
+    </div>
+
+    <p class="disc" style="margin-top:20px">Also in the source base with no position extracted on these six questions: HSBC · Barclays · Nomura · BlackRock · Franklin Templeton · Grayscale · Bitwise · Oliver Wyman (standalone) · Deloitte · KPMG · Messari · Galaxy · OMFIF. The "regulatory clarity" bottleneck (GENIUS · CLARITY · MiCA) is stated collectively across bank research rather than by a named desk, so it is not attributed in the grid.</p>
+
+    <div class="callout accent">
+      <div class="eyebrow">What the grid shows</div>
+      <p>Two columns are near-unanimous where anyone speaks at all — <span class="hl">Treasuries lead today</span> and the market is at ~0.01% penetration. The split columns are stablecoins and rails, and the split runs almost exactly along the <span class="hl">crypto / official-sector seam</span>, not across it. Most cells are empty: 61 reports, but few desks answer more than two of these questions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · DISCREPANCY 1 — THE 2030 NUMBER ============ -->
+<section>
+  <div class="wrap">
+    <div class="runhead"><span>Discrepancy 01 · the 2030 number</span><span class="count">04 / 10</span></div>
     <div class="eyebrow">The forecast spread</div>
-    <h2>Same horizon. A <span class="it">40× disagreement</span><span class="dot">.</span></h2>
+    <h2>Same horizon. A <span class="it">35× disagreement</span><span class="dot">.</span></h2>
     <p class="dek">Six widely-cited studies, one five-year window, and headline numbers that range from a few hundred billion to fourteen trillion. The gap isn't conviction — it's that they aren't measuring the same thing.</p>
 
     <div class="chart" id="rwaChart">
@@ -314,8 +602,8 @@
             <button data-ds="today">Market today</button>
           </div>
           <div class="seg" id="scSeg">
-            <button data-sc="log" class="on">Log</button>
-            <button data-sc="linear">Linear</button>
+            <button data-sc="linear" class="on">Linear</button>
+            <button data-sc="log">Log</button>
           </div>
         </div>
       </div>
@@ -324,26 +612,28 @@
         <div class="rows" id="chartRows"></div>
         <div class="axis" id="chartAxis"></div>
       </div>
+      <div class="legend" id="chartLegend"></div>
       <div class="chart-foot">
-        <span class="scale-note" id="scaleNote">Log scale — compresses a ~35× range so every study stays visible.</span>
-        <span>Hover a bar for scope &amp; source · tap to toggle scale</span>
+        <span class="scale-note" id="scaleNote">Linear scale — the smallest forecast nearly vanishes. <em>That</em> gap is the disagreement.</span>
+        <span>Hover or tap any row for scope &amp; source</span>
       </div>
       <div class="tip" id="chartTip"></div>
     </div>
 
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Study (date)</th><th>2030 figure</th><th>What's being counted</th><th>Implied stance</th></tr></thead>
+        <thead><tr><th>Study (date)</th><th class="num">2030 figure</th><th>What's being counted</th><th>Implied stance</th></tr></thead>
         <tbody>
-          <tr><td class="pub">Securitize × Keyrock<small>Apr 2026</small></td><td><span class="fig">$400B</span><small>from ~$29B today</small></td><td>Distributed RWAs, 5 asset classes (ex-stablecoins)</td><td>Narrowest / free-float only</td></tr>
-          <tr><td class="pub">Binance Research<small>May 2026</small></td><td><span class="fig">$1.6T</span><small>base ($320B–$4.8T)</small></td><td>Distributed value, ex-stablecoins, 5 core classes</td><td>Conservative base, wide scenarios</td></tr>
-          <tr><td class="pub">Standard Chartered<small>May 2026</small></td><td><span class="fig">~$4T</span><small>by 2028 (public chains)</small></td><td>Public-chain tokenized assets; $2.7T DeFi-active by 2030</td><td>Aggressive, public-chain bet</td></tr>
-          <tr><td class="pub">Citi (Citi Institute)<small>Jun 2026</small></td><td><span class="fig">$5.5T</span><small>by 2030</small></td><td>Tokenized securities — equities + Treasuries led</td><td>Securities-centric</td></tr>
-          <tr><td class="pub">BCG (Global AM Report)<small>Apr 2026</small></td><td><span class="fig">$14T</span><small>2030 · $55T by 2035</small></td><td>Broadest RWA definition, incl. funds</td><td>Most expansive</td></tr>
-          <tr><td class="pub">Binance — tail case<small>Jun 2026</small></td><td><span class="fig">$6.78T</span><small>at 4% penetration</small></td><td>Equities + commodities + ETFs (scenario)</td><td>Stretch / "exceptional"</td></tr>
+          <tr><td class="pub">Securitize × Keyrock<small>Apr 2026</small></td><td class="num"><span class="fig">$400B</span><small>from ~$29B today</small></td><td>Distributed RWAs, 5 asset classes (ex-stablecoins)</td><td>Narrowest / free-float only</td></tr>
+          <tr><td class="pub">Binance Research<small>May 2026</small></td><td class="num"><span class="fig">$1.6T</span><small>base ($320B–$4.8T)</small></td><td>Distributed value, ex-stablecoins, 5 core classes</td><td>Conservative base, wide scenarios</td></tr>
+          <tr><td class="pub">Standard Chartered<small>May 2026</small></td><td class="num"><span class="fig">~$4T</span><small>by 2028 (public chains)</small></td><td>Public-chain tokenized assets; $2.7T DeFi-active by 2030</td><td>Aggressive, public-chain bet</td></tr>
+          <tr><td class="pub">Citi (Citi Institute)<small>Jun 2026</small></td><td class="num"><span class="fig">$5.5T</span><small>by 2030</small></td><td>Tokenized securities — equities + Treasuries led</td><td>Securities-centric</td></tr>
+          <tr><td class="pub">BCG (Global AM Report)<small>Apr 2026</small></td><td class="num"><span class="fig">$14T</span><small>2030 · $55T by 2035</small></td><td>Broadest RWA definition, incl. funds</td><td>Most expansive</td></tr>
+          <tr><td class="pub">Binance — tail case<small>Jun 2026</small></td><td class="num"><span class="fig">$6.78T</span><small>at 4% penetration</small></td><td>Equities + commodities + ETFs (scenario)</td><td>Stretch / "exceptional"</td></tr>
         </tbody>
       </table>
     </div>
+    <div class="scrollcue">Scroll the table sideways →</div>
     <p class="src-line">Adjacent framings that don't fit the column: PwC sizes tokenized <em>funds</em> alone at $715B by 2030 (41% CAGR); Morgan Stanley × Oliver Wyman frame it as revenue — up to $8B net-new and $82B redistributed across wholesale banking by 2030; J.P. Morgan Payments calls tokenization a ~$400B opportunity for asset management.</p>
 
     <div class="callout">
@@ -353,10 +643,10 @@
   </div>
 </section>
 
-<!-- ============ 04 · DISCREPANCY 2 — THE DENOMINATOR ============ -->
+<!-- ============ 05 · DISCREPANCY 2 — THE DENOMINATOR ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>Discrepancy 02 · the denominator</span><span class="count">04 / 09</span></div>
+    <div class="runhead"><span>Discrepancy 02 · the denominator</span><span class="count">05 / 10</span></div>
     <div class="eyebrow">What even counts as an RWA</div>
     <h2 class="wide">Even <span class="it">today's</span> number is a 36× range.</h2>
     <p class="dek">Before you can argue about 2030, you have to agree what the market is worth now. The trackers don't. Same month, same asset class — numbers from $19 billion to $695 billion depending on the definition.</p>
@@ -368,18 +658,19 @@
 
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Source</th><th>"Current" market size</th><th>Definition used</th></tr></thead>
+        <thead><tr><th>Source</th><th class="num">"Current" market size</th><th>Definition used</th></tr></thead>
         <tbody>
-          <tr><td class="pub">CoinGecko</td><td><span class="fig">$19.3B</span><small>Q1 2026</small></td><td>Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)</td></tr>
-          <tr><td class="pub">DefiLlama</td><td><span class="fig">$25.2B</span><small>+6× in 14 months</small></td><td>"Active" RWA market cap on public chains</td></tr>
-          <tr><td class="pub">Binance / RWA.xyz</td><td><span class="fig">$31.4B</span><small>+~589% since early '25</small></td><td>Distributed (free-float, transferable) value</td></tr>
-          <tr><td class="pub">BeInCrypto · core</td><td><span class="fig">~$60B</span><small>7,000+ products · May 2026</small></td><td>Core tokenized assets across 12 asset classes (rwa.xyz data)</td></tr>
-          <tr><td class="pub">Pantera Capital</td><td><span class="fig">~$321B</span><small>542 assets · 11 classes</small></td><td>Broad — counts stablecoins and the full tokenized universe</td></tr>
-          <tr><td class="pub">21Shares</td><td><span class="fig">~$31B → ~$350B</span><small>public → incl. permissioned</small></td><td>~$31B public chains; ~$350B once Canton &amp; permissioned nets are added</td></tr>
-          <tr><td class="pub">BeInCrypto · full layer</td><td><span class="fig">~$695B</span><small>settlement layer · Apr 2026</small></td><td>Full settlement layer — represented assets + on-chain settlement positions</td></tr>
+          <tr><td class="pub">CoinGecko</td><td class="num"><span class="fig">$19.3B</span><small>Q1 2026</small></td><td>Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)</td></tr>
+          <tr><td class="pub">DefiLlama</td><td class="num"><span class="fig">$25.2B</span><small>+6× in 14 months</small></td><td>"Active" RWA market cap on public chains</td></tr>
+          <tr><td class="pub">Binance / RWA.xyz</td><td class="num"><span class="fig">$31.4B</span><small>+~589% since early '25</small></td><td>Distributed (free-float, transferable) value</td></tr>
+          <tr><td class="pub">BeInCrypto · core</td><td class="num"><span class="fig">~$60B</span><small>7,000+ products · May 2026</small></td><td>Core tokenized assets across 12 asset classes (rwa.xyz data)</td></tr>
+          <tr><td class="pub">Pantera Capital</td><td class="num"><span class="fig">~$321B</span><small>542 assets · 11 classes</small></td><td>Broad — counts stablecoins and the full tokenized universe</td></tr>
+          <tr><td class="pub">21Shares</td><td class="num"><span class="fig">~$31B → ~$350B</span><small>public → incl. permissioned</small></td><td>~$31B public chains; ~$350B once Canton &amp; permissioned nets are added</td></tr>
+          <tr><td class="pub">BeInCrypto · full layer</td><td class="num"><span class="fig">~$695B</span><small>settlement layer · Apr 2026</small></td><td>Full settlement layer — represented assets + on-chain settlement positions</td></tr>
         </tbody>
       </table>
     </div>
+    <div class="scrollcue">Scroll the table sideways →</div>
     <p class="src-line">BeInCrypto frames the market in three layers — ~$60B of core tokenized assets, a ~$695B full settlement layer, and ~$8T of <em>monthly</em> on-chain settlement volume (Apr 2026, +268% YoY). Different layer, different number — which is precisely the point.</p>
 
     <div class="callout accent">
@@ -389,10 +680,10 @@
   </div>
 </section>
 
-<!-- ============ 05 · DISCREPANCY 3 — STABLECOINS ============ -->
+<!-- ============ 06 · DISCREPANCY 3 — STABLECOINS ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>Discrepancy 03 · is the base layer money?</span><span class="count">05 / 09</span></div>
+    <div class="runhead"><span>Discrepancy 03 · is the base layer money?</span><span class="count">06 / 10</span></div>
     <div class="eyebrow">Stablecoins — foundation or fault line</div>
     <h2 class="wide">The rail one camp builds on is the risk another wants to contain.</h2>
     <p class="dek">No disagreement is sharper. To crypto desks, stablecoins <em>are</em> the settlement layer for tokenization. To the central-banking world, they're a flawed form of money to be superseded.</p>
@@ -421,10 +712,10 @@
   </div>
 </section>
 
-<!-- ============ 06 · DISCREPANCY 4 — LEAD ASSET ============ -->
+<!-- ============ 07 · DISCREPANCY 4 — LEAD ASSET ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>Discrepancy 04 · the lead horse</span><span class="count">06 / 09</span></div>
+    <div class="runhead"><span>Discrepancy 04 · the lead horse</span><span class="count">07 / 10</span></div>
     <div class="eyebrow">Which asset class wins</div>
     <h2>Treasuries lead now. After that, <span class="it">pick a fight</span><span class="dot">.</span></h2>
     <p class="dek">Tokenized Treasuries are the consensus leader today (~half of distributed value). Project that lead forward to 2030 and the agreement evaporates.</p>
@@ -441,14 +732,15 @@
         </tbody>
       </table>
     </div>
+    <div class="scrollcue">Scroll the table sideways →</div>
     <p class="src-line">Today's snapshot they all share: Treasuries ~half of distributed value, gold ~$5B, equities up from &lt;$300M to ~$1.5B in a year.</p>
   </div>
 </section>
 
-<!-- ============ 07 · DISCREPANCY 5 — PUBLIC VS PERMISSIONED ============ -->
+<!-- ============ 08 · DISCREPANCY 5 — PUBLIC VS PERMISSIONED ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>Discrepancy 05 · whose chain</span><span class="count">07 / 09</span></div>
+    <div class="runhead"><span>Discrepancy 05 · whose chain</span><span class="count">08 / 10</span></div>
     <div class="eyebrow">Public vs. permissioned rails</div>
     <h2 class="wide">The biggest pool of tokenized value may be the one crypto can't see.</h2>
     <p class="dek">The trackers everyone quotes count public chains. But the banks are issuing on permissioned ledgers — and by at least one estimate that hidden layer is an order of magnitude larger.</p>
@@ -465,10 +757,10 @@
   </div>
 </section>
 
-<!-- ============ 08 · DISCREPANCY 6 — THE CONSTRAINT ============ -->
+<!-- ============ 09 · DISCREPANCY 6 — THE CONSTRAINT ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>Discrepancy 06 · what unlocks it</span><span class="count">08 / 09</span></div>
+    <div class="runhead"><span>Discrepancy 06 · what unlocks it</span><span class="count">09 / 10</span></div>
     <div class="eyebrow">The binding constraint</div>
     <h2>Six desks, six different <span class="it">bottlenecks</span><span class="dot">.</span></h2>
     <p class="dek">Ask what's actually holding tokenization back and you get a different answer depending on who's writing — which tells you the market is constrained on several fronts at once.</p>
@@ -484,17 +776,17 @@
   </div>
 </section>
 
-<!-- ============ 09 · TAKEAWAY ============ -->
+<!-- ============ 10 · TAKEAWAY ============ -->
 <section>
   <div class="wrap">
-    <div class="runhead"><span>The takeaway</span><span class="count">09 / 09</span></div>
+    <div class="runhead"><span>The takeaway</span><span class="count">10 / 10</span></div>
     <div class="eyebrow pill">So what</div>
     <h2 class="wide">The disagreements are about <span class="it">scope and clock</span>, not direction.</h2>
-    <p class="dek">Normalize the definitions and the desks tell one story: penetration is ~0.01%, Treasuries lead today, stablecoins carry the settlement layer, and the next 12–18 months set the slope. The 40× forecast spread is mostly an artifact of three choices — what counts as an RWA, public vs. permissioned, and whether stablecoins are in.</p>
+    <p class="dek">Normalize the definitions and the desks tell one story: penetration is ~0.01%, Treasuries lead today, stablecoins carry the settlement layer, and the next 12–18 months set the slope. The 35× forecast spread is mostly an artifact of three choices — what counts as an RWA, public vs. permissioned, and whether stablecoins are in.</p>
 
     <div class="statrow">
       <div class="stat"><div class="v acc">Agree</div><div class="l">~0.01% penetration · Treasuries lead · 2026 is the inflection</div></div>
-      <div class="stat"><div class="v">40×</div><div class="l">disagree on the 2030 size</div></div>
+      <div class="stat"><div class="v">35×</div><div class="l">disagree on the 2030 size</div></div>
       <div class="stat"><div class="v">36×</div><div class="l">disagree on today's size</div></div>
       <div class="stat"><div class="v acc">3 levers</div><div class="l">scope · chain type · stablecoins-in-or-out explain most of it</div></div>
     </div>
@@ -548,49 +840,81 @@
 (function(){
   const DS={
     forecast:{ttl:'2030 market-size forecasts',
-      note:'Log scale — compresses a ~35× range so every study stays visible.',
-      noteLin:'Linear scale — the smallest forecast nearly vanishes. <em>That</em> gap is the disagreement.',
+      note:'Log scale — marks are <b>dots, not bars</b>: on a log axis there is no zero, so length means nothing. Read position only.',
+      noteLin:'Linear scale — the smallest forecast nearly vanishes. <em>That</em> 35× gap is the disagreement.',
       items:[
-        {n:'Securitize × Keyrock', v:400e9, scope:'Distributed RWAs, 5 classes (ex-stablecoins)', src:'Apr 2026'},
-        {n:'Binance Research', v:1600e9, lo:320e9, hi:4800e9, scope:'Distributed value, ex-stablecoins · base case; band = $320B–$4.8T range', src:'May 2026'},
-        {n:'Standard Chartered', v:4000e9, scope:'Public-chain tokenized assets by 2028; $2.7T DeFi-active by 2030', src:'May 2026'},
-        {n:'Citi', v:5500e9, scope:'Tokenized securities — equities + Treasuries led', src:'Jun 2026'},
-        {n:'Binance — tail case', v:6780e9, scope:'Equities + commodities + ETFs at 4% penetration (scenario)', src:'Jun 2026'},
-        {n:'BCG', v:14000e9, scope:'Broadest RWA definition, incl. funds · $55T by 2035', src:'Apr 2026'},
+        {n:'Securitize × Keyrock', v:400e9, cat:'narrow', pt:1, scope:'Distributed RWAs, 5 classes (ex-stablecoins)', src:'Apr 2026'},
+        {n:'Binance Research', v:1600e9, lo:320e9, hi:4800e9, cat:'narrow', scope:'Distributed value, ex-stablecoins · base case; band = $320B–$4.8T range', src:'May 2026'},
+        {n:'Standard Chartered', v:4000e9, cat:'public', alt:2700e9, altLbl:'$2.7T DeFi-active, 2030', scope:'Public-chain tokenized assets by 2028; hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)', src:'May 2026'},
+        {n:'Citi', v:5500e9, cat:'secur', pt:1, scope:'Tokenized securities — equities + Treasuries led', src:'Jun 2026'},
+        {n:'Binance — tail case', v:6780e9, cat:'secur', pt:1, scope:'Equities + commodities + ETFs at 4% penetration (scenario, not a base case)', src:'Jun 2026'},
+        {n:'BCG', v:14000e9, cat:'broad', pt:1, scope:'Broadest RWA definition, incl. funds · $55T by 2035 (off-scale, see table)', src:'Apr 2026'},
       ]},
     today:{ttl:'Market size — today',
-      note:'Log scale — the same market, valued eight different ways.',
-      noteLin:'Linear scale — definitional choices swing today’s number ~36×.',
+      note:'Log scale — dots, not bars. Seven desks, eight numbers, one month, same market.',
+      noteLin:'Linear scale — definitional choices swing today’s number ~36×. Colour is the definition.',
       items:[
-        {n:'CoinGecko', v:19.3e9, scope:'Tokenized RWAs ex-stablecoins (Q1 2026)', src:'May 2026'},
-        {n:'DefiLlama', v:25.2e9, scope:'"Active" RWA market cap, public chains', src:'Apr 2026'},
-        {n:'21Shares · public', v:31e9, scope:'Public chains only', src:'Jun 2026'},
-        {n:'Binance / RWA.xyz', v:31.4e9, scope:'Distributed (free-float) value', src:'May/Jun 2026'},
-        {n:'BeInCrypto · core', v:60e9, scope:'Core tokenized assets, 12 classes (rwa.xyz data)', src:'Jun 2026'},
-        {n:'Pantera', v:321e9, scope:'542 assets, 11 classes — incl. stablecoins', src:'May 2026'},
-        {n:'21Shares · +permissioned', v:350e9, scope:'Incl. Canton / permissioned networks', src:'Jun 2026'},
-        {n:'BeInCrypto · full layer', v:695e9, scope:'Full settlement layer — represented + settlement positions', src:'Jun 2026'},
+        {n:'CoinGecko', v:19.3e9, cat:'narrow', pt:1, scope:'Tokenized RWAs ex-stablecoins (Q1 2026)', src:'May 2026'},
+        {n:'DefiLlama', v:25.2e9, cat:'public', pt:1, scope:'"Active" RWA market cap, public chains', src:'Apr 2026'},
+        {n:'Binance / RWA.xyz', v:31.4e9, cat:'narrow', pt:1, scope:'Distributed (free-float) value', src:'May/Jun 2026'},
+        {n:'21Shares', v:31e9, cat:'public', alt:350e9, altLbl:'$350B incl. permissioned',
+         scope:'~$31B public chains; hollow dot = ~$350B once Canton & permissioned networks are added. One desk, one date, 11× apart on scope alone.', src:'Jun 2026'},
+        {n:'BeInCrypto · core', v:60e9, cat:'broad', pt:1, scope:'Core tokenized assets, 12 classes (rwa.xyz data)', src:'Jun 2026'},
+        {n:'Pantera', v:321e9, cat:'all', pt:1, scope:'542 assets, 11 classes — incl. stablecoins', src:'May 2026'},
+        {n:'BeInCrypto · full layer', v:695e9, cat:'all', pt:1, scope:'Full settlement layer — represented + on-chain settlement positions', src:'Jun 2026'},
       ]},
   };
-  let ds='forecast', sc='log';
+  const CATS={
+    narrow:'Free-float / distributed only',
+    public:'Public chains, all issued',
+    secur :'Securities & core asset classes',
+    broad :'Broad — incl. funds / 12-class core',
+    all   :'All-in — incl. stablecoins / settlement layer',
+  };
+  let ds='forecast', sc='linear';
   const $=id=>document.getElementById(id);
   const rows=$('chartRows'), grid=$('gridlines'), axis=$('chartAxis'), tip=$('chartTip'),
-        ttl=$('chartTtl'), note=$('scaleNote'), chart=$('rwaChart');
+        ttl=$('chartTtl'), note=$('scaleNote'), chart=$('rwaChart'), legend=$('chartLegend');
   function fmt(v){
+    if(v===0) return '$0';
     if(v>=1e12){ let t=v/1e12; let s=t>=10?t.toFixed(0):t.toFixed(2).replace(/\.?0+$/,''); return '$'+s+'T'; }
     let b=v/1e9; let s=b>=100?Math.round(b):b.toFixed(1).replace(/\.0$/,''); return '$'+s+'B';
   }
-  function vals(items){ return items.flatMap(d=>[d.v,d.lo,d.hi].filter(Boolean)); }
+  function vals(items){ return items.flatMap(d=>[d.v,d.lo,d.hi,d.alt].filter(Boolean)); }
+  // linear: round the axis top up to a "nice" step so ticks land on round numbers
+  // ($0 · $5T · $10T · $15T), not on mx*1.08/4 ($3.78T · $7.56T · $11T…).
+  function niceStep(span,target){
+    const raw=span/target, mag=Math.pow(10,Math.floor(Math.log10(raw))), n=raw/mag;
+    return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*mag;
+  }
   function range(items){ const vs=vals(items), mn=Math.min(...vs), mx=Math.max(...vs);
-    return sc==='log' ? [Math.pow(10,Math.floor(Math.log10(mn))), Math.pow(10,Math.ceil(Math.log10(mx)))] : [0, mx*1.08]; }
+    if(sc==='log') return [Math.pow(10,Math.floor(Math.log10(mn))), Math.pow(10,Math.ceil(Math.log10(mx)))];
+    const st=niceStep(mx,4); return [0, st*Math.ceil(mx/st*1.0001)]; }
   function pos(v,a,b){ return sc==='log'
     ? (Math.log10(v)-Math.log10(a))/(Math.log10(b)-Math.log10(a))*100
     : (v-a)/(b-a)*100; }
   function ticks(a,b){ const t=[];
-    if(sc==='log'){ for(let n=Math.floor(Math.log10(a)); n<=Math.ceil(Math.log10(b)); n++) for(const m of [1,2,5]){ const v=m*Math.pow(10,n); if(v>=a*0.999 && v<=b*1.001) t.push(v); } }
-    else for(let i=0;i<=4;i++) t.push(a+(b-a)*i/4);
+    if(sc==='log'){
+      // narrow plots (mobile) can't fit 1/2/5 per decade — the labels overprint.
+      const w=grid.getBoundingClientRect().width||600;
+      const decades=Math.log10(b)-Math.log10(a);
+      const ms = (w/decades) < 150 ? [1] : [1,2,5];
+      for(let n=Math.floor(Math.log10(a)); n<=Math.ceil(Math.log10(b)); n++)
+        for(const m of ms){ const v=m*Math.pow(10,n); if(v>=a*0.999 && v<=b*1.001) t.push(v); }
+    } else { const st=niceStep(b,4); for(let v=0; v<=b*1.0001; v+=st) t.push(v); }
     return t; }
-  function showTip(d){ tip.innerHTML='<div class="tn">'+d.n+'</div><div class="tv">'+fmt(d.v)+'</div><div class="ts">'+d.scope+' · <b>'+d.src+'</b></div>'; tip.style.opacity=1; }
+  function showTip(d){
+    tip.innerHTML='<div class="tn">'+d.n+'</div><div class="tv">'+fmt(d.v)
+      +(d.alt?' <span style="opacity:.65">→ '+fmt(d.alt)+'</span>':'')+'</div>'
+      +'<div class="ts">'+d.scope+' · <b>'+d.src+'</b></div>';
+    tip.style.opacity=1; }
+  function drawLegend(items){
+    const seen=[]; items.forEach(d=>{ if(d.cat && seen.indexOf(d.cat)<0) seen.push(d.cat); });
+    let h=seen.map(c=>'<span class="li '+('sc-'+({narrow:'narrow',public:'public',secur:'secur',broad:'broad',all:'all'}[c]))
+      +'"><i class="sw"></i>'+CATS[c]+'</span>').join('');
+    if(items.some(d=>d.alt)) h+='<span class="li"><i class="sw hollow"></i>Same desk, wider scope</span>';
+    legend.innerHTML=h;
+  }
   function moveTip(e){ const r=chart.getBoundingClientRect(); let x=e.clientX-r.left+16, y=e.clientY-r.top+16;
     if(x>r.width-210) x=e.clientX-r.left-220; tip.style.left=x+'px'; tip.style.top=y+'px'; }
   function render(){
@@ -602,25 +926,55 @@
       const g=document.createElement('div'); g.className='gl'; g.style.left=p+'%'; grid.appendChild(g);
       const x=document.createElement('div'); x.className='axt'; x.style.left=p+'%'; x.textContent=fmt(tv); axis.appendChild(x); });
     rows.innerHTML='';
+    drawLegend(items);
+    const isLog = sc==='log';
     const applies=[];
     items.forEach(d=>{
-      const row=document.createElement('div'); row.className='row';
+      const row=document.createElement('div'); row.className='row'+(d.cat?' sc-'+d.cat:'');
       const nm=document.createElement('div'); nm.className='name'; nm.textContent=d.n;
       const track=document.createElement('div'); track.className='track';
       const bp=Math.max(pos(d.v,a,b),0.6);
+      const ap=d.alt?Math.max(pos(d.alt,a,b),0.6):null;
+      // label sits at whichever mark is further right so it never overlaps
+      const lblp=ap!==null?Math.max(bp,ap):bp;
       let band=null, lp, hp;
       if(d.lo&&d.hi){ band=document.createElement('div'); band.className='band';
         lp=pos(d.lo,a,b); hp=pos(d.hi,a,b); band.style.left='0%'; band.style.width='0%'; track.appendChild(band); }
-      const bar=document.createElement('div'); bar.className='bar'; bar.style.width='0%';
-      const val=document.createElement('div'); val.className='val'; val.style.left='0%'; val.textContent=fmt(d.v);
-      track.appendChild(bar); track.appendChild(val);
+      // A desk's two sourced figures. Linear: solid bar to the lower number plus a
+      // tinted extension to the higher. Log: a hairline connector between two dots.
+      const lo2=ap!==null?Math.min(bp,ap):null, hi2=ap!==null?Math.max(bp,ap):null;
+      let link=null;
+      if(ap!==null){ link=document.createElement('div'); link.className=isLog?'link':'ext';
+        link.style.left='0%'; link.style.width='0%'; track.appendChild(link); }
+      // On log the mark is a DOT (encodes position, valid without a zero).
+      // On linear it stays a bar (encodes length from a real zero).
+      const bar=document.createElement('div'); bar.className='bar'+(isLog?' dot':''); bar.style.width='0%';
+      track.appendChild(bar);
+      let knob=null;
+      if(isLog){ knob=document.createElement('div'); knob.className='knob'; knob.style.left='0%'; track.appendChild(knob); }
+      let alt=null;
+      if(ap!==null){ alt=document.createElement('div'); alt.className='alt'; alt.style.left='0%'; track.appendChild(alt); }
+      const val=document.createElement('div'); val.className='val'; val.style.left='0%';
+      // two sourced figures from one desk read as a scope range, low–high
+      val.innerHTML=(d.alt?fmt(Math.min(d.v,d.alt))+'–'+fmt(Math.max(d.v,d.alt)):fmt(d.v))
+        +(d.pt?'<span class="ptest" title="Point estimate — source publishes no range">pt. est.</span>':'');
+      track.appendChild(val);
       row.appendChild(nm); row.appendChild(track);
       row.addEventListener('mouseenter',()=>showTip(d));
       row.addEventListener('mousemove',moveTip);
       row.addEventListener('mouseleave',()=>{ tip.style.opacity=0; });
       row.addEventListener('click',e=>{ showTip(d); moveTip(e); });
       rows.appendChild(row);
-      applies.push(()=>{ bar.style.width=bp+'%'; val.style.left=bp+'%'; if(band){ band.style.left=lp+'%'; band.style.width=Math.max(hp-lp,0)+'%'; } });
+      applies.push(()=>{
+        // linear + two figures: solid bar stops at the LOWER number, so the solid
+        // block is never longer than the most conservative sourced figure
+        bar.style.width=(!isLog && ap!==null ? lo2 : bp)+'%';
+        val.style.left=lblp+'%';
+        if(knob) knob.style.left=bp+'%';
+        if(alt) alt.style.left=ap+'%';
+        if(link){ link.style.left=lo2+'%'; link.style.width=Math.max(hi2-lo2,0)+'%'; }
+        if(band){ band.style.left=lp+'%'; band.style.width=Math.max(hp-lp,0)+'%'; }
+      });
     });
     requestAnimationFrame(()=>requestAnimationFrame(()=>applies.forEach(f=>f())));
   }
@@ -628,6 +982,8 @@
     ds=btn.dataset.ds; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
   $('scSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
     sc=btn.dataset.sc; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
+  // log tick density depends on plot width, so re-render when it changes
+  let rt; addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(render,180); });
   render();
 })();
 </script>
