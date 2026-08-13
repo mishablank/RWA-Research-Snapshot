@@ -2,7 +2,9 @@
 
 **Everyone agrees RWAs are coming. Nobody agrees how big.**
 
-A single-page editorial synthesis that cross-reads **61 research reports** on real-world assets and tokenization — global banks, asset managers, the Big Four, crypto-native desks and the official sector — all published between **29 Mar and 27 Jun 2026**. The finding: the desks converge almost completely on the *direction of travel* and contradict each other on nearly everything you can put a number on.
+A single-page editorial synthesis that cross-reads **63 research reports** on real-world assets and tokenization — global banks, asset managers, the Big Four, crypto-native desks and the official sector — published between **29 Mar and 10 Aug 2026**. The finding: the desks converge almost completely on the *direction of travel* and contradict each other on nearly everything you can put a number on.
+
+> **Updated 13 Aug 2026** — adds Binance Research's *Half-Year 2026: On-Chain Markets* (30 Jul) and Standard Chartered's *Chainlink: Owning the rails* (10 Aug, institutional-client note, cited via The Block's same-day coverage). Two consequential changes: Binance **cut its 2030 base case from $1.6T to $661B** (the old base is now its bull case), and SC published its first sourced "today" figure — **~$340B incl. stablecoins**, landing within 3% of 21Shares' $350B by a completely different route (stablecoins in vs. permissioned networks in).
 
 The headline tension: **$400B → $14T** for the same 2030 horizon. A 35× spread. And an even wider ~36× spread on what the market is worth *today*.
 
@@ -37,13 +39,13 @@ No build step, no dependencies, no framework. One file — [`index.html`](index.
 
 ### The chart (section 04)
 
-Two toggles — **2030 forecast / market today** and **linear / log** — over the same six-to-seven study dataset. The encoding is deliberate and switches with the scale:
+Two toggles — **2030 forecast / market today** and **linear / log** — over the same six-to-eight study dataset. The encoding is deliberate and switches with the scale:
 
 - **Linear** → marks are **bars**. Length encodes magnitude from a real zero.
 - **Log** → marks are **dots**. There is no zero on a log axis, so bar length would be meaningless; only position is read.
 - **Colour** encodes the *definition* used (free-float · public-chain · securities · broad · all-in incl. stablecoins), not the desk.
 - **Hollow dot** = the same desk's second sourced figure under a wider scope (21Shares $31B → $350B; Standard Chartered $4T '28 → $2.7T DeFi-active '30).
-- **Band** = a published scenario range (Binance $320B–$4.8T around a $1.6T base).
+- **Band** = a published scenario range (Binance $203B–$1.6T around a $661B base — the Jul 2026 framework that cut the May base case of $1.6T).
 - **`pt. est.`** = the source publishes a point estimate with no range.
 - On linear with two figures, the solid bar stops at the **lower** number and extends in a tint — the solid block never overstates the most conservative sourced figure.
 
@@ -51,13 +53,13 @@ Log tick density adapts to plot width (narrow viewports drop to one tick per dec
 
 ### The matrix (section 03)
 
-18 desks down, six questions across, grouped by desk type. Read down a column to see whether a question is settled or split; read across a row for one desk's whole position. Empty rings are desks in the source base that took **no public position** on that question — and most cells are empty, which is itself the finding: 61 reports, few desks answering more than two of these six questions.
+18 desks down, six questions across, grouped by desk type. Read down a column to see whether a question is settled or split; read across a row for one desk's whole position. Empty rings are desks in the source base that took **no public position** on that question — and most cells are empty, which is itself the finding: 63 reports, few desks answering more than two of these six questions.
 
 ---
 
 ## Source base
 
-61 reports cross-read, 29 Mar – 27 Jun 2026 (49 archived locally — **the source documents are not in this repo**; the page reproduces figures as reported, with dates).
+63 reports cross-read, 29 Mar – 10 Aug 2026 (50 archived locally — **the source documents are not in this repo**; the page reproduces figures as reported, with dates). The two August additions: Binance Research *Half-Year 2026: On-Chain Markets* (official PDF) and Standard Chartered *Chainlink: Owning the rails* (client-only; via The Block's coverage).
 
 - **Banks** — Citi · J.P. Morgan · Morgan Stanley · Standard Chartered · Deutsche Bank · HSBC · Barclays · Nomura
 - **Managers & issuers** — BlackRock · Franklin Templeton · Securitize · Grayscale · 21Shares · Bitwise
@@ -131,4 +133,4 @@ Figures are reproduced as reported by each source on the date cited. **Scopes an
 
 ---
 
-Prepared by [Mike Blank](https://pl.linkedin.com/in/mishablank) · June 2026. Design after trancheprotocol.com.
+Prepared by [Mike Blank](https://pl.linkedin.com/in/mishablank) · June 2026 · updated 13 Aug 2026. Design after trancheprotocol.com.
