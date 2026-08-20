@@ -4,7 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The State of RWAs – Where the Research Disagrees</title>
+<meta name="description" content="63 RWA research reports cross-read: the desks agree tokenization is coming and disagree 35× on how big – $400B to $14T for the same 2030 horizon. Every desk, every question, one page.">
+<meta name="author" content="Mike Blank">
+<link rel="canonical" href="https://rwaresearch.info/">
+<meta name="theme-color" content="#F2EBDD">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rwaresearch.info/">
+<meta property="og:site_name" content="RWA Research Snapshot">
+<meta property="og:title" content="The State of RWAs – Where the Research Disagrees">
+<meta property="og:description" content="Same 2030 horizon, a 35× disagreement. 63 reports cross-read, 18 desks × 6 questions – where RWA research converges and where it contradicts itself.">
+<meta property="og:image" content="https://rwaresearch.info/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="$400B to $14T – six 2030 tokenization forecasts, same horizon, a 35× disagreement">
+<meta property="article:published_time" content="2026-07-17">
+<meta property="article:modified_time" content="2026-08-13">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The State of RWAs – Where the Research Disagrees">
+<meta name="twitter:description" content="Same 2030 horizon, a 35× disagreement. 63 reports cross-read, 18 desks × 6 questions – where RWA research converges and where it contradicts itself.">
+<meta name="twitter:image" content="https://rwaresearch.info/og-card.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231A1816'/%3E%3Crect x='14' y='18' width='12' height='6' rx='1' fill='%23F2EBDD'/%3E%3Crect x='14' y='29' width='26' height='6' rx='1' fill='%23C44A36'/%3E%3Crect x='14' y='40' width='36' height='6' rx='1' fill='%23F5E69A'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -267,6 +287,41 @@
   .tip .tn{font-weight:700; margin-bottom:4px}
   .tip .tv{font-family:var(--serif); color:var(--accent-soft); font-size:18px}
   .tip .ts{color:#C9BBA9; margin-top:6px}
+  /* section anchors + progress rail */
+  section{scroll-margin-top:10px}
+  .hanchor{font-family:var(--sans); font-size:.38em; font-weight:600; letter-spacing:0;
+    vertical-align:middle; margin-left:14px; position:relative; top:-3px;
+    color:var(--accent); text-decoration:none; opacity:0; transition:opacity .15s}
+  h2:hover .hanchor, .hanchor:focus-visible{opacity:.85}
+  .rail{position:fixed; right:26px; top:50%; transform:translateY(-50%); z-index:5;
+    display:none; flex-direction:column; gap:9px; font-size:10px; font-weight:600;
+    letter-spacing:.12em; font-family:var(--sans)}
+  .rail a{color:var(--label); opacity:.4; text-decoration:none; display:flex;
+    align-items:center; gap:8px; justify-content:flex-end;
+    transition:opacity .15s, color .15s}
+  .rail a .lbl{font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+    opacity:0; transition:opacity .15s; white-space:nowrap}
+  .rail a:hover{opacity:1}
+  .rail a:hover .lbl{opacity:.9}
+  .rail a.on{color:var(--accent); opacity:1}
+  @media(min-width:1280px){.rail{display:flex}}
+
+  /* source register */
+  .srcs{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0 44px; margin-top:8px}
+  .srcs li{display:flex; gap:14px; align-items:baseline; padding:11px 0;
+    border-bottom:1px solid var(--rule); font-size:13.5px; line-height:1.45}
+  .srcs .sn{font-size:10px; font-weight:600; letter-spacing:.08em; color:var(--accent); flex:0 0 20px}
+  .srcs .st{color:var(--ink); flex:1}
+  .srcs .st em{font-family:var(--serif); font-style:italic}
+  .srcs .sm{color:var(--muted); font-size:12px}
+  .srcs a{color:var(--accent); text-decoration:none; font-weight:600; font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; white-space:nowrap}
+  .srcs a:hover{text-decoration:underline}
+  .src-gate{color:var(--muted); font-size:10px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap}
+  .src-grp{grid-column:1/-1; font-size:11px; font-weight:600; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--olive); margin-top:22px; padding-bottom:6px}
+  @media(max-width:820px){.srcs{grid-template-columns:1fr}}
+
   @media(max-width:680px){
     .chart{padding:22px 16px 14px}
     .plot{padding:8px 44px 32px 104px}
@@ -281,12 +336,39 @@
     table.mx td.desk small{font-size:10px}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The State of RWAs – Where the Research Disagrees",
+  "description": "A cross-read of 63 RWA and tokenization research reports published 29 Mar – 10 Aug 2026: the desks converge on the direction of travel and disagree 35× on market size.",
+  "url": "https://rwaresearch.info/",
+  "mainEntityOfPage": "https://rwaresearch.info/",
+  "image": "https://rwaresearch.info/og-card.png",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-08-13",
+  "author": {"@type": "Person", "name": "Mike Blank", "url": "https://pl.linkedin.com/in/mishablank"}
+}
+</script>
 </head>
 <body>
 <div class="grid-bg"></div>
+<nav class="rail" aria-label="Sections">
+  <a href="#top"><span class="lbl">The tension</span>01</a>
+  <a href="#consensus"><span class="lbl">Consensus</span>02</a>
+  <a href="#map"><span class="lbl">The map</span>03</a>
+  <a href="#forecast"><span class="lbl">The 2030 number</span>04</a>
+  <a href="#denominator"><span class="lbl">The denominator</span>05</a>
+  <a href="#stablecoins"><span class="lbl">Stablecoins</span>06</a>
+  <a href="#lead-asset"><span class="lbl">The lead asset</span>07</a>
+  <a href="#rails"><span class="lbl">Whose chain</span>08</a>
+  <a href="#constraint"><span class="lbl">The constraint</span>09</a>
+  <a href="#takeaway"><span class="lbl">So what</span>10</a>
+  <a href="#sources"><span class="lbl">Sources</span>A</a>
+</nav>
 
 <!-- ============ 01 · HERO ============ -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="wrap">
     <div class="topbar">
       <span class="tb-left"><a href="https://www.r3.com" target="_blank" rel="noopener noreferrer" class="r3logo" aria-label="R3 – visit r3.com"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.947 50" role="img" aria-label="R3"><g transform="translate(0)"><path d="M131.744,58.572a4.2,4.2,0,1,1-4.2-4.183,4.194,4.194,0,0,1,4.2,4.183" transform="translate(-65.797 -29.588)" fill="#e52328"/><path d="M65.062,17.759l5.7-8.258V1.135H52.6L46.822,9.5H60.529L53.472,19.72l4.2,7.245A8.463,8.463,0,1,1,53.421,34.3H45.014A16.92,16.92,0,1,0,65.062,17.759" transform="translate(-24.139 -1.135)" fill="#010101"/><path d="M17.315,1.136A16.881,16.881,0,0,0,8.842,3.4V1.136H.416V34.3H8.842V17.949h.007a8.445,8.445,0,0,1,8.466-8.423h0L20.138,9.5l5.777-8.366Z" transform="translate(-0.416 -1.136)" fill="#010101"/></g></svg></a>RWA Market · Cross-Study Synthesis</span>
@@ -332,11 +414,11 @@
 </section>
 
 <!-- ============ 02 · WHERE THEY AGREE ============ -->
-<section>
+<section id="consensus">
   <div class="wrap">
     <div class="runhead"><span>The state of play · what's not in dispute</span><span class="count">02 / 10</span></div>
     <div class="eyebrow">Consensus</div>
-    <h2 class="wide">On the facts of <span class="it">today</span>, the desks roughly converge.</h2>
+    <h2 class="wide">On the facts of <span class="it">today</span>, the desks roughly converge.<a class="hanchor" href="#consensus" aria-label="Link to this section">#</a></h2>
     <p class="dek">Strip out the forecasts and there's a shared picture: a small, fast-growing market that is institutionalizing, anchored by tokenized Treasuries, and sitting at the very bottom of its adoption curve.</p>
 
     <div class="statrow five">
@@ -375,11 +457,11 @@
 </section>
 
 <!-- ============ 04 · THE MATRIX ============ -->
-<section>
+<section id="map">
   <div class="wrap">
     <div class="runhead"><span>Who says what · the whole brief on one screen</span><span class="count">03 / 10</span></div>
     <div class="eyebrow">The map</div>
-    <h2 class="wide">Every desk, every question<span class="dot">.</span></h2>
+    <h2 class="wide">Every desk, every question<span class="dot">.</span><a class="hanchor" href="#map" aria-label="Link to this section">#</a></h2>
     <p class="dek">The six disagreements that follow, as a single grid. Read down a column to see whether a question is settled or split; read across a row to see one desk's whole position. Empty rings are desks in the source base that took no public position on that question.</p>
 
     <div class="mxwrap">
@@ -587,11 +669,11 @@
 </section>
 
 <!-- ============ 04 · DISCREPANCY 1 – THE 2030 NUMBER ============ -->
-<section>
+<section id="forecast">
   <div class="wrap">
     <div class="runhead"><span>Discrepancy 01 · the 2030 number</span><span class="count">04 / 10</span></div>
     <div class="eyebrow">The forecast spread</div>
-    <h2>Same horizon. A <span class="it">35× disagreement</span><span class="dot">.</span></h2>
+    <h2>Same horizon. A <span class="it">35× disagreement</span><span class="dot">.</span><a class="hanchor" href="#forecast" aria-label="Link to this section">#</a></h2>
     <p class="dek">Six widely-cited studies, one five-year window, and headline numbers that range from a few hundred billion to fourteen trillion. The gap isn't conviction – it's that they aren't measuring the same thing.</p>
 
     <div class="chart" id="rwaChart">
@@ -645,11 +727,11 @@
 </section>
 
 <!-- ============ 05 · DISCREPANCY 2 – THE DENOMINATOR ============ -->
-<section>
+<section id="denominator">
   <div class="wrap">
     <div class="runhead"><span>Discrepancy 02 · the denominator</span><span class="count">05 / 10</span></div>
     <div class="eyebrow">What even counts as an RWA</div>
-    <h2 class="wide">Even <span class="it">today's</span> number is a 36× range.</h2>
+    <h2 class="wide">Even <span class="it">today's</span> number is a 36× range.<a class="hanchor" href="#denominator" aria-label="Link to this section">#</a></h2>
     <p class="dek">Before you can argue about 2030, you have to agree what the market is worth now. The trackers don't. Same month, same asset class – numbers from $19 billion to $695 billion depending on the definition.</p>
 
     <div class="callout" style="margin-top:26px">
@@ -684,11 +766,11 @@
 </section>
 
 <!-- ============ 06 · DISCREPANCY 3 – STABLECOINS ============ -->
-<section>
+<section id="stablecoins">
   <div class="wrap">
     <div class="runhead"><span>Discrepancy 03 · is the base layer money?</span><span class="count">06 / 10</span></div>
     <div class="eyebrow">Stablecoins – foundation or fault line</div>
-    <h2 class="wide">The rail one camp builds on is the risk another wants to contain.</h2>
+    <h2 class="wide">The rail one camp builds on is the risk another wants to contain.<a class="hanchor" href="#stablecoins" aria-label="Link to this section">#</a></h2>
     <p class="dek">No disagreement is sharper. To crypto desks, stablecoins <em>are</em> the settlement layer for tokenization. To the central-banking world, they're a flawed form of money to be superseded.</p>
 
     <div class="threecol">
@@ -716,11 +798,11 @@
 </section>
 
 <!-- ============ 07 · DISCREPANCY 4 – LEAD ASSET ============ -->
-<section>
+<section id="lead-asset">
   <div class="wrap">
     <div class="runhead"><span>Discrepancy 04 · the lead horse</span><span class="count">07 / 10</span></div>
     <div class="eyebrow">Which asset class wins</div>
-    <h2>Treasuries lead now. After that, <span class="it">pick a fight</span><span class="dot">.</span></h2>
+    <h2>Treasuries lead now. After that, <span class="it">pick a fight</span><span class="dot">.</span><a class="hanchor" href="#lead-asset" aria-label="Link to this section">#</a></h2>
     <p class="dek">Tokenized Treasuries are the consensus leader today (~half of distributed value). Project that lead forward to 2030 and the agreement evaporates.</p>
 
     <div class="tablewrap">
@@ -741,11 +823,11 @@
 </section>
 
 <!-- ============ 08 · DISCREPANCY 5 – PUBLIC VS PERMISSIONED ============ -->
-<section>
+<section id="rails">
   <div class="wrap">
     <div class="runhead"><span>Discrepancy 05 · whose chain</span><span class="count">08 / 10</span></div>
     <div class="eyebrow">Public vs. permissioned rails</div>
-    <h2 class="wide">The biggest pool of tokenized value may be the one crypto can't see.</h2>
+    <h2 class="wide">The biggest pool of tokenized value may be the one crypto can't see.<a class="hanchor" href="#rails" aria-label="Link to this section">#</a></h2>
     <p class="dek">The trackers everyone quotes count public chains. But the banks are issuing on permissioned ledgers – and by at least one estimate that hidden layer is an order of magnitude larger.</p>
 
     <div class="points">
@@ -761,11 +843,11 @@
 </section>
 
 <!-- ============ 09 · DISCREPANCY 6 – THE CONSTRAINT ============ -->
-<section>
+<section id="constraint">
   <div class="wrap">
     <div class="runhead"><span>Discrepancy 06 · what unlocks it</span><span class="count">09 / 10</span></div>
     <div class="eyebrow">The binding constraint</div>
-    <h2>Six desks, six different <span class="it">bottlenecks</span><span class="dot">.</span></h2>
+    <h2>Six desks, six different <span class="it">bottlenecks</span><span class="dot">.</span><a class="hanchor" href="#constraint" aria-label="Link to this section">#</a></h2>
     <p class="dek">Ask what's actually holding tokenization back and you get a different answer depending on who's writing – which tells you the market is constrained on several fronts at once.</p>
 
     <div class="points">
@@ -780,11 +862,11 @@
 </section>
 
 <!-- ============ 10 · TAKEAWAY ============ -->
-<section>
+<section id="takeaway">
   <div class="wrap">
     <div class="runhead"><span>The takeaway</span><span class="count">10 / 10</span></div>
     <div class="eyebrow pill">So what</div>
-    <h2 class="wide">The disagreements are about <span class="it">scope and clock</span>, not direction.</h2>
+    <h2 class="wide">The disagreements are about <span class="it">scope and clock</span>, not direction.<a class="hanchor" href="#takeaway" aria-label="Link to this section">#</a></h2>
     <p class="dek">Normalize the definitions and the desks tell one story: penetration is ~0.01%, Treasuries lead today, stablecoins carry the settlement layer, and the next 12–18 months set the slope. The 35× forecast spread is mostly an artifact of three choices – what counts as an RWA, public vs. permissioned, and whether stablecoins are in.</p>
 
     <div class="statrow">
@@ -823,6 +905,44 @@
 </section>
 
 <!-- ============ FOOTER / SOURCES ============ -->
+<!-- ============ APPENDIX · SOURCES ============ -->
+<section id="sources">
+  <div class="wrap">
+    <div class="runhead"><span>Appendix · where the numbers come from</span><span class="count">Sources</span></div>
+    <div class="eyebrow">The register</div>
+    <h2 class="wide">The reports behind the numbers<span class="dot">.</span><a class="hanchor" href="#sources" aria-label="Link to this section">#</a></h2>
+    <p class="dek">63 reports were cross-read in the window; the 21 below are the ones this page attributes figures or positions to. Every link goes to the publisher's own page or PDF – except Standard Chartered's two research notes, which are institutional-client only and link to The Block's same-day coverage instead.</p>
+    <ol class="srcs">
+      <li class="src-grp" role="presentation">Banks</li>
+      <li><span class="sn">01</span><span class="st">Citi (Citi Institute) · <em>Tokenization 2030: Wall Street On-Chain</em> <span class="sm">· Jun 2026</span></span><a href="https://www.citigroup.com/global/insights/tokenization-2030" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">02</span><span class="st">Standard Chartered · <em>Digital-assets research – ~$4T tokenized by 2028</em> <span class="sm">· May 2026 · client-only note</span></span><a href="https://www.theblock.co/post/401635/standard-chartered-projects-4t-in-tokenized-assets-by-end-2028-with-defi-protocols-primary-beneficiaries" target="_blank" rel="noopener noreferrer">via The Block ↗</a></li>
+      <li><span class="sn">03</span><span class="st">Standard Chartered · <em>Chainlink: Owning the rails</em> <span class="sm">· Aug 2026 · client-only note</span></span><a href="https://www.theblock.co/news/defi/2026-08-10-standard-chartered-chainlink-tokenization-411252" target="_blank" rel="noopener noreferrer">via The Block ↗</a></li>
+      <li><span class="sn">04</span><span class="st">Standard Chartered × Zodia Markets · <em>Beyond Concentration: Where Non-USD Stablecoins Can Scale</em> <span class="sm">· Apr 2026</span></span><a href="https://www.sc.com/en/uploads/sites/66/content/docs/where-local-currency-stablecoins-can-scale-report-sc.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a></li>
+      <li><span class="sn">05</span><span class="st">J.P. Morgan · <em>Payments Outlook 2026: Five Shifts Powering Payments</em> <span class="sm">· Apr 2026</span></span><a href="https://www.jpmorgan.com/insights/payments/trends-innovation/payments-outlook-trends-2026" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">06</span><span class="st">Morgan Stanley × Oliver Wyman · <em>Digital Rails, Real Economics: Digital Assets and the Future of Wholesale Banking</em> <span class="sm">· May 2026</span></span><a href="https://www.oliverwyman.com/our-expertise/insights/2026/may/digital-assets-future-wholesale-banking.html" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">07</span><span class="st">Deutsche Bank · <em>Digital Money: a perspective on stablecoins, tokenised deposits and CBDCs</em> <span class="sm">· May 2026</span></span><a href="https://flow.db.com/publications/flow-white-papers-and-guides/digital-money-a-perspective-on-stablecoins-tokenised-deposits-and-cbdcs" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li class="src-grp" role="presentation">Managers & issuers</li>
+      <li><span class="sn">08</span><span class="st">Securitize × Keyrock · <em>The $400T Future of Tokenised Assets</em> <span class="sm">· Apr 2026</span></span><a href="https://keyrock.com/the-400t-future-of-tokenised-assets/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">09</span><span class="st">21Shares · <em>State of Crypto – Market Outlook 2026, Mid-Year Update</em> <span class="sm">· Jun 2026</span></span><a href="https://cdn.21shares.com/uploads/current-documents/reports/21shares_State-of-crypto-17_Mid-year-check-in.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a></li>
+      <li class="src-grp" role="presentation">Consultancies</li>
+      <li><span class="sn">10</span><span class="st">BCG · <em>Global Asset Management Report 2026</em> <span class="sm">· Apr 2026</span></span><a href="https://www.bcg.com/publications/2026/an-imperative-for-growth-and-the-new-economics-of-asset-management" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">11</span><span class="st">McKinsey · <em>Beyond stablecoins: The emerging architecture of on-chain money</em> <span class="sm">· May 2026</span></span><a href="https://www.mckinsey.com/industries/financial-services/our-insights/beyond-stablecoins-the-emerging-architecture-of-on-chain-money" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">12</span><span class="st">PwC · <em>Asset tokenization for asset managers: Trends, risks and opportunities</em> <span class="sm">· Jun 2026</span></span><a href="https://www.pwc.com/us/en/industries/financial-services/library/tokenizing-assets.html" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li class="src-grp" role="presentation">Crypto research & trackers</li>
+      <li><span class="sn">13</span><span class="st">Binance Research · <em>Tokenization's Trillion-Dollar Runway</em> <span class="sm">· May 2026</span></span><a href="https://www.binance.com/research/analysis/tokenization-trillion-dollar-runway" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">14</span><span class="st">Binance Research · <em>Half-Year 2026: On-Chain Markets</em> <span class="sm">· Jul 2026</span></span><a href="https://www.binance.com/en/research/analysis/half-year-2026-onchain-markets" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">15</span><span class="st">Pantera Capital · <em>The State of Tokenization: Q1 2026</em> <span class="sm">· May 2026</span></span><a href="https://panteracapital.com/article/the-state-of-tokenization-q1-2026-report/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">16</span><span class="st">BeInCrypto × RWA.xyz · <em>The Real State of Tokenization 2026</em> <span class="sm">· Apr–Jun 2026</span></span><a href="https://research.beincrypto.com/tokenization-2026-report-first-edition/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">17</span><span class="st">DefiLlama (DL Research) · <em>The State of RWAfi: Q1 2026</em> <span class="sm">· Apr 2026</span></span><a href="https://defillama.com/research/report/the-state-of-rwafi-q1-2026-report" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">18</span><span class="st">CoinGecko · <em>RWA Report 2026</em> <span class="sm">· May 2026</span></span><a href="https://www.coingecko.com/research/publications/rwa-report-2026" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li class="src-grp" role="presentation">Official sector</li>
+      <li><span class="sn">19</span><span class="st">BIS · <em>Anchoring trust in money: innovation beyond stablecoins – Annual Economic Report 2026, Ch. III</em> <span class="sm">· Jun 2026</span></span><a href="https://www.bis.org/publ/arpdf/ar2026e3.htm" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">20</span><span class="st">IMF · <em>Tokenized Finance – IMF Notes 2026/001</em> <span class="sm">· Apr 2026</span></span><a href="https://www.imf.org/en/publications/imf-notes/issues/2026/04/01/tokenized-finance-574921" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+      <li><span class="sn">21</span><span class="st">GFMA · <em>The Role of Digital Money in Capital Markets</em> <span class="sm">· Apr 2026</span></span><a href="https://www.gfma.org/policies-resources/gfma-publishes-report-on-the-role-of-digital-money-in-capital-markets/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+    </ol>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="ft-top">
@@ -989,6 +1109,22 @@
   // log tick density depends on plot width, so re-render when it changes
   let rt; addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(render,180); });
   render();
+})();
+</script>
+<script>
+(function(){
+  const links=[...document.querySelectorAll('.rail a')];
+  if(!links.length) return;
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.remove('on'));
+        const a=map.get(e.target.id); if(a) a.classList.add('on');
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  links.forEach(a=>{const t=document.getElementById(a.getAttribute('href').slice(1)); if(t) obs.observe(t);});
 })();
 </script>
 </body>

@@ -34,6 +34,7 @@ No build step, no dependencies, no framework. One file – [`index.html`](index.
 | 08 | Discrepancy 05 – whose chain | Public trackers vs. the permissioned layer nobody sees |
 | 09 | Discrepancy 06 – the constraint | Six desks, six different bottlenecks |
 | 10 | Takeaway | How to read any RWA report without being fooled by scope |
+| A | Sources | The register – the 21 reports figures are attributed to, linked to the publisher (see also [`SOURCES.md`](SOURCES.md)) |
 
 ~12 minute read.
 
@@ -67,15 +68,20 @@ Log tick density adapts to plot width (narrow viewports drop to one tick per dec
 - **Crypto research** – Binance · Pantera · Messari · Galaxy · DefiLlama · CoinGecko · BeInCrypto · RWA.xyz · Keyrock
 - **Official sector** – BIS · IMF · GFMA · OMFIF
 
+The 21 reports the page attributes figures to are linked – publisher page or PDF where public, The Block's same-day coverage for the two client-only Standard Chartered notes – in the page's Sources appendix and in [`SOURCES.md`](SOURCES.md).
+
 ---
 
 ## Repo layout
 
 ```
-index.html       the entire site – markup, design tokens, CSS, chart data, chart engine
-wrangler.jsonc   Cloudflare static-assets config (worker name: rwa-snapshot)
-.gitignore       wrangler local state + env files
-README.md        this file
+index.html            the entire site – markup, design tokens, CSS, chart data, chart engine
+og-card.png           1200×630 share card (Open Graph / Twitter image)
+apple-touch-icon.png  180×180 home-screen icon (iOS ignores SVG favicons)
+SOURCES.md            the source register in markdown – same 21 entries as the page appendix
+wrangler.jsonc        Cloudflare static-assets config (worker name: rwa-snapshot)
+.gitignore            wrangler local state + env files
+README.md             this file
 ```
 
 ## Run it locally
@@ -122,6 +128,10 @@ Two things worth knowing before you touch that config: serving `.` publishes eve
 - `pt: 1` – flags a point estimate · `scope` and `src` – the hover/tap tooltip
 
 **The prose tables under each chart are hand-written HTML, not generated from `DS`.** Adding or revising a study means editing both, or the chart and the table beneath it will disagree – which would be an unfortunate way for this particular page to fail.
+
+**Sections are deep-linkable** – every section has an id (`#consensus`, `#map`, `#forecast`, `#denominator`, `#stablecoins`, `#lead-asset`, `#rails`, `#constraint`, `#takeaway`, `#sources`), each `h2` grows a `#` anchor on hover, and a fixed progress rail (`.rail`, shown ≥1280px) tracks the active section via IntersectionObserver.
+
+**Share metadata** lives in the `<head>`: description, canonical, Open Graph + Twitter cards pointing at `og-card.png` (1200×630, same design tokens), and JSON-LD `Article` markup. If the headline numbers change, re-render the card to keep the unfurl honest.
 
 **Design tokens** are CSS custom properties in `:root` at [index.html:12](index.html#L12) – paper `#F2EBDD`, ink `#1A1816`, accent `#C44A36`, highlight `#F5E69A`, plus Fraunces (display) and Inter (text) from Google Fonts. Scope colours used by the chart and the matrix pills come from the same set, so the two sections stay legible against each other.
 
