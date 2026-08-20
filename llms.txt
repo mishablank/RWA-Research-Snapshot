@@ -1,0 +1,16 @@
+# The State of RWAs – Where the Research Disagrees
+
+> A cross-read of 63 RWA & tokenization research reports published 29 Mar – 10 Aug 2026. The desks converge on the direction of travel and disagree ~35x on 2030 market size ($400B to $14T) and ~36x on today's size ($19.3B to $695B). Most of the disagreement is definitional: what counts as an RWA, which chains are counted, and whether stablecoins are in.
+
+Consensus facts: ~0.01% penetration of a $300T+ addressable base; ~$15B tokenized U.S. Treasuries anchor the market; institutional issuers now lead growth; DTCC production launch October 2026 is the shared catalyst.
+
+## Data
+- [data.json](https://rwaresearch.info/data.json): canonical dataset - every figure, matrix position, revision and source; the page is generated from it
+- [data.csv](https://rwaresearch.info/data.csv): market-size figures, flat table (desk, value, scope category, date, source)
+- [positions.csv](https://rwaresearch.info/positions.csv): 6-question desk-position matrix, flat table
+
+## Sources
+- [SOURCES.md](https://github.com/mishablank/RWA-Research-Snapshot/blob/main/SOURCES.md): the 22 reports figures are attributed to, with links
+- Figures are reproduced as reported by each source on the date cited; scopes differ materially between studies and are not directly comparable - that incomparability is the subject of the page.
+
+Updated 2026-08-20.

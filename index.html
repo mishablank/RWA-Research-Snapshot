@@ -18,7 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="$400B to $14T – six 2030 tokenization forecasts, same horizon, a 35× disagreement">
 <meta property="article:published_time" content="2026-07-17">
-<meta property="article:modified_time" content="2026-08-13">
+<meta property="article:modified_time" content="2026-08-20">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The State of RWAs – Where the Research Disagrees">
 <meta name="twitter:description" content="Same 2030 horizon, a 35× disagreement. 63 reports cross-read, 18 desks × 6 questions – where RWA research converges and where it contradicts itself.">
@@ -287,6 +287,52 @@
   .tip .tn{font-weight:700; margin-bottom:4px}
   .tip .tv{font-family:var(--serif); color:var(--accent-soft); font-size:18px}
   .tip .ts{color:#C9BBA9; margin-top:6px}
+  /* by-scope group rows */
+  .grow{display:flex; justify-content:space-between; align-items:baseline; margin:20px 0 4px; padding-right:44px}
+  .grow span{font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--m,var(--olive))}
+  .grow .gtag{color:var(--accent); letter-spacing:.08em}
+  .seg.disabled{opacity:.35; pointer-events:none}
+
+  /* definitional staircase */
+  .stairs{margin-top:36px; border:1px solid var(--rule); background:rgba(255,255,255,.35); padding:26px 28px 20px}
+  .stairs-head{display:flex; justify-content:space-between; gap:18px; align-items:baseline; margin-bottom:14px; flex-wrap:wrap}
+  .stairs-note{font-size:12.5px; color:var(--muted); font-style:italic}
+  .rung{display:grid; grid-template-columns:216px 1fr; gap:4px 22px; padding:12px 0 10px; border-top:1px solid var(--rule); align-items:start}
+  .rung .r-meta b{font-size:13.5px; display:block; font-weight:600}
+  .rung .r-meta small{font-size:10.5px; color:var(--muted); letter-spacing:.04em}
+  .r-track{position:relative; height:20px}
+  .r-bar{position:absolute; top:4px; height:12px; border-radius:2px; background:var(--m,var(--olive)); opacity:.85; min-width:3px}
+  .r-val{position:absolute; top:0; font-family:var(--serif); font-size:15px; white-space:nowrap; padding-left:10px}
+  .r-val small{font-family:var(--sans); font-size:9.5px; color:var(--muted); margin-left:8px; letter-spacing:.08em; text-transform:uppercase}
+  .r-step{grid-column:2; font-size:12.5px; color:#4a443c; line-height:1.5}
+  .rung.fork{margin-left:26px; border-left:2px solid var(--accent-soft); padding-left:16px; border-top-style:dashed}
+  .fk{display:inline-block; font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); border-radius:2px; padding:1px 6px; margin-right:8px; vertical-align:1px}
+  .stairs .src-line{margin-top:14px; margin-bottom:0}
+  @media(max-width:680px){.rung{grid-template-columns:1fr} .r-step{grid-column:1} .rung.fork{margin-left:10px}}
+
+  /* revision log */
+  .revlog{list-style:none; margin-top:10px}
+  .revlog li{display:grid; grid-template-columns:132px 1fr; gap:20px; padding:15px 0; border-bottom:1px solid var(--rule); font-size:14px}
+  .rv-d{font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); padding-top:3px}
+  .rv-b b{font-weight:600}
+  .rv-b .chg{font-family:var(--serif); font-size:15px}
+  .rv-b small{display:block; color:var(--muted); font-size:12.5px; margin-top:4px; line-height:1.5}
+  .drift{display:flex; align-items:center; gap:16px; margin-top:14px; padding:14px 16px; background:rgba(255,255,255,.5); border:1px solid var(--rule); max-width:560px}
+  .d-track{position:relative; flex:1; height:2px; background:var(--rule)}
+  .d-line{position:absolute; top:0; height:2px; background:var(--accent)}
+  .d-dot{position:absolute; top:-4px; width:10px; height:10px; border-radius:50%; background:var(--accent)}
+  .d-dot.was{background:transparent; box-shadow:inset 0 0 0 2px var(--accent)}
+  .d-lab{font-family:var(--serif); font-size:14.5px; white-space:nowrap}
+  .d-lab small{display:block; font-family:var(--sans); font-size:9.5px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase}
+  .d-tag{font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); white-space:nowrap}
+  @media(max-width:680px){.revlog li{grid-template-columns:1fr; gap:4px} .drift{flex-wrap:wrap}}
+
+  /* dataset downloads */
+  .datasets{margin-top:30px; font-size:13.5px; color:#4a443c; border:1px solid var(--rule); background:rgba(255,255,255,.4); padding:14px 16px; line-height:1.6}
+  .datasets a{color:var(--accent); font-weight:600; text-decoration:none}
+  .datasets a:hover{text-decoration:underline}
+  .datasets code{font-size:12px; background:rgba(0,0,0,.05); padding:1px 5px; border-radius:3px}
+
   /* section anchors + progress rail */
   section{scroll-margin-top:10px}
   .hanchor{font-family:var(--sans); font-size:.38em; font-weight:600; letter-spacing:0;
@@ -346,7 +392,7 @@
   "mainEntityOfPage": "https://rwaresearch.info/",
   "image": "https://rwaresearch.info/og-card.png",
   "datePublished": "2026-07-17",
-  "dateModified": "2026-08-13",
+  "dateModified": "2026-08-20",
   "author": {"@type": "Person", "name": "Mike Blank", "url": "https://pl.linkedin.com/in/mishablank"}
 }
 </script>
@@ -364,7 +410,8 @@
   <a href="#rails"><span class="lbl">Whose chain</span>08</a>
   <a href="#constraint"><span class="lbl">The constraint</span>09</a>
   <a href="#takeaway"><span class="lbl">So what</span>10</a>
-  <a href="#sources"><span class="lbl">Sources</span>A</a>
+  <a href="#revisions"><span class="lbl">Revision log</span>R</a>
+  <a href="#sources"><span class="lbl">Sources</span>S</a>
 </nav>
 
 <!-- ============ 01 · HERO ============ -->
@@ -407,7 +454,7 @@
     </div>
 
     <div class="ft-top" style="display:flex;justify-content:space-between;margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--label);font-weight:600">
-      <span>Prepared by &nbsp;·&nbsp; Mike Blank · June 2026 · updated 13 Aug</span>
+      <span>Prepared by &nbsp;·&nbsp; Mike Blank · June 2026 · updated 20 Aug</span>
       <span>Read time &nbsp;·&nbsp; 10 sections · ~12 min</span>
     </div>
   </div>
@@ -478,6 +525,7 @@
           </tr>
         </thead>
         <tbody>
+<!-- gen:matrix -->
           <tr class="grp"><td colspan="7"><span>Banks</span></td></tr>
           <tr>
             <td class="desk">Citi<small>Citi Institute · Jun 2026</small></td>
@@ -490,7 +538,7 @@
           </tr>
           <tr>
             <td class="desk">Standard Chartered<small>May + Aug 2026</small></td>
-            <td class="c"><span class="cell lbl sc-public">$4T '28</span></td>
+            <td class="c"><span class="cell lbl sc-public">$4T &#x27;28</span></td>
             <td class="c"><span class="cell lbl sc-all">$340B</span></td>
             <td class="c"><span class="cell lbl pos-b">Rail · USD only</span></td>
             <td class="c"><span class="cell n"></span></td>
@@ -524,7 +572,6 @@
             <td class="c"><span class="cell n"></span></td>
             <td class="c"><span class="cell n"></span></td>
           </tr>
-
           <tr class="grp"><td colspan="7"><span>Managers &amp; issuers</span></td></tr>
           <tr>
             <td class="desk">Securitize × Keyrock<small>Apr 2026</small></td>
@@ -544,7 +591,15 @@
             <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
             <td class="c"><span class="cell n"></span></td>
           </tr>
-
+          <tr>
+            <td class="desk">Grayscale<small>Research · Apr 2026</small></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl sc-narrow">~$30B</span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
+            <td class="c"><span class="cell n"></span></td>
+          </tr>
           <tr class="grp"><td colspan="7"><span>Consultancies</span></td></tr>
           <tr>
             <td class="desk">BCG<small>Global AM Report · Apr 2026</small></td>
@@ -573,7 +628,6 @@
             <td class="c"><span class="cell n"></span></td>
             <td class="c"><span class="cell n"></span></td>
           </tr>
-
           <tr class="grp"><td colspan="7"><span>Crypto research &amp; trackers</span></td></tr>
           <tr>
             <td class="desk">Binance Research<small>May–Jul 2026</small></td>
@@ -620,7 +674,6 @@
             <td class="c"><span class="cell lbl pos-a">Public</span></td>
             <td class="c"><span class="cell n"></span></td>
           </tr>
-
           <tr class="grp"><td colspan="7"><span>Official sector</span></td></tr>
           <tr>
             <td class="desk">BIS<small>Annual Economic Report 2026, Ch. III</small></td>
@@ -649,6 +702,7 @@
             <td class="c"><span class="cell n"></span></td>
             <td class="c"><span class="cell n"></span></td>
           </tr>
+<!-- /gen:matrix -->
         </tbody>
       </table>
     </div>
@@ -659,7 +713,9 @@
       <span class="li"><i class="cell lbl out" style="--m:var(--muted); font-size:10px">outlined</i>Different unit – revenue or opportunity, not market size</span><span class="li">Solid figure pills use the same scope colours as the chart in section 04</span>
     </div>
 
-    <p class="disc" style="margin-top:20px">Also in the source base with no position extracted on these six questions: HSBC · Barclays · Nomura · BlackRock · Franklin Templeton · Grayscale · Bitwise · Oliver Wyman (standalone) · Deloitte · KPMG · Messari · Galaxy · OMFIF. The "regulatory clarity" bottleneck (GENIUS · CLARITY · MiCA) is stated collectively across bank research rather than by a named desk, so it is not attributed in the grid.</p>
+    <!-- gen:noposition -->
+<p class="disc" style="margin-top:20px">Also in the source base with no position extracted on these six questions: HSBC · Barclays · Nomura · BlackRock · Franklin Templeton · Bitwise · Oliver Wyman (standalone) · Deloitte · KPMG · Messari · Galaxy · OMFIF. The "regulatory clarity" bottleneck (GENIUS · CLARITY · MiCA) is stated collectively across bank research rather than by a named desk, so it is not attributed in the grid.</p>
+<!-- /gen:noposition -->
 
     <div class="callout accent">
       <div class="eyebrow">What the grid shows</div>
@@ -683,6 +739,7 @@
           <div class="seg" id="dsSeg">
             <button data-ds="forecast" class="on">2030 forecast</button>
             <button data-ds="today">Market today</button>
+            <button data-ds="byscope">By scope</button>
           </div>
           <div class="seg" id="scSeg">
             <button data-sc="linear" class="on">Linear</button>
@@ -707,12 +764,14 @@
       <table>
         <thead><tr><th>Study (date)</th><th class="num">2030 figure</th><th>What's being counted</th><th>Implied stance</th></tr></thead>
         <tbody>
+<!-- gen:forecast_table -->
           <tr><td class="pub">Securitize × Keyrock<small>Apr 2026</small></td><td class="num"><span class="fig">$400B</span><small>from ~$29B today</small></td><td>Distributed RWAs, 5 asset classes (ex-stablecoins)</td><td>Narrowest / free-float only</td></tr>
           <tr><td class="pub">Binance Research<small>Jul 2026</small></td><td class="num"><span class="fig">$661B</span><small>base ($203B–$1.6T) · cut from $1.6T in May</small></td><td>Distributed value, ex-stablecoins · 0.4% penetration base case</td><td>Base cut 2.4× in ten weeks – the old base is now the bull case</td></tr>
-          <tr><td class="pub">Standard Chartered<small>May 2026 · reaff. Aug</small></td><td class="num"><span class="fig">~$4T</span><small>by 2028 (public chains)</small></td><td>Public-chain tokenized assets; $2.7T DeFi-active by 2030 – restated in "Owning the rails" (Aug 2026)</td><td>Aggressive, public-chain bet</td></tr>
+          <tr><td class="pub">Standard Chartered<small>May 2026 · reaff. Aug</small></td><td class="num"><span class="fig">~$4T</span><small>by 2028 (public chains)</small></td><td>Public-chain tokenized assets; $2.7T DeFi-active by 2030 – restated in “Owning the rails” (Aug 2026)</td><td>Aggressive, public-chain bet</td></tr>
           <tr><td class="pub">Citi (Citi Institute)<small>Jun 2026</small></td><td class="num"><span class="fig">$5.5T</span><small>by 2030</small></td><td>Tokenized securities – equities + Treasuries led</td><td>Securities-centric</td></tr>
           <tr><td class="pub">BCG (Global AM Report)<small>Apr 2026</small></td><td class="num"><span class="fig">$14T</span><small>2030 · $55T by 2035</small></td><td>Broadest RWA definition, incl. funds</td><td>Most expansive</td></tr>
-          <tr><td class="pub">Binance – tail case<small>Jul 2026</small></td><td class="num"><span class="fig">$6.78T</span><small>at 4% penetration</small></td><td>Equities + commodities + ETFs ("exceptional" scenario)</td><td>Stretch / 198× today's market</td></tr>
+          <tr><td class="pub">Binance – tail case<small>Jul 2026</small></td><td class="num"><span class="fig">$6.78T</span><small>at 4% penetration</small></td><td>Equities + commodities + ETFs (“exceptional” scenario)</td><td>Stretch / 198× today’s market</td></tr>
+<!-- /gen:forecast_table -->
         </tbody>
       </table>
     </div>
@@ -739,18 +798,53 @@
       <p>&ldquo;Ask five data providers how large the tokenization market is, and you will get five different answers.&rdquo;</p>
     </div>
 
+    <!-- gen:stairs -->
+<div class="stairs">
+          <div class="stairs-head"><span class="kicker">The definitional staircase</span><span class="stairs-note">No new assets appear between these rungs – each step only widens what gets counted.</span></div>
+          <div class="rung sc-narrow">
+            <div class="r-meta"><b>The tracker cluster</b><small>CoinGecko · DefiLlama · Grayscale · Binance/RWA.xyz</small></div>
+            <div class="r-track"><div class="r-bar" style="left:6.3%;width:14.2%"></div><span class="r-val" style="left:20.6%">$19–34B<small>baseline</small></span></div>
+            <div class="r-step">Core / free-float tokenized assets, public chains, ex-stablecoins – where every dashboard starts</div>
+          </div>
+          <div class="rung sc-broad">
+            <div class="r-meta"><b>BeInCrypto · core</b><small>12 asset classes</small></div>
+            <div class="r-track"><div class="r-bar" style="left:0.0%;width:34.9%"></div><span class="r-val" style="left:34.9%">~$60B<small>×3 the narrowest</small></span></div>
+            <div class="r-step">+ widen the asset list to 12 classes</div>
+          </div>
+          <div class="rung fork sc-public">
+            <div class="r-meta"><b><span class="fk">route A</span>21Shares</b><small>public + permissioned nets, ex-stablecoins</small></div>
+            <div class="r-track"><div class="r-bar" style="left:0.0%;width:79.2%"></div><span class="r-val" style="left:79.2%">~$350B<small>×18</small></span></div>
+            <div class="r-step">+ permissioned networks (Canton et al.) – stablecoins stay out</div>
+          </div>
+          <div class="rung fork sc-all">
+            <div class="r-meta"><b><span class="fk">route B</span>Standard Chartered</b><small>public chains + stablecoins</small></div>
+            <div class="r-track"><div class="r-bar" style="left:0.0%;width:78.5%"></div><span class="r-val" style="left:78.5%">~$340B<small>×18</small></span></div>
+            <div class="r-step">+ stablecoins instead – permissioned networks stay out</div>
+          </div>
+          <div class="rung sc-all">
+            <div class="r-meta"><b>BeInCrypto · full layer</b><small>settlement layer</small></div>
+            <div class="r-track"><div class="r-bar" style="left:0.0%;width:96.5%"></div><span class="r-val" style="left:96.5%">~$695B<small>×36</small></span></div>
+            <div class="r-step">+ on-chain settlement positions – the full settlement layer</div>
+          </div>
+          <p class="src-line">Routes A and B share almost nothing – different assets, different chains – and land within 3% of each other. Two lenses, one coincidence.</p>
+        </div>
+<!-- /gen:stairs -->
+
     <div class="tablewrap">
       <table>
         <thead><tr><th>Source</th><th class="num">"Current" market size</th><th>Definition used</th></tr></thead>
         <tbody>
+<!-- gen:today_table -->
           <tr><td class="pub">CoinGecko</td><td class="num"><span class="fig">$19.3B</span><small>Q1 2026</small></td><td>Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)</td></tr>
           <tr><td class="pub">DefiLlama</td><td class="num"><span class="fig">$25.2B</span><small>+6× in 14 months</small></td><td>"Active" RWA market cap on public chains</td></tr>
+          <tr><td class="pub">Grayscale</td><td class="num"><span class="fig">~$30B</span><small>Apr 2026 · 0.01% of equity + bond markets</small></td><td>Tokenized assets ex-stablecoins – Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities</td></tr>
           <tr><td class="pub">Binance / RWA.xyz</td><td class="num"><span class="fig">~$34B</span><small>mid-Jul 2026 · $22B in Jan (+50% H1)</small></td><td>Distributed (free-float, transferable) value</td></tr>
           <tr><td class="pub">BeInCrypto · core</td><td class="num"><span class="fig">~$60B</span><small>7,000+ products · May 2026</small></td><td>Core tokenized assets across 12 asset classes (rwa.xyz data)</td></tr>
           <tr><td class="pub">Pantera Capital</td><td class="num"><span class="fig">~$321B</span><small>542 assets · 11 classes</small></td><td>Broad – counts stablecoins and the full tokenized universe</td></tr>
-          <tr><td class="pub">Standard Chartered</td><td class="num"><span class="fig">~$340B</span><small>Aug 2026 · "Owning the rails"</small></td><td>Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path</td></tr>
+          <tr><td class="pub">Standard Chartered</td><td class="num"><span class="fig">~$340B</span><small>Aug 2026 · “Owning the rails”</small></td><td>Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path</td></tr>
           <tr><td class="pub">21Shares</td><td class="num"><span class="fig">~$31B → ~$350B</span><small>public → incl. permissioned</small></td><td>~$31B public chains; ~$350B once Canton &amp; permissioned nets are added</td></tr>
           <tr><td class="pub">BeInCrypto · full layer</td><td class="num"><span class="fig">~$695B</span><small>settlement layer · Apr 2026</small></td><td>Full settlement layer – represented assets + on-chain settlement positions</td></tr>
+<!-- /gen:today_table -->
         </tbody>
       </table>
     </div>
@@ -809,11 +903,13 @@
       <table>
         <thead><tr><th>Study</th><th>Who leads by 2030</th><th>Reasoning</th></tr></thead>
         <tbody>
+<!-- gen:lead_table -->
           <tr><td class="pub">Citi</td><td><b>Equities + Treasuries</b></td><td>Public-market infra (DTCC/NYSE/Nasdaq) pulls listed securities on-chain</td></tr>
           <tr><td class="pub">Binance Research</td><td><b>Equities (TAM) · Credit (penetration)</b></td><td>Equities have the largest addressable market – stocks +177% H1 to ~$1.7B, scenarios of $349B–$987B by 2030; private credit has the highest current penetration; gold leads commodities</td></tr>
           <tr><td class="pub">Securitize × Keyrock</td><td><b>Treasuries + private credit</b></td><td>Strongest near-term product-market fit and institutional demand</td></tr>
           <tr><td class="pub">PwC</td><td><b>Tokenized funds</b></td><td>Fund AUM compounding at 41% to $715B by 2030</td></tr>
           <tr><td class="pub">21Shares</td><td><b>Treasuries anchor</b></td><td>~$15B tokenized Treasuries underpin the public-chain market</td></tr>
+<!-- /gen:lead_table -->
         </tbody>
       </table>
     </div>
@@ -905,48 +1001,79 @@
 </section>
 
 <!-- ============ FOOTER / SOURCES ============ -->
+<!-- ============ APPENDIX · REVISIONS ============ -->
+<section id="revisions">
+  <div class="wrap">
+    <div class="runhead"><span>Appendix · forecasts move</span><span class="count">Revision log</span></div>
+    <div class="eyebrow">The revision log</div>
+    <h2 class="wide">When the desks re-publish, the numbers move<span class="dot">.</span><a class="hanchor" href="#revisions" aria-label="Link to this section">#</a></h2>
+    <p class="dek">The sharpest data point in this corpus is a desk revising itself – Binance cut its own 2030 base case 2.4× in ten weeks. Every dated change to the numbers on this page, and to the page itself, is logged here.</p>
+    <!-- gen:revisions -->
+<ol class="revlog">
+          <li><span class="rv-d">15 May 2026</span><div class="rv-b"><span class="chg"><b>Binance Research</b> – 2030 base case published: $1.6T</span><small>“Tokenization’s Trillion-Dollar Runway” – distributed value, ex-stablecoins.</small>
+          </div></li>
+          <li><span class="rv-d">26 May 2026</span><div class="rv-b"><span class="chg"><b>Standard Chartered</b> – ~$4T tokenized by end-2028</span><small>Digital-assets research note (institutional-client only), via The Block’s coverage.</small>
+          </div></li>
+          <li><span class="rv-d">30 Jul 2026</span><div class="rv-b"><span class="chg"><b>Binance Research</b> – 2030 base case cut: $1.6T → $661B</span><small>“Half-Year 2026” reframes the scenarios ($203B–$1.6T): the May base becomes the bull case. A 2.4× cut, ten weeks apart.</small>
+          <div class="drift"><span class="d-lab">$661B<small>30 Jul</small></span><div class="d-track"><div class="d-line" style="left:57.5%;right:0"></div><i class="d-dot" style="left:calc(57.5% - 5px)"></i><i class="d-dot was" style="right:0"></i></div><span class="d-lab">$1.6T<small>15 May</small></span><span class="d-tag">−59% in ten weeks</span></div>
+          </div></li>
+          <li><span class="rv-d">10 Aug 2026</span><div class="rv-b"><span class="chg"><b>Standard Chartered</b> – $4T-by-2028 reaffirmed · first sourced “today” figure: ~$340B</span><small>“Chainlink: Owning the rails” – lands within 3% of 21Shares’ $350B by a completely different definitional route.</small>
+          </div></li>
+          <li><span class="rv-d">13 Aug 2026</span><div class="rv-b"><span class="chg"><b>This page</b> – Source base 61 → 63 reports</span><small>Binance Half-Year 2026 and SC “Owning the rails” folded into the chart, tables and matrix.</small>
+          </div></li>
+          <li><span class="rv-d">20 Aug 2026</span><div class="rv-b"><span class="chg"><b>This page</b> – Grayscale extracted · dataset published</span><small>Grayscale’s ~$30B “today” figure and permissioned-rails lean added; every figure on this page now downloadable as data.json / data.csv / positions.csv.</small>
+          </div></li>
+        </ol>
+<!-- /gen:revisions -->
+  </div>
+</section>
+
 <!-- ============ APPENDIX · SOURCES ============ -->
 <section id="sources">
   <div class="wrap">
     <div class="runhead"><span>Appendix · where the numbers come from</span><span class="count">Sources</span></div>
     <div class="eyebrow">The register</div>
     <h2 class="wide">The reports behind the numbers<span class="dot">.</span><a class="hanchor" href="#sources" aria-label="Link to this section">#</a></h2>
-    <p class="dek">63 reports were cross-read in the window; the 21 below are the ones this page attributes figures or positions to. Every link goes to the publisher's own page or PDF – except Standard Chartered's two research notes, which are institutional-client only and link to The Block's same-day coverage instead.</p>
-    <ol class="srcs">
-      <li class="src-grp" role="presentation">Banks</li>
-      <li><span class="sn">01</span><span class="st">Citi (Citi Institute) · <em>Tokenization 2030: Wall Street On-Chain</em> <span class="sm">· Jun 2026</span></span><a href="https://www.citigroup.com/global/insights/tokenization-2030" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">02</span><span class="st">Standard Chartered · <em>Digital-assets research – ~$4T tokenized by 2028</em> <span class="sm">· May 2026 · client-only note</span></span><a href="https://www.theblock.co/post/401635/standard-chartered-projects-4t-in-tokenized-assets-by-end-2028-with-defi-protocols-primary-beneficiaries" target="_blank" rel="noopener noreferrer">via The Block ↗</a></li>
-      <li><span class="sn">03</span><span class="st">Standard Chartered · <em>Chainlink: Owning the rails</em> <span class="sm">· Aug 2026 · client-only note</span></span><a href="https://www.theblock.co/news/defi/2026-08-10-standard-chartered-chainlink-tokenization-411252" target="_blank" rel="noopener noreferrer">via The Block ↗</a></li>
-      <li><span class="sn">04</span><span class="st">Standard Chartered × Zodia Markets · <em>Beyond Concentration: Where Non-USD Stablecoins Can Scale</em> <span class="sm">· Apr 2026</span></span><a href="https://www.sc.com/en/uploads/sites/66/content/docs/where-local-currency-stablecoins-can-scale-report-sc.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a></li>
-      <li><span class="sn">05</span><span class="st">J.P. Morgan · <em>Payments Outlook 2026: Five Shifts Powering Payments</em> <span class="sm">· Apr 2026</span></span><a href="https://www.jpmorgan.com/insights/payments/trends-innovation/payments-outlook-trends-2026" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">06</span><span class="st">Morgan Stanley × Oliver Wyman · <em>Digital Rails, Real Economics: Digital Assets and the Future of Wholesale Banking</em> <span class="sm">· May 2026</span></span><a href="https://www.oliverwyman.com/our-expertise/insights/2026/may/digital-assets-future-wholesale-banking.html" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">07</span><span class="st">Deutsche Bank · <em>Digital Money: a perspective on stablecoins, tokenised deposits and CBDCs</em> <span class="sm">· May 2026</span></span><a href="https://flow.db.com/publications/flow-white-papers-and-guides/digital-money-a-perspective-on-stablecoins-tokenised-deposits-and-cbdcs" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li class="src-grp" role="presentation">Managers & issuers</li>
-      <li><span class="sn">08</span><span class="st">Securitize × Keyrock · <em>The $400T Future of Tokenised Assets</em> <span class="sm">· Apr 2026</span></span><a href="https://keyrock.com/the-400t-future-of-tokenised-assets/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">09</span><span class="st">21Shares · <em>State of Crypto – Market Outlook 2026, Mid-Year Update</em> <span class="sm">· Jun 2026</span></span><a href="https://cdn.21shares.com/uploads/current-documents/reports/21shares_State-of-crypto-17_Mid-year-check-in.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a></li>
-      <li class="src-grp" role="presentation">Consultancies</li>
-      <li><span class="sn">10</span><span class="st">BCG · <em>Global Asset Management Report 2026</em> <span class="sm">· Apr 2026</span></span><a href="https://www.bcg.com/publications/2026/an-imperative-for-growth-and-the-new-economics-of-asset-management" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">11</span><span class="st">McKinsey · <em>Beyond stablecoins: The emerging architecture of on-chain money</em> <span class="sm">· May 2026</span></span><a href="https://www.mckinsey.com/industries/financial-services/our-insights/beyond-stablecoins-the-emerging-architecture-of-on-chain-money" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">12</span><span class="st">PwC · <em>Asset tokenization for asset managers: Trends, risks and opportunities</em> <span class="sm">· Jun 2026</span></span><a href="https://www.pwc.com/us/en/industries/financial-services/library/tokenizing-assets.html" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li class="src-grp" role="presentation">Crypto research & trackers</li>
-      <li><span class="sn">13</span><span class="st">Binance Research · <em>Tokenization's Trillion-Dollar Runway</em> <span class="sm">· May 2026</span></span><a href="https://www.binance.com/research/analysis/tokenization-trillion-dollar-runway" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">14</span><span class="st">Binance Research · <em>Half-Year 2026: On-Chain Markets</em> <span class="sm">· Jul 2026</span></span><a href="https://www.binance.com/en/research/analysis/half-year-2026-onchain-markets" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">15</span><span class="st">Pantera Capital · <em>The State of Tokenization: Q1 2026</em> <span class="sm">· May 2026</span></span><a href="https://panteracapital.com/article/the-state-of-tokenization-q1-2026-report/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">16</span><span class="st">BeInCrypto × RWA.xyz · <em>The Real State of Tokenization 2026</em> <span class="sm">· Apr–Jun 2026</span></span><a href="https://research.beincrypto.com/tokenization-2026-report-first-edition/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">17</span><span class="st">DefiLlama (DL Research) · <em>The State of RWAfi: Q1 2026</em> <span class="sm">· Apr 2026</span></span><a href="https://defillama.com/research/report/the-state-of-rwafi-q1-2026-report" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">18</span><span class="st">CoinGecko · <em>RWA Report 2026</em> <span class="sm">· May 2026</span></span><a href="https://www.coingecko.com/research/publications/rwa-report-2026" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li class="src-grp" role="presentation">Official sector</li>
-      <li><span class="sn">19</span><span class="st">BIS · <em>Anchoring trust in money: innovation beyond stablecoins – Annual Economic Report 2026, Ch. III</em> <span class="sm">· Jun 2026</span></span><a href="https://www.bis.org/publ/arpdf/ar2026e3.htm" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">20</span><span class="st">IMF · <em>Tokenized Finance – IMF Notes 2026/001</em> <span class="sm">· Apr 2026</span></span><a href="https://www.imf.org/en/publications/imf-notes/issues/2026/04/01/tokenized-finance-574921" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-      <li><span class="sn">21</span><span class="st">GFMA · <em>The Role of Digital Money in Capital Markets</em> <span class="sm">· Apr 2026</span></span><a href="https://www.gfma.org/policies-resources/gfma-publishes-report-on-the-role-of-digital-money-in-capital-markets/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
-    </ol>
+    <p class="dek">63 reports were cross-read in the window; the <!-- gen:srccount -->22<!-- /gen:srccount --> below are the ones this page attributes figures or positions to. Every link goes to the publisher's own page or PDF – except Standard Chartered's two research notes, which are institutional-client only and link to The Block's same-day coverage instead.</p>
+    <p class="datasets">The dataset behind this page: <a href="data.json">data.json</a> · <a href="data.csv">data.csv</a> · <a href="positions.csv">positions.csv</a> – every figure, position, revision and source on this page, machine-readable. <code>data.json</code> is canonical: the chart, the tables, the matrix and both CSVs are generated from it.</p>
+    <!-- gen:sources -->
+<ol class="srcs">
+          <li class="src-grp" role="presentation">Banks</li>
+          <li><span class="sn">01</span><span class="st">Citi (Citi Institute) · <em>Tokenization 2030: Wall Street On-Chain</em> <span class="sm">· Jun 2026</span></span><a href="https://www.citigroup.com/global/insights/tokenization-2030" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">02</span><span class="st">Standard Chartered · <em>Digital-assets research – ~$4T tokenized by 2028</em> <span class="sm">· May 2026 · client-only note</span></span><a href="https://www.theblock.co/post/401635/standard-chartered-projects-4t-in-tokenized-assets-by-end-2028-with-defi-protocols-primary-beneficiaries" target="_blank" rel="noopener noreferrer">via The Block ↗</a></li>
+          <li><span class="sn">03</span><span class="st">Standard Chartered · <em>Chainlink: Owning the rails</em> <span class="sm">· Aug 2026 · client-only note</span></span><a href="https://www.theblock.co/news/defi/2026-08-10-standard-chartered-chainlink-tokenization-411252" target="_blank" rel="noopener noreferrer">via The Block ↗</a></li>
+          <li><span class="sn">04</span><span class="st">Standard Chartered × Zodia Markets · <em>Beyond Concentration: Where Non-USD Stablecoins Can Scale</em> <span class="sm">· Apr 2026</span></span><a href="https://www.sc.com/en/uploads/sites/66/content/docs/where-local-currency-stablecoins-can-scale-report-sc.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a></li>
+          <li><span class="sn">05</span><span class="st">J.P. Morgan · <em>Payments Outlook 2026: Five Shifts Powering Payments</em> <span class="sm">· Apr 2026</span></span><a href="https://www.jpmorgan.com/insights/payments/trends-innovation/payments-outlook-trends-2026" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">06</span><span class="st">Morgan Stanley × Oliver Wyman · <em>Digital Rails, Real Economics: Digital Assets and the Future of Wholesale Banking</em> <span class="sm">· May 2026</span></span><a href="https://www.oliverwyman.com/our-expertise/insights/2026/may/digital-assets-future-wholesale-banking.html" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">07</span><span class="st">Deutsche Bank · <em>Digital Money: a perspective on stablecoins, tokenised deposits and CBDCs</em> <span class="sm">· May 2026</span></span><a href="https://flow.db.com/publications/flow-white-papers-and-guides/digital-money-a-perspective-on-stablecoins-tokenised-deposits-and-cbdcs" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li class="src-grp" role="presentation">Managers &amp; issuers</li>
+          <li><span class="sn">08</span><span class="st">Securitize × Keyrock · <em>The $400T Future of Tokenised Assets</em> <span class="sm">· Apr 2026</span></span><a href="https://keyrock.com/the-400t-future-of-tokenised-assets/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">09</span><span class="st">21Shares · <em>State of Crypto – Market Outlook 2026, Mid-Year Update</em> <span class="sm">· Jun 2026</span></span><a href="https://cdn.21shares.com/uploads/current-documents/reports/21shares_State-of-crypto-17_Mid-year-check-in.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a></li>
+          <li><span class="sn">10</span><span class="st">Grayscale Research · <em>Investing in the Tokenization Megatrend</em> <span class="sm">· Apr 2026</span></span><a href="https://research.grayscale.com/reports/investing-in-the-tokenization-megatrend" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li class="src-grp" role="presentation">Consultancies</li>
+          <li><span class="sn">11</span><span class="st">BCG · <em>Global Asset Management Report 2026</em> <span class="sm">· Apr 2026</span></span><a href="https://www.bcg.com/publications/2026/an-imperative-for-growth-and-the-new-economics-of-asset-management" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">12</span><span class="st">McKinsey · <em>Beyond stablecoins: The emerging architecture of on-chain money</em> <span class="sm">· May 2026</span></span><a href="https://www.mckinsey.com/industries/financial-services/our-insights/beyond-stablecoins-the-emerging-architecture-of-on-chain-money" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">13</span><span class="st">PwC · <em>Asset tokenization for asset managers: Trends, risks and opportunities</em> <span class="sm">· Jun 2026</span></span><a href="https://www.pwc.com/us/en/industries/financial-services/library/tokenizing-assets.html" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li class="src-grp" role="presentation">Crypto research &amp; trackers</li>
+          <li><span class="sn">14</span><span class="st">Binance Research · <em>Tokenization&#x27;s Trillion-Dollar Runway</em> <span class="sm">· May 2026</span></span><a href="https://www.binance.com/research/analysis/tokenization-trillion-dollar-runway" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">15</span><span class="st">Binance Research · <em>Half-Year 2026: On-Chain Markets</em> <span class="sm">· Jul 2026</span></span><a href="https://www.binance.com/en/research/analysis/half-year-2026-onchain-markets" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">16</span><span class="st">Pantera Capital · <em>The State of Tokenization: Q1 2026</em> <span class="sm">· May 2026</span></span><a href="https://panteracapital.com/article/the-state-of-tokenization-q1-2026-report/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">17</span><span class="st">BeInCrypto × RWA.xyz · <em>The Real State of Tokenization 2026</em> <span class="sm">· Apr–Jun 2026</span></span><a href="https://research.beincrypto.com/tokenization-2026-report-first-edition/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">18</span><span class="st">DefiLlama (DL Research) · <em>The State of RWAfi: Q1 2026</em> <span class="sm">· Apr 2026</span></span><a href="https://defillama.com/research/report/the-state-of-rwafi-q1-2026-report" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">19</span><span class="st">CoinGecko · <em>RWA Report 2026</em> <span class="sm">· May 2026</span></span><a href="https://www.coingecko.com/research/publications/rwa-report-2026" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li class="src-grp" role="presentation">Official sector</li>
+          <li><span class="sn">20</span><span class="st">BIS · <em>Anchoring trust in money: innovation beyond stablecoins – Annual Economic Report 2026, Ch. III</em> <span class="sm">· Jun 2026</span></span><a href="https://www.bis.org/publ/arpdf/ar2026e3.htm" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">21</span><span class="st">IMF · <em>Tokenized Finance – IMF Notes 2026/001</em> <span class="sm">· Apr 2026</span></span><a href="https://www.imf.org/en/publications/imf-notes/issues/2026/04/01/tokenized-finance-574921" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+          <li><span class="sn">22</span><span class="st">GFMA · <em>The Role of Digital Money in Capital Markets</em> <span class="sm">· Apr 2026</span></span><a href="https://www.gfma.org/policies-resources/gfma-publishes-report-on-the-role-of-digital-money-in-capital-markets/" target="_blank" rel="noopener noreferrer">Report ↗</a></li>
+        </ol>
+<!-- /gen:sources -->
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="ft-top">
-      <span><b>RWA Market · Cross-Study Synthesis</b><br>Prepared by <a href="https://pl.linkedin.com/in/mishablank" target="_blank" rel="noopener noreferrer" class="mblink">Mike Blank</a> · June 2026 · updated 13 Aug 2026</span>
+      <span><b>RWA Market · Cross-Study Synthesis</b><br>Prepared by <a href="https://pl.linkedin.com/in/mishablank" target="_blank" rel="noopener noreferrer" class="mblink">Mike Blank</a> · June 2026 · updated 20 Aug 2026</span>
       <span style="text-align:right">Window: 29 Mar – 10 Aug 2026<br>63 reports cross-read · 50 archived locally</span>
     </div>
     <div class="tags">
@@ -959,42 +1086,13 @@
   </div>
 </footer>
 
+<!-- gen:blob -->
+<script id="rwa-data" type="application/json">{"cats":{"narrow":"Free-float / distributed only","public":"Public chains, all issued","secur":"Securities & core asset classes","broad":"Broad – incl. funds / 12-class core","all":"All-in – incl. stablecoins / settlement layer"},"chart":{"forecast":{"ttl":"2030 market-size forecasts","note":"Log scale – marks are <b>dots, not bars</b>: on a log axis there is no zero, so length means nothing. Read position only.","noteLin":"Linear scale – the smallest forecast nearly vanishes. <em>That</em> 35× gap is the disagreement.","items":[{"n":"Securitize × Keyrock","v":400000000000.0,"cat":"narrow","pt":1,"scope":"Distributed RWAs, 5 classes (ex-stablecoins)","src":"Apr 2026","ref":"securitize-keyrock-400t"},{"n":"Binance Research","v":661000000000.0,"lo":203000000000.0,"hi":1600000000000.0,"cat":"narrow","scope":"Distributed value, ex-stablecoins · base case cut from $1.6T in May to $661B (0.4% penetration); band = $203B conservative – $1.6T bull. The old base is now the bull case.","src":"Jul 2026","ref":"binance-hy2026"},{"n":"Standard Chartered","v":4000000000000.0,"cat":"public","alt":2700000000000.0,"altLbl":"$2.7T DeFi-active, 2030","scope":"Public-chain tokenized assets by 2028, reaffirmed in \"Owning the rails\" (Aug 2026); hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)","src":"May · Aug 2026","ref":"sc-tokenization-defi"},{"n":"Citi","v":5500000000000.0,"cat":"secur","pt":1,"scope":"Tokenized securities – equities + Treasuries led","src":"Jun 2026","ref":"citi-2030"},{"n":"Binance – tail case","v":6780000000000.0,"cat":"secur","pt":1,"scope":"Equities + commodities + ETFs at 4% penetration (\"exceptional\" scenario, not a base case)","src":"Jul 2026","ref":"binance-hy2026"},{"n":"BCG","v":14000000000000.0,"cat":"broad","pt":1,"scope":"Broadest RWA definition, incl. funds · $55T by 2035 (off-scale, see table)","src":"Apr 2026","ref":"bcg-gam-2026"}]},"today":{"ttl":"Market size – today","note":"Log scale – dots, not bars. Nine desks, ten numbers, same market.","noteLin":"Linear scale – definitional choices swing today’s number ~36×. Colour is the definition.","items":[{"n":"CoinGecko","v":19300000000.0,"cat":"narrow","pt":1,"scope":"Tokenized RWAs ex-stablecoins (Q1 2026)","src":"May 2026","ref":"coingecko-rwa-2026"},{"n":"DefiLlama","v":25200000000.0,"cat":"public","pt":1,"scope":"\"Active\" RWA market cap, public chains","src":"Apr 2026","ref":"defillama-rwafi-q1"},{"n":"Grayscale","v":30000000000.0,"cat":"narrow","pt":1,"scope":"Tokenized assets ex-stablecoins – ~0.01% of global equity & bond markets; Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities","src":"Apr 2026","ref":"grayscale-megatrend"},{"n":"21Shares","v":31000000000.0,"cat":"public","alt":350000000000.0,"altLbl":"$350B incl. permissioned","scope":"~$31B public chains; hollow dot = ~$350B once Canton & permissioned networks are added. One desk, one date, 11× apart on scope alone.","src":"Jun 2026","ref":"21shares-midyear"},{"n":"Binance / RWA.xyz","v":34000000000.0,"cat":"narrow","pt":1,"scope":"Distributed (free-float) value – $22B Jan → ~$34B mid-Jul, +50% in H1","src":"Jul 2026","ref":"binance-hy2026"},{"n":"BeInCrypto · core","v":60000000000.0,"cat":"broad","pt":1,"scope":"Core tokenized assets, 12 classes (rwa.xyz data)","src":"Jun 2026","ref":"beincrypto-rwaxyz-2026"},{"n":"Pantera","v":321000000000.0,"cat":"all","pt":1,"scope":"542 assets, 11 classes – incl. stablecoins","src":"May 2026","ref":"pantera-tokenization-q1"},{"n":"Standard Chartered","v":340000000000.0,"cat":"all","pt":1,"scope":"Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path (\"Owning the rails\"). Within 3% of 21Shares' $350B, by a different route: stablecoins in, permissioned nets out.","src":"Aug 2026","ref":"sc-owning-rails"},{"n":"BeInCrypto · full layer","v":695000000000.0,"cat":"all","pt":1,"scope":"Full settlement layer – represented + on-chain settlement positions","src":"Jun 2026","ref":"beincrypto-rwaxyz-2026"}]}},"scope_view":{"ttl":"2030 forecasts · grouped by scope","note":"Group the six forecasts by what they count and the 35× spread collapses: within a scope bucket the desks land ≤1.7× apart. Same horizon, same market – the disagreement is the definition, not the conviction."}}</script>
+<!-- /gen:blob -->
 <script>
 (function(){
-  const DS={
-    forecast:{ttl:'2030 market-size forecasts',
-      note:'Log scale – marks are <b>dots, not bars</b>: on a log axis there is no zero, so length means nothing. Read position only.',
-      noteLin:'Linear scale – the smallest forecast nearly vanishes. <em>That</em> 35× gap is the disagreement.',
-      items:[
-        {n:'Securitize × Keyrock', v:400e9, cat:'narrow', pt:1, scope:'Distributed RWAs, 5 classes (ex-stablecoins)', src:'Apr 2026'},
-        {n:'Binance Research', v:661e9, lo:203e9, hi:1600e9, cat:'narrow', scope:'Distributed value, ex-stablecoins · base case cut from $1.6T in May to $661B (0.4% penetration); band = $203B conservative – $1.6T bull. The old base is now the bull case.', src:'Jul 2026'},
-        {n:'Standard Chartered', v:4000e9, cat:'public', alt:2700e9, altLbl:'$2.7T DeFi-active, 2030', scope:'Public-chain tokenized assets by 2028, reaffirmed in "Owning the rails" (Aug 2026); hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)', src:'May · Aug 2026'},
-        {n:'Citi', v:5500e9, cat:'secur', pt:1, scope:'Tokenized securities – equities + Treasuries led', src:'Jun 2026'},
-        {n:'Binance – tail case', v:6780e9, cat:'secur', pt:1, scope:'Equities + commodities + ETFs at 4% penetration ("exceptional" scenario, not a base case)', src:'Jul 2026'},
-        {n:'BCG', v:14000e9, cat:'broad', pt:1, scope:'Broadest RWA definition, incl. funds · $55T by 2035 (off-scale, see table)', src:'Apr 2026'},
-      ]},
-    today:{ttl:'Market size – today',
-      note:'Log scale – dots, not bars. Eight desks, nine numbers, same market.',
-      noteLin:'Linear scale – definitional choices swing today’s number ~36×. Colour is the definition.',
-      items:[
-        {n:'CoinGecko', v:19.3e9, cat:'narrow', pt:1, scope:'Tokenized RWAs ex-stablecoins (Q1 2026)', src:'May 2026'},
-        {n:'DefiLlama', v:25.2e9, cat:'public', pt:1, scope:'"Active" RWA market cap, public chains', src:'Apr 2026'},
-        {n:'21Shares', v:31e9, cat:'public', alt:350e9, altLbl:'$350B incl. permissioned',
-         scope:'~$31B public chains; hollow dot = ~$350B once Canton & permissioned networks are added. One desk, one date, 11× apart on scope alone.', src:'Jun 2026'},
-        {n:'Binance / RWA.xyz', v:34e9, cat:'narrow', pt:1, scope:'Distributed (free-float) value – $22B Jan → ~$34B mid-Jul, +50% in H1', src:'Jul 2026'},
-        {n:'BeInCrypto · core', v:60e9, cat:'broad', pt:1, scope:'Core tokenized assets, 12 classes (rwa.xyz data)', src:'Jun 2026'},
-        {n:'Pantera', v:321e9, cat:'all', pt:1, scope:'542 assets, 11 classes – incl. stablecoins', src:'May 2026'},
-        {n:'Standard Chartered', v:340e9, cat:'all', pt:1, scope:'Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path ("Owning the rails"). Within 3% of 21Shares\' $350B, by a different route: stablecoins in, permissioned nets out.', src:'Aug 2026'},
-        {n:'BeInCrypto · full layer', v:695e9, cat:'all', pt:1, scope:'Full settlement layer – represented + on-chain settlement positions', src:'Jun 2026'},
-      ]},
-  };
-  const CATS={
-    narrow:'Free-float / distributed only',
-    public:'Public chains, all issued',
-    secur :'Securities & core asset classes',
-    broad :'Broad – incl. funds / 12-class core',
-    all   :'All-in – incl. stablecoins / settlement layer',
-  };
+  const DATA=JSON.parse(document.getElementById('rwa-data').textContent);
+  const DS=DATA.chart, CATS=DATA.cats, SCOPEV=DATA.scope_view;
   let ds='forecast', sc='linear';
   const $=id=>document.getElementById(id);
   const rows=$('chartRows'), grid=$('gridlines'), axis=$('chartAxis'), tip=$('chartTip'),
@@ -1042,9 +1140,10 @@
   function moveTip(e){ const r=chart.getBoundingClientRect(); let x=e.clientX-r.left+16, y=e.clientY-r.top+16;
     if(x>r.width-210) x=e.clientX-r.left-220; tip.style.left=x+'px'; tip.style.top=y+'px'; }
   function render(){
-    const data=DS[ds], items=data.items, [a,b]=range(items);
-    ttl.textContent=data.ttl;
-    note.innerHTML = sc==='log' ? data.note : data.noteLin;
+    const by = ds==='byscope';
+    const data = by ? DS.forecast : DS[ds], items=data.items, [a,b]=range(items);
+    ttl.textContent = by ? SCOPEV.ttl : data.ttl;
+    note.innerHTML = by ? SCOPEV.note : (sc==='log' ? data.note : data.noteLin);
     grid.innerHTML=''; axis.innerHTML='';
     ticks(a,b).forEach(tv=>{ const p=pos(tv,a,b);
       const g=document.createElement('div'); g.className='gl'; g.style.left=p+'%'; grid.appendChild(g);
@@ -1053,7 +1152,25 @@
     drawLegend(items);
     const isLog = sc==='log';
     const applies=[];
-    items.forEach(d=>{
+    let list = items.map(d=>({t:'i', d}));
+    if(by){
+      list=[];
+      Object.keys(CATS).forEach(c=>{
+        const g=items.filter(d=>d.cat===c);
+        if(!g.length) return;
+        const spread=Math.max(...g.map(d=>d.v))/Math.min(...g.map(d=>d.v));
+        list.push({t:'g', cat:c, lbl:CATS[c], tag:g.length>1?('×'+(Math.round(spread*10)/10)+' apart within scope'):'one desk'});
+        g.forEach(d=>list.push({t:'i', d}));
+      });
+    }
+    list.forEach(en=>{
+      if(en.t==='g'){
+        const gr=document.createElement('div'); gr.className='grow sc-'+en.cat;
+        const s1=document.createElement('span'); s1.textContent=en.lbl;
+        const s2=document.createElement('span'); s2.className='gtag'; s2.textContent=en.tag;
+        gr.appendChild(s1); gr.appendChild(s2); rows.appendChild(gr); return;
+      }
+      const d=en.d;
       const row=document.createElement('div'); row.className='row'+(d.cat?' sc-'+d.cat:'');
       const nm=document.createElement('div'); nm.className='name'; nm.textContent=d.n;
       const track=document.createElement('div'); track.className='track';
@@ -1103,7 +1220,13 @@
     requestAnimationFrame(()=>requestAnimationFrame(()=>applies.forEach(f=>f())));
   }
   $('dsSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
-    ds=btn.dataset.ds; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
+    ds=btn.dataset.ds; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn));
+    // by-scope reads position within log-spaced scope groups, so the scale locks to log
+    const scEl=$('scSeg');
+    if(ds==='byscope'){ sc='log'; scEl.classList.add('disabled');
+      [...scEl.children].forEach(c=>c.classList.toggle('on',c.dataset.sc==='log')); }
+    else scEl.classList.remove('disabled');
+    render(); });
   $('scSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
     sc=btn.dataset.sc; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
   // log tick density depends on plot width, so re-render when it changes

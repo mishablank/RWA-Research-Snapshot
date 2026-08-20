@@ -4,11 +4,13 @@
 
 A single-page editorial synthesis that cross-reads **63 research reports** on real-world assets and tokenization – global banks, asset managers, the Big Four, crypto-native desks and the official sector – published between **29 Mar and 10 Aug 2026**. The finding: the desks converge almost completely on the *direction of travel* and contradict each other on nearly everything you can put a number on.
 
+> **Updated 20 Aug 2026** – the dataset behind the page is now published (`data.json` · `data.csv` · `positions.csv` · `llms.txt`), the page is generated from it (`tools/render.py`, CI-enforced), and three things were added: a **By scope** chart view (within a scope bucket the desks land ≤1.7× apart – the 35× spread is definitional), a **definitional staircase** ($19B → $695B in four widening steps, with the 21Shares/SC fork), and a **revision log** appendix. Grayscale's ~$30B "today" figure and permissioned-rails lean were extracted from *Investing in the Tokenization Megatrend* (Apr 2026) – the matrix gains a 19th desk.
+
 > **Updated 13 Aug 2026** – adds Binance Research's *Half-Year 2026: On-Chain Markets* (30 Jul) and Standard Chartered's *Chainlink: Owning the rails* (10 Aug, institutional-client note, cited via The Block's same-day coverage). Two consequential changes: Binance **cut its 2030 base case from $1.6T to $661B** (the old base is now its bull case), and SC published its first sourced "today" figure – **~$340B incl. stablecoins**, landing within 3% of 21Shares' $350B by a completely different route (stablecoins in vs. permissioned networks in).
 
 The headline tension: **$400B → $14T** for the same 2030 horizon. A 35× spread. And an even wider ~36× spread on what the market is worth *today*.
 
-No build step, no dependencies, no framework. One file – [`index.html`](index.html).
+No build step to serve, no dependencies, no framework. One page – [`index.html`](index.html) – whose data-bearing blocks (chart, tables, matrix, staircase, revision log, source register) are generated from one canonical dataset, [`data.json`](data.json).
 
 ---
 
@@ -34,13 +36,14 @@ No build step, no dependencies, no framework. One file – [`index.html`](index.
 | 08 | Discrepancy 05 – whose chain | Public trackers vs. the permissioned layer nobody sees |
 | 09 | Discrepancy 06 – the constraint | Six desks, six different bottlenecks |
 | 10 | Takeaway | How to read any RWA report without being fooled by scope |
-| A | Sources | The register – the 21 reports figures are attributed to, linked to the publisher (see also [`SOURCES.md`](SOURCES.md)) |
+| R | Revision log | Dated changes to the numbers – and the Binance $1.6T → $661B drift |
+| A | Sources | The register – the 22 reports figures are attributed to, linked to the publisher (see also [`SOURCES.md`](SOURCES.md)) |
 
 ~12 minute read.
 
 ### The chart (section 04)
 
-Two toggles – **2030 forecast / market today** and **linear / log** – over the same six-to-eight study dataset. The encoding is deliberate and switches with the scale:
+Three dataset toggles – **2030 forecast / market today / by scope** – and **linear / log**, over the same study dataset. **By scope** regroups the six 2030 forecasts by what they count: within a bucket the desks land ≤1.7× apart, across buckets 35× – the page's thesis, shown rather than asserted. The encoding is deliberate and switches with the scale:
 
 - **Linear** → marks are **bars**. Length encodes magnitude from a real zero.
 - **Log** → marks are **dots**. There is no zero on a log axis, so bar length would be meaningless; only position is read.
@@ -68,17 +71,23 @@ Log tick density adapts to plot width (narrow viewports drop to one tick per dec
 - **Crypto research** – Binance · Pantera · Messari · Galaxy · DefiLlama · CoinGecko · BeInCrypto · RWA.xyz · Keyrock
 - **Official sector** – BIS · IMF · GFMA · OMFIF
 
-The 21 reports the page attributes figures to are linked – publisher page or PDF where public, The Block's same-day coverage for the two client-only Standard Chartered notes – in the page's Sources appendix and in [`SOURCES.md`](SOURCES.md).
+The 22 reports the page attributes figures to are linked – publisher page or PDF where public, The Block's same-day coverage for the two client-only Standard Chartered notes – in the page's Sources appendix and in [`SOURCES.md`](SOURCES.md).
 
 ---
 
 ## Repo layout
 
 ```
-index.html            the entire site – markup, design tokens, CSS, chart data, chart engine
+index.html            the site – markup, design tokens, CSS, chart engine; data blocks generated
+data.json             the canonical dataset – figures, matrix positions, revisions, sources
+data.csv              market-size figures, flat table (generated)
+positions.csv         the 6-question desk matrix, flat table (generated)
+llms.txt              machine-readable page summary + data pointers (generated)
+SOURCES.md            the source register in markdown – same 22 entries as the page (generated)
+tools/render.py       the generator: data.json → index.html regions + derived files
+.github/workflows/    data-check.yml – CI fails if index.html is out of sync with data.json
 og-card.png           1200×630 share card (Open Graph / Twitter image)
 apple-touch-icon.png  180×180 home-screen icon (iOS ignores SVG favicons)
-SOURCES.md            the source register in markdown – same 21 entries as the page appendix
 wrangler.jsonc        Cloudflare static-assets config (worker name: rwa-snapshot)
 .gitignore            wrangler local state + env files
 README.md             this file
@@ -116,18 +125,18 @@ Two things worth knowing before you touch that config: serving `.` publishes eve
 
 ## Editing the content
 
-**Chart data lives in the inline `<script>`** – the `DS` object at [index.html:841](index.html#L841), split into `forecast` and `today` arrays. One entry per study:
+**[`data.json`](data.json) is the single source of truth.** The chart, the desk matrix, the three study tables, the definitional staircase, the revision log, the source register, both CSVs, `llms.txt` and `SOURCES.md` are all generated from it:
 
-```js
-{n:'Citi', v:5500e9, cat:'secur', pt:1,
- scope:'Tokenized securities – equities + Treasuries led', src:'Jun 2026'}
+```bash
+python3 tools/render.py          # regenerate everything from data.json
+python3 tools/render.py --check  # exit 1 if anything is out of sync (CI runs this)
 ```
 
-- `v` – headline figure in dollars · `lo`/`hi` – published scenario band · `alt`/`altLbl` – same desk, wider scope (renders as the hollow dot)
-- `cat` – the scope bucket, keyed to `CATS` at [index.html:867](index.html#L867); it drives both the colour and the legend, which is generated from whichever categories are actually present
-- `pt: 1` – flags a point estimate · `scope` and `src` – the hover/tap tooltip
+The generator (stdlib-only, Python 3.9+) rewrites the regions of `index.html` between `<!-- gen:NAME -->` markers and the derived files. A GitHub Action (`.github/workflows/data-check.yml`) fails any push where `index.html` and `data.json` disagree – the failure mode where the chart and the table under it contradict each other is now structurally impossible.
 
-**The prose tables under each chart are hand-written HTML, not generated from `DS`.** Adding or revising a study means editing both, or the chart and the table beneath it will disagree – which would be an unfortunate way for this particular page to fail.
+To add or revise a study: edit `data.json` (a chart item, its table row, its matrix cells, a `revisions` entry, and – if it's a new report – a `sources` entry), run the generator, commit both. Chart item fields: `v` headline figure in dollars · `lo`/`hi` published scenario band · `alt`/`altLbl` same desk, wider scope (the hollow dot) · `cat` scope bucket keyed to `cats` (drives colour + legend) · `pt: 1` point estimate · `scope`/`src` the tooltip · `ref` the source id.
+
+**Editorial prose stays hand-written** in `index.html` – deks, callouts, section copy. Only the data-bearing blocks are generated.
 
 **Sections are deep-linkable** – every section has an id (`#consensus`, `#map`, `#forecast`, `#denominator`, `#stablecoins`, `#lead-asset`, `#rails`, `#constraint`, `#takeaway`, `#sources`), each `h2` grows a `#` anchor on hover, and a fixed progress rail (`.rail`, shown ≥1280px) tracks the active section via IntersectionObserver.
 
