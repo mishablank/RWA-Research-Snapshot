@@ -42,7 +42,8 @@ def build_matrix(d):
                        % (escape(row["desk"]), escape(row["sub"])))
             for c in row["cells"]:
                 if c is None:
-                    out.append('            <td class="c"><span class="cell n"></span></td>')
+                    out.append('            <td class="c"><span class="cell n" role="img" '
+                               'aria-label="No public position in this window"></span></td>')
                 else:
                     cls = "cell lbl" + (" out" if c.get("out") else "") + " " + c["cls"]
                     title = ' title="%s"' % escape(c["title"], quote=True) if c.get("title") else ""
@@ -104,7 +105,7 @@ def build_stairs(d):
         out.append('      <div class="rung%s %s">' % (fork, cls))
         out.append('        <div class="r-meta"><b>%s%s</b><small>%s</small></div>'
                    % (fk, escape(r["label"]), escape(r["who"])))
-        out.append('        <div class="r-track"><div class="r-bar" style="left:%.1f%%;width:%.1f%%">'
+        out.append('        <div class="r-track" aria-hidden="true"><div class="r-bar" style="left:%.1f%%;width:%.1f%%">'
                    '</div><span class="r-val" style="left:%.1f%%">%s<small>%s</small></span></div>'
                    % (left, max(width, 0.5), val_at, escape(r["display"]), escape(r["mult"])))
         out.append('        <div class="r-step">%s</div>' % escape(r["step"]))
@@ -124,7 +125,7 @@ def build_revisions(d):
             lo, hi = math.log(200e9), math.log(1600e9)
             p661 = 100.0 * (math.log(661e9) - lo) / (hi - lo)
             out.append('      <div class="drift"><span class="d-lab">$661B<small>30 Jul</small></span>'
-                       '<div class="d-track"><div class="d-line" style="left:%.1f%%;right:0"></div>'
+                       '<div class="d-track" aria-hidden="true"><div class="d-line" style="left:%.1f%%;right:0"></div>'
                        '<i class="d-dot" style="left:calc(%.1f%% - 5px)"></i>'
                        '<i class="d-dot was" style="right:0"></i></div>'
                        '<span class="d-lab">$1.6T<small>15 May</small></span>'
@@ -279,13 +280,16 @@ def main():
     check = "--check" in sys.argv
     with open(os.path.join(ROOT, "data.json")) as f:
         d = json.load(f)
-    with open(os.path.join(ROOT, "index.html")) as f:
+    with open(os.path.join(ROOT, "public", "index.html")) as f:
         idx = f.read()
+    with open(os.path.join(ROOT, "data.json")) as f:
+        raw_data = f.read()
     outputs = {
-        "index.html": render_index(d, idx),
-        "data.csv": render_data_csv(d),
-        "positions.csv": render_positions_csv(d),
-        "llms.txt": render_llms(d),
+        "public/index.html": render_index(d, idx),
+        "public/data.json": raw_data,  # served copy of the canonical root file
+        "public/data.csv": render_data_csv(d),
+        "public/positions.csv": render_positions_csv(d),
+        "public/llms.txt": render_llms(d),
         "SOURCES.md": render_sources_md(d),
     }
     stale = []

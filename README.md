@@ -78,20 +78,28 @@ The 22 reports the page attributes figures to are linked – publisher page or P
 ## Repo layout
 
 ```
-index.html            the site – markup, design tokens, CSS, chart engine; data blocks generated
-data.json             the canonical dataset – figures, matrix positions, revisions, sources
-data.csv              market-size figures, flat table (generated)
-positions.csv         the 6-question desk matrix, flat table (generated)
-llms.txt              machine-readable page summary + data pointers (generated)
-SOURCES.md            the source register in markdown – same 22 entries as the page (generated)
-tools/render.py       the generator: data.json → index.html regions + derived files
-.github/workflows/    data-check.yml – CI fails if index.html is out of sync with data.json
-og-card.png           1200×630 share card (Open Graph / Twitter image)
-apple-touch-icon.png  180×180 home-screen icon (iOS ignores SVG favicons)
-wrangler.jsonc        Cloudflare static-assets config (worker name: rwa-snapshot)
-.gitignore            wrangler local state + env files
-README.md             this file
+data.json                    the canonical dataset – figures, matrix positions, revisions, sources
+public/                      everything Cloudflare serves – nothing else is published
+  index.html                 the site – markup, design tokens, CSS, chart engine; data blocks generated
+  data.json                  served copy of the canonical file (generated)
+  data.csv                   market-size figures, flat table (generated)
+  positions.csv              the 6-question desk matrix, flat table (generated)
+  llms.txt                   machine-readable page summary + data pointers (generated)
+  fonts/                     self-hosted Fraunces + Inter (variable WOFF2, latin subsets)
+  og-card.png                1200×630 share card (Open Graph / Twitter image)
+  apple-touch-icon.png       180×180 home-screen icon (iOS ignores SVG favicons)
+tools/render.py              the generator: data.json → index.html regions + derived files
+.github/workflows/           data-check.yml – CI fails if the page is out of sync with data.json
+SOURCES.md                   the source register in markdown – same 22 entries as the page (generated)
+LICENSE                      MIT (code) + CC BY 4.0 (content and dataset)
+wrangler.jsonc               Cloudflare static-assets config (worker name: rwa-snapshot)
+.gitignore                   wrangler local state + env files
+README.md                    this file
 ```
+
+## Accessibility
+
+Chart rows are keyboard-focusable (`Tab` through them, `Escape` dismisses the tooltip) and carry `aria-label`s with the figure, band and scope; the dataset/scale toggles expose `aria-pressed`; empty matrix rings announce "no public position"; the progress rail marks the active section with `aria-current`; and a `prefers-reduced-motion` guard disables smooth scrolling and transitions. The prose tables mirror everything the charts encode.
 
 ## Run it locally
 
@@ -111,7 +119,7 @@ Opening `index.html` directly off the filesystem also works; only the Google Fon
 
 ## Deploy
 
-The page ships as static assets on Cloudflare. `wrangler.jsonc` serves the repo root (`assets.directory: "."`) under the worker name `rwa-snapshot`:
+The page ships as static assets on Cloudflare. `wrangler.jsonc` serves `public/` (`assets.directory: "./public"`) under the worker name `rwa-snapshot`:
 
 ```bash
 npx wrangler deploy
@@ -119,7 +127,9 @@ npx wrangler deploy
 
 Git-integration deploys from `main` work equally well – there is no build command and no output directory to configure.
 
-Two things worth knowing before you touch that config: serving `.` publishes every file in the root, including this README and `wrangler.jsonc`; and the `nodejs_compat` flag is inert here, since there is no worker script to run.
+Only `public/` is published – the README, dataset source, generator and CI config stay repo-only. There is no worker script, so no compatibility flags are needed.
+
+**Analytics**: none are wired in. Cloudflare Web Analytics is cookieless and can be enabled with zero page changes from the dashboard – Workers & Pages → `rwa-snapshot` → Metrics/Analytics → enable Web Analytics (or Account Home → Analytics & Logs → Web Analytics → add site `rwaresearch.info`). Worth doing before investing in more features: it answers whether anyone reads this.
 
 ---
 
@@ -142,7 +152,7 @@ To add or revise a study: edit `data.json` (a chart item, its table row, its mat
 
 **Share metadata** lives in the `<head>`: description, canonical, Open Graph + Twitter cards pointing at `og-card.png` (1200×630, same design tokens), and JSON-LD `Article` markup. If the headline numbers change, re-render the card to keep the unfurl honest.
 
-**Design tokens** are CSS custom properties in `:root` at [index.html:12](index.html#L12) – paper `#F2EBDD`, ink `#1A1816`, accent `#C44A36`, highlight `#F5E69A`, plus Fraunces (display) and Inter (text) from Google Fonts. Scope colours used by the chart and the matrix pills come from the same set, so the two sections stay legible against each other.
+**Design tokens** are CSS custom properties in `:root` at [index.html:12](index.html#L12) – paper `#F2EBDD`, ink `#1A1816`, accent `#C44A36`, highlight `#F5E69A`, plus Fraunces (display) and Inter (text), self-hosted as variable WOFF2 latin subsets in `public/fonts/` – the page makes no external requests at all. Scope colours used by the chart and the matrix pills come from the same set, so the two sections stay legible against each other.
 
 ---
 
@@ -153,3 +163,7 @@ Figures are reproduced as reported by each source on the date cited. **Scopes an
 ---
 
 Prepared by [Mike Blank](https://pl.linkedin.com/in/mishablank) · June 2026 · updated 13 Aug 2026. Design after trancheprotocol.com.
+
+## License
+
+Code is MIT; the editorial content and the dataset (`data.json` and its derived files) are CC BY 4.0 – cite as "Mike Blank, rwaresearch.info". See [LICENSE](LICENSE). The underlying figures remain the property of the publishers identified in [SOURCES.md](SOURCES.md).

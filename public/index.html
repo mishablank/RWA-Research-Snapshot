@@ -25,9 +25,18 @@
 <meta name="twitter:image" content="https://rwaresearch.info/og-card.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231A1816'/%3E%3Crect x='14' y='18' width='12' height='6' rx='1' fill='%23F2EBDD'/%3E%3Crect x='14' y='29' width='26' height='6' rx='1' fill='%23C44A36'/%3E%3Crect x='14' y='40' width='36' height='6' rx='1' fill='%23F5E69A'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/fraunces-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* Self-hosted variable fonts (latin subsets, from Google Fonts) - no external requests */
+  @font-face{font-family:'Fraunces'; font-style:normal; font-weight:400 600; font-stretch:100%;
+    font-display:swap; src:url(/fonts/fraunces-roman.woff2) format('woff2'); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:'Fraunces'; font-style:italic; font-weight:400 500; font-stretch:100%;
+    font-display:swap; src:url(/fonts/fraunces-italic.woff2) format('woff2'); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:'Inter'; font-style:normal; font-weight:400 700; font-stretch:100%;
+    font-display:swap; src:url(/fonts/inter.woff2) format('woff2'); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <style>
   :root{
     --bg:#F2EBDD; --bg-dark:#1A1816; --ink:#1A1816; --muted:#6B6359;
@@ -287,6 +296,21 @@
   .tip .tn{font-weight:700; margin-bottom:4px}
   .tip .tv{font-family:var(--serif); color:var(--accent-soft); font-size:18px}
   .tip .ts{color:#C9BBA9; margin-top:6px}
+  /* small phones: tighter gutters, calmer hero */
+  @media(max-width:420px){
+    .wrap{padding:0 24px}
+    h1{font-size:38px}
+    section{padding:72px 0}
+  }
+  /* accessibility: reduced motion + keyboard focus */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition-duration:.01ms !important; animation-duration:.01ms !important}
+  }
+  #rwaChart .row:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+  .rail a:focus-visible, .srcs a:focus-visible, .hanchor:focus-visible, .datasets a:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px}
+
   /* by-scope group rows */
   .grow{display:flex; justify-content:space-between; align-items:baseline; margin:20px 0 4px; padding-right:44px}
   .grow span{font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--m,var(--olive))}
@@ -399,21 +423,6 @@
 </head>
 <body>
 <div class="grid-bg"></div>
-<nav class="rail" aria-label="Sections">
-  <a href="#top"><span class="lbl">The tension</span>01</a>
-  <a href="#consensus"><span class="lbl">Consensus</span>02</a>
-  <a href="#map"><span class="lbl">The map</span>03</a>
-  <a href="#forecast"><span class="lbl">The 2030 number</span>04</a>
-  <a href="#denominator"><span class="lbl">The denominator</span>05</a>
-  <a href="#stablecoins"><span class="lbl">Stablecoins</span>06</a>
-  <a href="#lead-asset"><span class="lbl">The lead asset</span>07</a>
-  <a href="#rails"><span class="lbl">Whose chain</span>08</a>
-  <a href="#constraint"><span class="lbl">The constraint</span>09</a>
-  <a href="#takeaway"><span class="lbl">So what</span>10</a>
-  <a href="#revisions"><span class="lbl">Revision log</span>R</a>
-  <a href="#sources"><span class="lbl">Sources</span>S</a>
-</nav>
-
 <!-- ============ 01 · HERO ============ -->
 <section class="hero" id="top">
   <div class="wrap">
@@ -530,8 +539,8 @@
           <tr>
             <td class="desk">Citi<small>Citi Institute · Jun 2026</small></td>
             <td class="c"><span class="cell lbl sc-secur">$5.5T</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-b">Equities + Tsy</span></td>
             <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
             <td class="c"><span class="cell lbl pos-b">Market infra</span></td>
@@ -541,92 +550,92 @@
             <td class="c"><span class="cell lbl sc-public">$4T &#x27;28</span></td>
             <td class="c"><span class="cell lbl sc-all">$340B</span></td>
             <td class="c"><span class="cell lbl pos-b">Rail · USD only</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Public</span></td>
             <td class="c"><span class="cell lbl pos-c">Data &amp; interop rails</span></td>
           </tr>
           <tr>
             <td class="desk">J.P. Morgan<small>Payments · Kinexys</small></td>
             <td class="c"><span class="cell lbl out sc-narrow" title="Asset-management opportunity, not market size – different unit">$400B AM</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">Morgan Stanley<small>× Oliver Wyman</small></td>
             <td class="c"><span class="cell lbl out pos-c" title="Revenue, not market size – different unit">$8B revenue</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">Deutsche Bank<small>2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Coexist</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr class="grp"><td colspan="7"><span>Managers &amp; issuers</span></td></tr>
           <tr>
             <td class="desk">Securitize × Keyrock<small>Apr 2026</small></td>
             <td class="c"><span class="cell lbl sc-narrow">$400B</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Tsy + credit</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">21Shares<small>Jun 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl sc-public">$31B–$350B</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Treasuries</span></td>
             <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">Grayscale<small>Research · Apr 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl sc-narrow">~$30B</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-d">Permissioned</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr class="grp"><td colspan="7"><span>Consultancies</span></td></tr>
           <tr>
             <td class="desk">BCG<small>Global AM Report · Apr 2026</small></td>
             <td class="c"><span class="cell lbl sc-broad">$14T</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">McKinsey<small>2026</small></td>
             <td class="c"><span class="cell lbl out sc-all" title="Stablecoin adoption, not tokenized RWA market size – different unit">$4T stablecoin</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Coexist</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">PwC<small>2026</small></td>
             <td class="c"><span class="cell lbl sc-broad">$715B funds</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-d">Funds</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr class="grp"><td colspan="7"><span>Crypto research &amp; trackers</span></td></tr>
           <tr>
@@ -635,72 +644,72 @@
             <td class="c"><span class="cell lbl sc-narrow">$34B</span></td>
             <td class="c"><span class="cell lbl pos-b">Rail</span></td>
             <td class="c"><span class="cell lbl pos-b">Equities / credit</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-f">Convergence</span></td>
           </tr>
           <tr>
             <td class="desk">Pantera<small>May 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl sc-all">$321B</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">BeInCrypto × rwa.xyz<small>Apr–Jun 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl sc-all">$60B–$695B</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">DefiLlama<small>Apr 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl sc-public">$25.2B</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Public</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr>
             <td class="desk">CoinGecko<small>Q1 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl sc-narrow">$19.3B</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Public</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
           <tr class="grp"><td colspan="7"><span>Official sector</span></td></tr>
           <tr>
             <td class="desk">BIS<small>Annual Economic Report 2026, Ch. III</small></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-e">Flawed money</span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-d">Unified ledger</span></td>
             <td class="c"><span class="cell lbl pos-e">Monetary arch.</span></td>
           </tr>
           <tr>
             <td class="desk">IMF<small>Tokenized Finance · 2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Safety first</span></td>
           </tr>
           <tr>
             <td class="desk">GFMA<small>2026</small></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
             <td class="c"><span class="cell lbl pos-a">Coexist</span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
-            <td class="c"><span class="cell n"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
+            <td class="c"><span class="cell n" role="img" aria-label="No public position in this window"></span></td>
           </tr>
 <!-- /gen:matrix -->
         </tbody>
@@ -732,18 +741,18 @@
     <h2>Same horizon. A <span class="it">35× disagreement</span><span class="dot">.</span><a class="hanchor" href="#forecast" aria-label="Link to this section">#</a></h2>
     <p class="dek">Six widely-cited studies, one five-year window, and headline numbers that range from a few hundred billion to fourteen trillion. The gap isn't conviction – it's that they aren't measuring the same thing.</p>
 
-    <div class="chart" id="rwaChart">
+    <div class="chart" id="rwaChart" role="figure" aria-label="2030 market-size forecasts – interactive chart; the table below carries the same data">
       <div class="chart-head">
         <div class="ttl" id="chartTtl">2030 market-size forecasts</div>
         <div class="chart-controls">
-          <div class="seg" id="dsSeg">
-            <button data-ds="forecast" class="on">2030 forecast</button>
-            <button data-ds="today">Market today</button>
-            <button data-ds="byscope">By scope</button>
+          <div class="seg" id="dsSeg" role="group" aria-label="Chart dataset">
+            <button data-ds="forecast" class="on" aria-pressed="true">2030 forecast</button>
+            <button data-ds="today" aria-pressed="false">Market today</button>
+            <button data-ds="byscope" aria-pressed="false">By scope</button>
           </div>
-          <div class="seg" id="scSeg">
-            <button data-sc="linear" class="on">Linear</button>
-            <button data-sc="log">Log</button>
+          <div class="seg" id="scSeg" role="group" aria-label="Chart scale">
+            <button data-sc="linear" class="on" aria-pressed="true">Linear</button>
+            <button data-sc="log" aria-pressed="false">Log</button>
           </div>
         </div>
       </div>
@@ -757,7 +766,7 @@
         <span class="scale-note" id="scaleNote">Linear scale – the smallest forecast nearly vanishes. <em>That</em> gap is the disagreement.</span>
         <span>Hover or tap any row for scope &amp; source</span>
       </div>
-      <div class="tip" id="chartTip"></div>
+      <div class="tip" id="chartTip" aria-hidden="true"></div>
     </div>
 
     <div class="tablewrap">
@@ -803,27 +812,27 @@
           <div class="stairs-head"><span class="kicker">The definitional staircase</span><span class="stairs-note">No new assets appear between these rungs – each step only widens what gets counted.</span></div>
           <div class="rung sc-narrow">
             <div class="r-meta"><b>The tracker cluster</b><small>CoinGecko · DefiLlama · Grayscale · Binance/RWA.xyz</small></div>
-            <div class="r-track"><div class="r-bar" style="left:6.3%;width:14.2%"></div><span class="r-val" style="left:20.6%">$19–34B<small>baseline</small></span></div>
+            <div class="r-track" aria-hidden="true"><div class="r-bar" style="left:6.3%;width:14.2%"></div><span class="r-val" style="left:20.6%">$19–34B<small>baseline</small></span></div>
             <div class="r-step">Core / free-float tokenized assets, public chains, ex-stablecoins – where every dashboard starts</div>
           </div>
           <div class="rung sc-broad">
             <div class="r-meta"><b>BeInCrypto · core</b><small>12 asset classes</small></div>
-            <div class="r-track"><div class="r-bar" style="left:0.0%;width:34.9%"></div><span class="r-val" style="left:34.9%">~$60B<small>×3 the narrowest</small></span></div>
+            <div class="r-track" aria-hidden="true"><div class="r-bar" style="left:0.0%;width:34.9%"></div><span class="r-val" style="left:34.9%">~$60B<small>×3 the narrowest</small></span></div>
             <div class="r-step">+ widen the asset list to 12 classes</div>
           </div>
           <div class="rung fork sc-public">
             <div class="r-meta"><b><span class="fk">route A</span>21Shares</b><small>public + permissioned nets, ex-stablecoins</small></div>
-            <div class="r-track"><div class="r-bar" style="left:0.0%;width:79.2%"></div><span class="r-val" style="left:79.2%">~$350B<small>×18</small></span></div>
+            <div class="r-track" aria-hidden="true"><div class="r-bar" style="left:0.0%;width:79.2%"></div><span class="r-val" style="left:79.2%">~$350B<small>×18</small></span></div>
             <div class="r-step">+ permissioned networks (Canton et al.) – stablecoins stay out</div>
           </div>
           <div class="rung fork sc-all">
             <div class="r-meta"><b><span class="fk">route B</span>Standard Chartered</b><small>public chains + stablecoins</small></div>
-            <div class="r-track"><div class="r-bar" style="left:0.0%;width:78.5%"></div><span class="r-val" style="left:78.5%">~$340B<small>×18</small></span></div>
+            <div class="r-track" aria-hidden="true"><div class="r-bar" style="left:0.0%;width:78.5%"></div><span class="r-val" style="left:78.5%">~$340B<small>×18</small></span></div>
             <div class="r-step">+ stablecoins instead – permissioned networks stay out</div>
           </div>
           <div class="rung sc-all">
             <div class="r-meta"><b>BeInCrypto · full layer</b><small>settlement layer</small></div>
-            <div class="r-track"><div class="r-bar" style="left:0.0%;width:96.5%"></div><span class="r-val" style="left:96.5%">~$695B<small>×36</small></span></div>
+            <div class="r-track" aria-hidden="true"><div class="r-bar" style="left:0.0%;width:96.5%"></div><span class="r-val" style="left:96.5%">~$695B<small>×36</small></span></div>
             <div class="r-step">+ on-chain settlement positions – the full settlement layer</div>
           </div>
           <p class="src-line">Routes A and B share almost nothing – different assets, different chains – and land within 3% of each other. Two lenses, one coincidence.</p>
@@ -1015,7 +1024,7 @@
           <li><span class="rv-d">26 May 2026</span><div class="rv-b"><span class="chg"><b>Standard Chartered</b> – ~$4T tokenized by end-2028</span><small>Digital-assets research note (institutional-client only), via The Block’s coverage.</small>
           </div></li>
           <li><span class="rv-d">30 Jul 2026</span><div class="rv-b"><span class="chg"><b>Binance Research</b> – 2030 base case cut: $1.6T → $661B</span><small>“Half-Year 2026” reframes the scenarios ($203B–$1.6T): the May base becomes the bull case. A 2.4× cut, ten weeks apart.</small>
-          <div class="drift"><span class="d-lab">$661B<small>30 Jul</small></span><div class="d-track"><div class="d-line" style="left:57.5%;right:0"></div><i class="d-dot" style="left:calc(57.5% - 5px)"></i><i class="d-dot was" style="right:0"></i></div><span class="d-lab">$1.6T<small>15 May</small></span><span class="d-tag">−59% in ten weeks</span></div>
+          <div class="drift"><span class="d-lab">$661B<small>30 Jul</small></span><div class="d-track" aria-hidden="true"><div class="d-line" style="left:57.5%;right:0"></div><i class="d-dot" style="left:calc(57.5% - 5px)"></i><i class="d-dot was" style="right:0"></i></div><span class="d-lab">$1.6T<small>15 May</small></span><span class="d-tag">−59% in ten weeks</span></div>
           </div></li>
           <li><span class="rv-d">10 Aug 2026</span><div class="rv-b"><span class="chg"><b>Standard Chartered</b> – $4T-by-2028 reaffirmed · first sourced “today” figure: ~$340B</span><small>“Chainlink: Owning the rails” – lands within 3% of 21Shares’ $350B by a completely different definitional route.</small>
           </div></li>
@@ -1086,6 +1095,21 @@
   </div>
 </footer>
 
+<nav class="rail" aria-label="Sections">
+  <a href="#top"><span class="lbl">The tension</span>01</a>
+  <a href="#consensus"><span class="lbl">Consensus</span>02</a>
+  <a href="#map"><span class="lbl">The map</span>03</a>
+  <a href="#forecast"><span class="lbl">The 2030 number</span>04</a>
+  <a href="#denominator"><span class="lbl">The denominator</span>05</a>
+  <a href="#stablecoins"><span class="lbl">Stablecoins</span>06</a>
+  <a href="#lead-asset"><span class="lbl">The lead asset</span>07</a>
+  <a href="#rails"><span class="lbl">Whose chain</span>08</a>
+  <a href="#constraint"><span class="lbl">The constraint</span>09</a>
+  <a href="#takeaway"><span class="lbl">So what</span>10</a>
+  <a href="#revisions"><span class="lbl">Revision log</span>R</a>
+  <a href="#sources"><span class="lbl">Sources</span>S</a>
+</nav>
+
 <!-- gen:blob -->
 <script id="rwa-data" type="application/json">{"cats":{"narrow":"Free-float / distributed only","public":"Public chains, all issued","secur":"Securities & core asset classes","broad":"Broad – incl. funds / 12-class core","all":"All-in – incl. stablecoins / settlement layer"},"chart":{"forecast":{"ttl":"2030 market-size forecasts","note":"Log scale – marks are <b>dots, not bars</b>: on a log axis there is no zero, so length means nothing. Read position only.","noteLin":"Linear scale – the smallest forecast nearly vanishes. <em>That</em> 35× gap is the disagreement.","items":[{"n":"Securitize × Keyrock","v":400000000000.0,"cat":"narrow","pt":1,"scope":"Distributed RWAs, 5 classes (ex-stablecoins)","src":"Apr 2026","ref":"securitize-keyrock-400t"},{"n":"Binance Research","v":661000000000.0,"lo":203000000000.0,"hi":1600000000000.0,"cat":"narrow","scope":"Distributed value, ex-stablecoins · base case cut from $1.6T in May to $661B (0.4% penetration); band = $203B conservative – $1.6T bull. The old base is now the bull case.","src":"Jul 2026","ref":"binance-hy2026"},{"n":"Standard Chartered","v":4000000000000.0,"cat":"public","alt":2700000000000.0,"altLbl":"$2.7T DeFi-active, 2030","scope":"Public-chain tokenized assets by 2028, reaffirmed in \"Owning the rails\" (Aug 2026); hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)","src":"May · Aug 2026","ref":"sc-tokenization-defi"},{"n":"Citi","v":5500000000000.0,"cat":"secur","pt":1,"scope":"Tokenized securities – equities + Treasuries led","src":"Jun 2026","ref":"citi-2030"},{"n":"Binance – tail case","v":6780000000000.0,"cat":"secur","pt":1,"scope":"Equities + commodities + ETFs at 4% penetration (\"exceptional\" scenario, not a base case)","src":"Jul 2026","ref":"binance-hy2026"},{"n":"BCG","v":14000000000000.0,"cat":"broad","pt":1,"scope":"Broadest RWA definition, incl. funds · $55T by 2035 (off-scale, see table)","src":"Apr 2026","ref":"bcg-gam-2026"}]},"today":{"ttl":"Market size – today","note":"Log scale – dots, not bars. Nine desks, ten numbers, same market.","noteLin":"Linear scale – definitional choices swing today’s number ~36×. Colour is the definition.","items":[{"n":"CoinGecko","v":19300000000.0,"cat":"narrow","pt":1,"scope":"Tokenized RWAs ex-stablecoins (Q1 2026)","src":"May 2026","ref":"coingecko-rwa-2026"},{"n":"DefiLlama","v":25200000000.0,"cat":"public","pt":1,"scope":"\"Active\" RWA market cap, public chains","src":"Apr 2026","ref":"defillama-rwafi-q1"},{"n":"Grayscale","v":30000000000.0,"cat":"narrow","pt":1,"scope":"Tokenized assets ex-stablecoins – ~0.01% of global equity & bond markets; Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities","src":"Apr 2026","ref":"grayscale-megatrend"},{"n":"21Shares","v":31000000000.0,"cat":"public","alt":350000000000.0,"altLbl":"$350B incl. permissioned","scope":"~$31B public chains; hollow dot = ~$350B once Canton & permissioned networks are added. One desk, one date, 11× apart on scope alone.","src":"Jun 2026","ref":"21shares-midyear"},{"n":"Binance / RWA.xyz","v":34000000000.0,"cat":"narrow","pt":1,"scope":"Distributed (free-float) value – $22B Jan → ~$34B mid-Jul, +50% in H1","src":"Jul 2026","ref":"binance-hy2026"},{"n":"BeInCrypto · core","v":60000000000.0,"cat":"broad","pt":1,"scope":"Core tokenized assets, 12 classes (rwa.xyz data)","src":"Jun 2026","ref":"beincrypto-rwaxyz-2026"},{"n":"Pantera","v":321000000000.0,"cat":"all","pt":1,"scope":"542 assets, 11 classes – incl. stablecoins","src":"May 2026","ref":"pantera-tokenization-q1"},{"n":"Standard Chartered","v":340000000000.0,"cat":"all","pt":1,"scope":"Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path (\"Owning the rails\"). Within 3% of 21Shares' $350B, by a different route: stablecoins in, permissioned nets out.","src":"Aug 2026","ref":"sc-owning-rails"},{"n":"BeInCrypto · full layer","v":695000000000.0,"cat":"all","pt":1,"scope":"Full settlement layer – represented + on-chain settlement positions","src":"Jun 2026","ref":"beincrypto-rwaxyz-2026"}]}},"scope_view":{"ttl":"2030 forecasts · grouped by scope","note":"Group the six forecasts by what they count and the 35× spread collapses: within a scope bucket the desks land ≤1.7× apart. Same horizon, same market – the disagreement is the definition, not the conviction."}}</script>
 <!-- /gen:blob -->
@@ -1094,6 +1118,7 @@
   const DATA=JSON.parse(document.getElementById('rwa-data').textContent);
   const DS=DATA.chart, CATS=DATA.cats, SCOPEV=DATA.scope_view;
   let ds='forecast', sc='linear';
+  document.getElementById('chartRows').setAttribute('role','list');
   const $=id=>document.getElementById(id);
   const rows=$('chartRows'), grid=$('gridlines'), axis=$('chartAxis'), tip=$('chartTip'),
         ttl=$('chartTtl'), note=$('scaleNote'), chart=$('rwaChart'), legend=$('chartLegend');
@@ -1143,6 +1168,7 @@
     const by = ds==='byscope';
     const data = by ? DS.forecast : DS[ds], items=data.items, [a,b]=range(items);
     ttl.textContent = by ? SCOPEV.ttl : data.ttl;
+    chart.setAttribute('aria-label', (by ? SCOPEV.ttl : data.ttl)+' – interactive chart; the table below carries the same data');
     note.innerHTML = by ? SCOPEV.note : (sc==='log' ? data.note : data.noteLin);
     grid.innerHTML=''; axis.innerHTML='';
     ticks(a,b).forEach(tv=>{ const p=pos(tv,a,b);
@@ -1172,6 +1198,9 @@
       }
       const d=en.d;
       const row=document.createElement('div'); row.className='row'+(d.cat?' sc-'+d.cat:'');
+      row.tabIndex=0; row.setAttribute('role','listitem');
+      const vtext=d.alt?fmt(Math.min(d.v,d.alt))+' to '+fmt(Math.max(d.v,d.alt)):fmt(d.v);
+      row.setAttribute('aria-label', d.n+': '+vtext+(d.pt?' (point estimate)':'')+'. '+d.scope);
       const nm=document.createElement('div'); nm.className='name'; nm.textContent=d.n;
       const track=document.createElement('div'); track.className='track';
       const bp=Math.max(pos(d.v,a,b),0.6);
@@ -1204,6 +1233,10 @@
       row.addEventListener('mouseenter',()=>showTip(d));
       row.addEventListener('mousemove',moveTip);
       row.addEventListener('mouseleave',()=>{ tip.style.opacity=0; });
+      row.addEventListener('focus',()=>{ showTip(d); const r=row.getBoundingClientRect(), c=chart.getBoundingClientRect();
+        tip.style.left=(r.left-c.left+40)+'px'; tip.style.top=(r.bottom-c.top+8)+'px'; });
+      row.addEventListener('blur',()=>{ tip.style.opacity=0; });
+      row.addEventListener('keydown',ev=>{ if(ev.key==='Escape'){ tip.style.opacity=0; row.blur(); } });
       row.addEventListener('click',e=>{ showTip(d); moveTip(e); });
       rows.appendChild(row);
       applies.push(()=>{
@@ -1220,15 +1253,15 @@
     requestAnimationFrame(()=>requestAnimationFrame(()=>applies.forEach(f=>f())));
   }
   $('dsSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
-    ds=btn.dataset.ds; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn));
+    ds=btn.dataset.ds; [...e.currentTarget.children].forEach(c=>{ c.classList.toggle('on',c===btn); c.setAttribute('aria-pressed',c===btn); });
     // by-scope reads position within log-spaced scope groups, so the scale locks to log
     const scEl=$('scSeg');
     if(ds==='byscope'){ sc='log'; scEl.classList.add('disabled');
-      [...scEl.children].forEach(c=>c.classList.toggle('on',c.dataset.sc==='log')); }
+      [...scEl.children].forEach(c=>{ c.classList.toggle('on',c.dataset.sc==='log'); c.setAttribute('aria-pressed',c.dataset.sc==='log'); }); }
     else scEl.classList.remove('disabled');
     render(); });
   $('scSeg').addEventListener('click',e=>{ const btn=e.target.closest('button'); if(!btn) return;
-    sc=btn.dataset.sc; [...e.currentTarget.children].forEach(c=>c.classList.toggle('on',c===btn)); render(); });
+    sc=btn.dataset.sc; [...e.currentTarget.children].forEach(c=>{ c.classList.toggle('on',c===btn); c.setAttribute('aria-pressed',c===btn); }); render(); });
   // log tick density depends on plot width, so re-render when it changes
   let rt; addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(render,180); });
   render();
@@ -1242,8 +1275,8 @@
   const obs=new IntersectionObserver(es=>{
     es.forEach(e=>{
       if(e.isIntersecting){
-        links.forEach(a=>a.classList.remove('on'));
-        const a=map.get(e.target.id); if(a) a.classList.add('on');
+        links.forEach(a=>{ a.classList.remove('on'); a.removeAttribute('aria-current'); });
+        const a=map.get(e.target.id); if(a){ a.classList.add('on'); a.setAttribute('aria-current','true'); }
       }
     });
   },{rootMargin:'-35% 0px -55% 0px'});
