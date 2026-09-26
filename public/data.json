@@ -1,1067 +1,1844 @@
 {
- "meta": {
-  "title": "The State of RWAs – Where the Research Disagrees",
-  "site": "https://rwaresearch.info/",
-  "window": "29 Mar – 10 Aug 2026",
-  "reports_read": 63,
-  "archived_locally": 50,
-  "updated": "2026-08-20",
-  "license_note": "Figures are reproduced as reported by each source on the date cited; scopes and definitions differ materially between studies and are not directly comparable."
- },
- "cats": {
-  "narrow": "Free-float / distributed only",
-  "public": "Public chains, all issued",
-  "secur": "Securities & core asset classes",
-  "broad": "Broad – incl. funds / 12-class core",
-  "all": "All-in – incl. stablecoins / settlement layer"
- },
- "chart": {
-  "forecast": {
-   "ttl": "2030 market-size forecasts",
-   "note": "Log scale – marks are <b>dots, not bars</b>: on a log axis there is no zero, so length means nothing. Read position only.",
-   "noteLin": "Linear scale – the smallest forecast nearly vanishes. <em>That</em> 35× gap is the disagreement.",
-   "items": [
-    {
-     "n": "Securitize × Keyrock",
-     "v": 400000000000.0,
-     "cat": "narrow",
-     "pt": 1,
-     "scope": "Distributed RWAs, 5 classes (ex-stablecoins)",
-     "src": "Apr 2026",
-     "ref": "securitize-keyrock-400t"
+  "$schema": "https://rwaresearch.info/data.schema.json",
+  "schema_version": "2.0.0",
+  "meta": {
+    "title": "The State of RWAs – Where the Research Disagrees",
+    "site": "https://rwaresearch.info/",
+    "author": "Mike Blank",
+    "author_url": "https://pl.linkedin.com/in/mishablank",
+    "window": {
+      "start": "2026-03-29",
+      "end": "2026-08-10"
     },
-    {
-     "n": "Binance Research",
-     "v": 661000000000.0,
-     "lo": 203000000000.0,
-     "hi": 1600000000000.0,
-     "cat": "narrow",
-     "scope": "Distributed value, ex-stablecoins · base case cut from $1.6T in May to $661B (0.4% penetration); band = $203B conservative – $1.6T bull. The old base is now the bull case.",
-     "src": "Jul 2026",
-     "ref": "binance-hy2026"
-    },
-    {
-     "n": "Standard Chartered",
-     "v": 4000000000000.0,
-     "cat": "public",
-     "alt": 2700000000000.0,
-     "altLbl": "$2.7T DeFi-active, 2030",
-     "scope": "Public-chain tokenized assets by 2028, reaffirmed in \"Owning the rails\" (Aug 2026); hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)",
-     "src": "May · Aug 2026",
-     "ref": "sc-tokenization-defi"
-    },
-    {
-     "n": "Citi",
-     "v": 5500000000000.0,
-     "cat": "secur",
-     "pt": 1,
-     "scope": "Tokenized securities – equities + Treasuries led",
-     "src": "Jun 2026",
-     "ref": "citi-2030"
-    },
-    {
-     "n": "Binance – tail case",
-     "v": 6780000000000.0,
-     "cat": "secur",
-     "pt": 1,
-     "scope": "Equities + commodities + ETFs at 4% penetration (\"exceptional\" scenario, not a base case)",
-     "src": "Jul 2026",
-     "ref": "binance-hy2026"
-    },
-    {
-     "n": "BCG",
-     "v": 14000000000000.0,
-     "cat": "broad",
-     "pt": 1,
-     "scope": "Broadest RWA definition, incl. funds · $55T by 2035 (off-scale, see table)",
-     "src": "Apr 2026",
-     "ref": "bcg-gam-2026"
+    "reports_read": 63,
+    "archived_locally": 50,
+    "published": "2026-07-17",
+    "updated": "2026-09-26",
+    "currency": "USD",
+    "value_basis": "Nominal USD as reported by each source; no inflation or FX adjustment.",
+    "disclaimer": "Figures are reproduced as reported by each source on the date cited; scopes and definitions differ materially between studies and are not directly comparable.",
+    "license": "CC BY 4.0 – cite as \"Mike Blank, rwaresearch.info\"",
+    "og_card": {
+      "reports_read": 63,
+      "fc_lo_usd": 400000000000,
+      "fc_hi_usd": 14000000000000,
+      "fc_spread": 35,
+      "updated": "2026-08"
     }
-   ]
   },
-  "today": {
-   "ttl": "Market size – today",
-   "note": "Log scale – dots, not bars. Nine desks, ten numbers, same market.",
-   "noteLin": "Linear scale – definitional choices swing today’s number ~36×. Colour is the definition.",
-   "items": [
+  "scopes": [
     {
-     "n": "CoinGecko",
-     "v": 19300000000.0,
-     "cat": "narrow",
-     "pt": 1,
-     "scope": "Tokenized RWAs ex-stablecoins (Q1 2026)",
-     "src": "May 2026",
-     "ref": "coingecko-rwa-2026"
+      "id": "narrow",
+      "label": "Free-float / distributed only",
+      "description": "Only distributed / free-float tokenized assets that trade on-chain; stablecoins excluded."
     },
     {
-     "n": "DefiLlama",
-     "v": 25200000000.0,
-     "cat": "public",
-     "pt": 1,
-     "scope": "\"Active\" RWA market cap, public chains",
-     "src": "Apr 2026",
-     "ref": "defillama-rwafi-q1"
+      "id": "public",
+      "label": "Public chains, all issued",
+      "description": "Every tokenized asset issued on public blockchains, distributed or not; permissioned networks excluded."
     },
     {
-     "n": "Grayscale",
-     "v": 30000000000.0,
-     "cat": "narrow",
-     "pt": 1,
-     "scope": "Tokenized assets ex-stablecoins – ~0.01% of global equity & bond markets; Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities",
-     "src": "Apr 2026",
-     "ref": "grayscale-megatrend"
+      "id": "secur",
+      "label": "Securities & core asset classes",
+      "description": "Tokenized securities and core asset classes (equities, Treasuries, commodities, ETFs)."
     },
     {
-     "n": "21Shares",
-     "v": 31000000000.0,
-     "cat": "public",
-     "alt": 350000000000.0,
-     "altLbl": "$350B incl. permissioned",
-     "scope": "~$31B public chains; hollow dot = ~$350B once Canton & permissioned networks are added. One desk, one date, 11× apart on scope alone.",
-     "src": "Jun 2026",
-     "ref": "21shares-midyear"
+      "id": "broad",
+      "label": "Broad – incl. funds / 12-class core",
+      "description": "Broad definitions that add funds or a 12-class core asset list."
     },
     {
-     "n": "Binance / RWA.xyz",
-     "v": 34000000000.0,
-     "cat": "narrow",
-     "pt": 1,
-     "scope": "Distributed (free-float) value – $22B Jan → ~$34B mid-Jul, +50% in H1",
-     "src": "Jul 2026",
-     "ref": "binance-hy2026"
-    },
-    {
-     "n": "BeInCrypto · core",
-     "v": 60000000000.0,
-     "cat": "broad",
-     "pt": 1,
-     "scope": "Core tokenized assets, 12 classes (rwa.xyz data)",
-     "src": "Jun 2026",
-     "ref": "beincrypto-rwaxyz-2026"
-    },
-    {
-     "n": "Pantera",
-     "v": 321000000000.0,
-     "cat": "all",
-     "pt": 1,
-     "scope": "542 assets, 11 classes – incl. stablecoins",
-     "src": "May 2026",
-     "ref": "pantera-tokenization-q1"
-    },
-    {
-     "n": "Standard Chartered",
-     "v": 340000000000.0,
-     "cat": "all",
-     "pt": 1,
-     "scope": "Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path (\"Owning the rails\"). Within 3% of 21Shares' $350B, by a different route: stablecoins in, permissioned nets out.",
-     "src": "Aug 2026",
-     "ref": "sc-owning-rails"
-    },
-    {
-     "n": "BeInCrypto · full layer",
-     "v": 695000000000.0,
-     "cat": "all",
-     "pt": 1,
-     "scope": "Full settlement layer – represented + on-chain settlement positions",
-     "src": "Jun 2026",
-     "ref": "beincrypto-rwaxyz-2026"
+      "id": "all",
+      "label": "All-in – incl. stablecoins / settlement layer",
+      "description": "Everything on-chain including stablecoins and settlement positions."
     }
-   ]
-  }
- },
- "scope_view": {
-  "ttl": "2030 forecasts · grouped by scope",
-  "note": "Group the six forecasts by what they count and the 35× spread collapses: within a scope bucket the desks land ≤1.7× apart. Same horizon, same market – the disagreement is the definition, not the conviction."
- },
- "forecast_table": [
-  {
-   "pub_html": "Securitize × Keyrock<small>Apr 2026</small>",
-   "fig": "$400B",
-   "fignote_html": "from ~$29B today",
-   "counted_html": "Distributed RWAs, 5 asset classes (ex-stablecoins)",
-   "stance_html": "Narrowest / free-float only"
-  },
-  {
-   "pub_html": "Binance Research<small>Jul 2026</small>",
-   "fig": "$661B",
-   "fignote_html": "base ($203B–$1.6T) · cut from $1.6T in May",
-   "counted_html": "Distributed value, ex-stablecoins · 0.4% penetration base case",
-   "stance_html": "Base cut 2.4× in ten weeks – the old base is now the bull case"
-  },
-  {
-   "pub_html": "Standard Chartered<small>May 2026 · reaff. Aug</small>",
-   "fig": "~$4T",
-   "fignote_html": "by 2028 (public chains)",
-   "counted_html": "Public-chain tokenized assets; $2.7T DeFi-active by 2030 – restated in “Owning the rails” (Aug 2026)",
-   "stance_html": "Aggressive, public-chain bet"
-  },
-  {
-   "pub_html": "Citi (Citi Institute)<small>Jun 2026</small>",
-   "fig": "$5.5T",
-   "fignote_html": "by 2030",
-   "counted_html": "Tokenized securities – equities + Treasuries led",
-   "stance_html": "Securities-centric"
-  },
-  {
-   "pub_html": "BCG (Global AM Report)<small>Apr 2026</small>",
-   "fig": "$14T",
-   "fignote_html": "2030 · $55T by 2035",
-   "counted_html": "Broadest RWA definition, incl. funds",
-   "stance_html": "Most expansive"
-  },
-  {
-   "pub_html": "Binance – tail case<small>Jul 2026</small>",
-   "fig": "$6.78T",
-   "fignote_html": "at 4% penetration",
-   "counted_html": "Equities + commodities + ETFs (“exceptional” scenario)",
-   "stance_html": "Stretch / 198× today’s market"
-  }
- ],
- "today_table": [
-  {
-   "pub_html": "CoinGecko",
-   "fig": "$19.3B",
-   "fignote_html": "Q1 2026",
-   "def_html": "Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)"
-  },
-  {
-   "pub_html": "DefiLlama",
-   "fig": "$25.2B",
-   "fignote_html": "+6× in 14 months",
-   "def_html": "\"Active\" RWA market cap on public chains"
-  },
-  {
-   "pub_html": "Grayscale",
-   "fig": "~$30B",
-   "fignote_html": "Apr 2026 · 0.01% of equity + bond markets",
-   "def_html": "Tokenized assets ex-stablecoins – Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities"
-  },
-  {
-   "pub_html": "Binance / RWA.xyz",
-   "fig": "~$34B",
-   "fignote_html": "mid-Jul 2026 · $22B in Jan (+50% H1)",
-   "def_html": "Distributed (free-float, transferable) value"
-  },
-  {
-   "pub_html": "BeInCrypto · core",
-   "fig": "~$60B",
-   "fignote_html": "7,000+ products · May 2026",
-   "def_html": "Core tokenized assets across 12 asset classes (rwa.xyz data)"
-  },
-  {
-   "pub_html": "Pantera Capital",
-   "fig": "~$321B",
-   "fignote_html": "542 assets · 11 classes",
-   "def_html": "Broad – counts stablecoins and the full tokenized universe"
-  },
-  {
-   "pub_html": "Standard Chartered",
-   "fig": "~$340B",
-   "fignote_html": "Aug 2026 · “Owning the rails”",
-   "def_html": "Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path"
-  },
-  {
-   "pub_html": "21Shares",
-   "fig": "~$31B → ~$350B",
-   "fignote_html": "public → incl. permissioned",
-   "def_html": "~$31B public chains; ~$350B once Canton &amp; permissioned nets are added"
-  },
-  {
-   "pub_html": "BeInCrypto · full layer",
-   "fig": "~$695B",
-   "fignote_html": "settlement layer · Apr 2026",
-   "def_html": "Full settlement layer – represented assets + on-chain settlement positions"
-  }
- ],
- "lead_table": [
-  {
-   "pub_html": "Citi",
-   "lead_html": "<b>Equities + Treasuries</b>",
-   "why_html": "Public-market infra (DTCC/NYSE/Nasdaq) pulls listed securities on-chain"
-  },
-  {
-   "pub_html": "Binance Research",
-   "lead_html": "<b>Equities (TAM) · Credit (penetration)</b>",
-   "why_html": "Equities have the largest addressable market – stocks +177% H1 to ~$1.7B, scenarios of $349B–$987B by 2030; private credit has the highest current penetration; gold leads commodities"
-  },
-  {
-   "pub_html": "Securitize × Keyrock",
-   "lead_html": "<b>Treasuries + private credit</b>",
-   "why_html": "Strongest near-term product-market fit and institutional demand"
-  },
-  {
-   "pub_html": "PwC",
-   "lead_html": "<b>Tokenized funds</b>",
-   "why_html": "Fund AUM compounding at 41% to $715B by 2030"
-  },
-  {
-   "pub_html": "21Shares",
-   "lead_html": "<b>Treasuries anchor</b>",
-   "why_html": "~$15B tokenized Treasuries underpin the public-chain market"
-  }
- ],
- "matrix": {
+  ],
+  "metrics": [
+    {
+      "id": "market_size",
+      "label": "Tokenized asset market size (a stock of value)",
+      "short": "",
+      "unit_note": ""
+    },
+    {
+      "id": "fund_aum",
+      "label": "Tokenized fund AUM only",
+      "short": "funds",
+      "unit_note": "Tokenized funds only, not total market size – different unit"
+    },
+    {
+      "id": "revenue",
+      "label": "Revenue pool",
+      "short": "revenue",
+      "unit_note": "Revenue, not market size – different unit"
+    },
+    {
+      "id": "am_opportunity",
+      "label": "Opportunity for asset managers",
+      "short": "AM",
+      "unit_note": "Asset-management opportunity, not market size – different unit"
+    },
+    {
+      "id": "stablecoin_supply",
+      "label": "Stablecoin adoption / supply",
+      "short": "stablecoin",
+      "unit_note": "Stablecoin adoption, not tokenized RWA market size – different unit"
+    },
+    {
+      "id": "settlement_volume",
+      "label": "On-chain settlement volume (monthly flow)",
+      "short": "monthly volume",
+      "unit_note": "A monthly flow, not a stock of assets – different unit"
+    }
+  ],
+  "desk_groups": [
+    {
+      "id": "banks",
+      "label": "Banks"
+    },
+    {
+      "id": "managers",
+      "label": "Managers & issuers"
+    },
+    {
+      "id": "consultancies",
+      "label": "Consultancies"
+    },
+    {
+      "id": "crypto",
+      "label": "Crypto research & trackers"
+    },
+    {
+      "id": "official",
+      "label": "Official sector"
+    }
+  ],
+  "desks": [
+    {
+      "id": "citi",
+      "name": "Citi",
+      "group": "banks",
+      "note": "Citi Institute · Jun 2026"
+    },
+    {
+      "id": "standard-chartered",
+      "name": "Standard Chartered",
+      "group": "banks",
+      "short": "SC",
+      "note": "May + Aug 2026"
+    },
+    {
+      "id": "jpmorgan",
+      "name": "J.P. Morgan",
+      "group": "banks",
+      "note": "Payments · Kinexys"
+    },
+    {
+      "id": "morgan-stanley",
+      "name": "Morgan Stanley",
+      "group": "banks",
+      "note": "× Oliver Wyman"
+    },
+    {
+      "id": "deutsche-bank",
+      "name": "Deutsche Bank",
+      "group": "banks",
+      "note": "2026"
+    },
+    {
+      "id": "hsbc",
+      "name": "HSBC",
+      "group": "banks"
+    },
+    {
+      "id": "barclays",
+      "name": "Barclays",
+      "group": "banks"
+    },
+    {
+      "id": "nomura",
+      "name": "Nomura",
+      "group": "banks"
+    },
+    {
+      "id": "securitize-keyrock",
+      "name": "Securitize × Keyrock",
+      "group": "managers",
+      "note": "Apr 2026"
+    },
+    {
+      "id": "21shares",
+      "name": "21Shares",
+      "group": "managers",
+      "note": "Jun 2026"
+    },
+    {
+      "id": "grayscale",
+      "name": "Grayscale",
+      "group": "managers",
+      "note": "Research · Apr 2026"
+    },
+    {
+      "id": "blackrock",
+      "name": "BlackRock",
+      "group": "managers"
+    },
+    {
+      "id": "franklin-templeton",
+      "name": "Franklin Templeton",
+      "group": "managers"
+    },
+    {
+      "id": "bitwise",
+      "name": "Bitwise",
+      "group": "managers"
+    },
+    {
+      "id": "bcg",
+      "name": "BCG",
+      "group": "consultancies",
+      "note": "Global AM Report · Apr 2026"
+    },
+    {
+      "id": "mckinsey",
+      "name": "McKinsey",
+      "group": "consultancies",
+      "note": "2026"
+    },
+    {
+      "id": "pwc",
+      "name": "PwC",
+      "group": "consultancies",
+      "note": "2026"
+    },
+    {
+      "id": "oliver-wyman",
+      "name": "Oliver Wyman (standalone)",
+      "group": "consultancies"
+    },
+    {
+      "id": "deloitte",
+      "name": "Deloitte",
+      "group": "consultancies"
+    },
+    {
+      "id": "kpmg",
+      "name": "KPMG",
+      "group": "consultancies"
+    },
+    {
+      "id": "binance-research",
+      "name": "Binance Research",
+      "group": "crypto",
+      "short": "Binance",
+      "note": "May–Jul 2026"
+    },
+    {
+      "id": "pantera",
+      "name": "Pantera Capital",
+      "group": "crypto",
+      "short": "Pantera",
+      "note": "May 2026"
+    },
+    {
+      "id": "beincrypto-rwaxyz",
+      "name": "BeInCrypto × RWA.xyz",
+      "group": "crypto",
+      "short": "BeInCrypto",
+      "note": "Apr–Jun 2026"
+    },
+    {
+      "id": "defillama",
+      "name": "DefiLlama",
+      "group": "crypto",
+      "note": "Apr 2026"
+    },
+    {
+      "id": "coingecko",
+      "name": "CoinGecko",
+      "group": "crypto",
+      "note": "Q1 2026"
+    },
+    {
+      "id": "messari",
+      "name": "Messari",
+      "group": "crypto"
+    },
+    {
+      "id": "galaxy",
+      "name": "Galaxy",
+      "group": "crypto"
+    },
+    {
+      "id": "bis",
+      "name": "BIS",
+      "group": "official",
+      "note": "Annual Economic Report 2026, Ch. III"
+    },
+    {
+      "id": "imf",
+      "name": "IMF",
+      "group": "official",
+      "note": "Tokenized Finance · 2026"
+    },
+    {
+      "id": "gfma",
+      "name": "GFMA",
+      "group": "official",
+      "note": "2026"
+    },
+    {
+      "id": "omfif",
+      "name": "OMFIF",
+      "group": "official"
+    }
+  ],
+  "sources": [
+    {
+      "id": "citi-2030",
+      "desk": "citi",
+      "publisher": "Citi (Citi Institute)",
+      "title": "Tokenization 2030: Wall Street On-Chain",
+      "published": "2026-06",
+      "url": "https://www.citigroup.com/global/insights/tokenization-2030"
+    },
+    {
+      "id": "sc-tokenization-defi",
+      "desk": "standard-chartered",
+      "publisher": "Standard Chartered",
+      "title": "Digital-assets research – ~$4T tokenized by 2028",
+      "published": "2026-05-26",
+      "url": "https://www.theblock.co/post/401635/standard-chartered-projects-4t-in-tokenized-assets-by-end-2028-with-defi-protocols-primary-beneficiaries",
+      "access": "client-only"
+    },
+    {
+      "id": "sc-owning-rails",
+      "desk": "standard-chartered",
+      "publisher": "Standard Chartered",
+      "title": "Chainlink: Owning the rails",
+      "published": "2026-08-10",
+      "url": "https://www.theblock.co/news/defi/2026-08-10-standard-chartered-chainlink-tokenization-411252",
+      "access": "client-only"
+    },
+    {
+      "id": "sc-nonusd-stablecoins",
+      "desk": "standard-chartered",
+      "publisher": "Standard Chartered × Zodia Markets",
+      "title": "Beyond Concentration: Where Non-USD Stablecoins Can Scale",
+      "published": "2026-04",
+      "url": "https://www.sc.com/en/uploads/sites/66/content/docs/where-local-currency-stablecoins-can-scale-report-sc.pdf"
+    },
+    {
+      "id": "jpm-payments-outlook",
+      "desk": "jpmorgan",
+      "publisher": "J.P. Morgan",
+      "title": "Payments Outlook 2026: Five Shifts Powering Payments",
+      "published": "2026-04",
+      "url": "https://www.jpmorgan.com/insights/payments/trends-innovation/payments-outlook-trends-2026"
+    },
+    {
+      "id": "msow-digital-rails",
+      "desk": "morgan-stanley",
+      "publisher": "Morgan Stanley × Oliver Wyman",
+      "title": "Digital Rails, Real Economics: Digital Assets and the Future of Wholesale Banking",
+      "published": "2026-05",
+      "url": "https://www.oliverwyman.com/our-expertise/insights/2026/may/digital-assets-future-wholesale-banking.html"
+    },
+    {
+      "id": "db-digital-money",
+      "desk": "deutsche-bank",
+      "publisher": "Deutsche Bank",
+      "title": "Digital Money: a perspective on stablecoins, tokenised deposits and CBDCs",
+      "published": "2026-05",
+      "url": "https://flow.db.com/publications/flow-white-papers-and-guides/digital-money-a-perspective-on-stablecoins-tokenised-deposits-and-cbdcs"
+    },
+    {
+      "id": "securitize-keyrock-400t",
+      "desk": "securitize-keyrock",
+      "publisher": "Securitize × Keyrock",
+      "title": "The $400T Future of Tokenised Assets",
+      "published": "2026-04",
+      "url": "https://keyrock.com/the-400t-future-of-tokenised-assets/"
+    },
+    {
+      "id": "21shares-midyear",
+      "desk": "21shares",
+      "publisher": "21Shares",
+      "title": "State of Crypto – Market Outlook 2026, Mid-Year Update",
+      "published": "2026-06",
+      "url": "https://cdn.21shares.com/uploads/current-documents/reports/21shares_State-of-crypto-17_Mid-year-check-in.pdf"
+    },
+    {
+      "id": "grayscale-megatrend",
+      "desk": "grayscale",
+      "publisher": "Grayscale Research",
+      "title": "Investing in the Tokenization Megatrend",
+      "published": "2026-04",
+      "url": "https://research.grayscale.com/reports/investing-in-the-tokenization-megatrend"
+    },
+    {
+      "id": "bcg-gam-2026",
+      "desk": "bcg",
+      "publisher": "BCG",
+      "title": "Global Asset Management Report 2026",
+      "published": "2026-04",
+      "url": "https://www.bcg.com/publications/2026/an-imperative-for-growth-and-the-new-economics-of-asset-management"
+    },
+    {
+      "id": "mckinsey-beyond-stablecoins",
+      "desk": "mckinsey",
+      "publisher": "McKinsey",
+      "title": "Beyond stablecoins: The emerging architecture of on-chain money",
+      "published": "2026-05",
+      "url": "https://www.mckinsey.com/industries/financial-services/our-insights/beyond-stablecoins-the-emerging-architecture-of-on-chain-money"
+    },
+    {
+      "id": "pwc-asset-tokenization",
+      "desk": "pwc",
+      "publisher": "PwC",
+      "title": "Asset tokenization for asset managers: Trends, risks and opportunities",
+      "published": "2026-06",
+      "url": "https://www.pwc.com/us/en/industries/financial-services/library/tokenizing-assets.html"
+    },
+    {
+      "id": "binance-runway",
+      "desk": "binance-research",
+      "publisher": "Binance Research",
+      "title": "Tokenization's Trillion-Dollar Runway",
+      "published": "2026-05-15",
+      "url": "https://www.binance.com/research/analysis/tokenization-trillion-dollar-runway"
+    },
+    {
+      "id": "binance-hy2026",
+      "desk": "binance-research",
+      "publisher": "Binance Research",
+      "title": "Half-Year 2026: On-Chain Markets",
+      "published": "2026-07-30",
+      "url": "https://www.binance.com/en/research/analysis/half-year-2026-onchain-markets"
+    },
+    {
+      "id": "pantera-tokenization-q1",
+      "desk": "pantera",
+      "publisher": "Pantera Capital",
+      "title": "The State of Tokenization: Q1 2026",
+      "published": "2026-05",
+      "url": "https://panteracapital.com/article/the-state-of-tokenization-q1-2026-report/"
+    },
+    {
+      "id": "beincrypto-rwaxyz-2026",
+      "desk": "beincrypto-rwaxyz",
+      "publisher": "BeInCrypto × RWA.xyz",
+      "title": "The Real State of Tokenization 2026",
+      "published": "2026-04/2026-06",
+      "url": "https://research.beincrypto.com/tokenization-2026-report-first-edition/"
+    },
+    {
+      "id": "defillama-rwafi-q1",
+      "desk": "defillama",
+      "publisher": "DefiLlama (DL Research)",
+      "title": "The State of RWAfi: Q1 2026",
+      "published": "2026-04",
+      "url": "https://defillama.com/research/report/the-state-of-rwafi-q1-2026-report"
+    },
+    {
+      "id": "coingecko-rwa-2026",
+      "desk": "coingecko",
+      "publisher": "CoinGecko",
+      "title": "RWA Report 2026",
+      "published": "2026-05",
+      "url": "https://www.coingecko.com/research/publications/rwa-report-2026"
+    },
+    {
+      "id": "bis-aer-2026-ch3",
+      "desk": "bis",
+      "publisher": "BIS",
+      "title": "Anchoring trust in money: innovation beyond stablecoins – Annual Economic Report 2026, Ch. III",
+      "published": "2026-06",
+      "url": "https://www.bis.org/publ/arpdf/ar2026e3.htm"
+    },
+    {
+      "id": "imf-tokenized-finance",
+      "desk": "imf",
+      "publisher": "IMF",
+      "title": "Tokenized Finance – IMF Notes 2026/001",
+      "published": "2026-04",
+      "url": "https://www.imf.org/en/publications/imf-notes/issues/2026/04/01/tokenized-finance-574921"
+    },
+    {
+      "id": "gfma-digital-money",
+      "desk": "gfma",
+      "publisher": "GFMA",
+      "title": "The Role of Digital Money in Capital Markets",
+      "published": "2026-04",
+      "url": "https://www.gfma.org/policies-resources/gfma-publishes-report-on-the-role-of-digital-money-in-capital-markets/"
+    }
+  ],
+  "figures": [
+    {
+      "id": "securitize-keyrock-2030",
+      "desk": "securitize-keyrock",
+      "source": "securitize-keyrock-400t",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 400000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": "base",
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed RWAs, 5 asset classes (ex-stablecoins)"
+    },
+    {
+      "id": "binance-2030-may",
+      "desk": "binance-research",
+      "source": "binance-runway",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 1600000000000,
+      "approx": false,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-05-15",
+      "scenario": "base",
+      "status": "superseded",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed value, ex-stablecoins – May 2026 base case",
+      "superseded_by": "binance-2030-base"
+    },
+    {
+      "id": "binance-2030-base",
+      "desk": "binance-research",
+      "source": "binance-hy2026",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 661000000000,
+      "low_usd": 203000000000,
+      "high_usd": 1600000000000,
+      "approx": false,
+      "point_estimate": false,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-07-30",
+      "scenario": "base",
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed value, ex-stablecoins · 0.4% penetration base case; range = $203B conservative – $1.6T bull"
+    },
+    {
+      "id": "sc-2028",
+      "desk": "standard-chartered",
+      "source": "sc-tokenization-defi",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 4000000000000,
+      "approx": true,
+      "point_estimate": null,
+      "horizon": 2028,
+      "as_of": null,
+      "published": "2026-05-26",
+      "scenario": "base",
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": null,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Tokenized assets on public blockchains by end-2028",
+      "reaffirmed_in": [
+        "sc-owning-rails"
+      ]
+    },
+    {
+      "id": "sc-defi-2030",
+      "desk": "standard-chartered",
+      "source": "sc-tokenization-defi",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 2700000000000,
+      "approx": false,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-05-26",
+      "scenario": "base",
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": null,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "DeFi-active tokenized assets on public chains by 2030",
+      "reaffirmed_in": [
+        "sc-owning-rails"
+      ]
+    },
+    {
+      "id": "citi-2030",
+      "desk": "citi",
+      "source": "citi-2030",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 5500000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-06",
+      "scenario": "base",
+      "status": "current",
+      "scope": "secur",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "securities",
+      "definition": "Tokenized securities – equities + Treasuries led"
+    },
+    {
+      "id": "binance-2030-tail",
+      "desk": "binance-research",
+      "source": "binance-hy2026",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 6780000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-07-30",
+      "scenario": "tail",
+      "status": "current",
+      "scope": "secur",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Equities + commodities + ETFs at 4% penetration (\"exceptional\" scenario, not a base case)"
+    },
+    {
+      "id": "bcg-2030",
+      "desk": "bcg",
+      "source": "bcg-gam-2026",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 14000000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": "base",
+      "status": "current",
+      "scope": "broad",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Broadest RWA definition, incl. funds"
+    },
+    {
+      "id": "bcg-2035",
+      "desk": "bcg",
+      "source": "bcg-gam-2026",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 55000000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": 2035,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": "base",
+      "status": "current",
+      "scope": "broad",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Broadest RWA definition, incl. funds – 2035 horizon"
+    },
+    {
+      "id": "pwc-funds-2030",
+      "desk": "pwc",
+      "source": "pwc-asset-tokenization",
+      "kind": "forecast",
+      "metric": "fund_aum",
+      "value_usd": 715000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-06",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "funds",
+      "definition": "Tokenized fund AUM alone, compounding at 41% a year"
+    },
+    {
+      "id": "jpm-am-opportunity",
+      "desk": "jpmorgan",
+      "source": "jpm-payments-outlook",
+      "kind": "forecast",
+      "metric": "am_opportunity",
+      "value_usd": 400000000000,
+      "approx": true,
+      "point_estimate": null,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenization opportunity for asset management – not a market size; horizon not stated"
+    },
+    {
+      "id": "msow-revenue-netnew-2030",
+      "desk": "morgan-stanley",
+      "source": "msow-digital-rails",
+      "kind": "forecast",
+      "metric": "revenue",
+      "value_usd": 8000000000,
+      "approx": false,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-05",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Up to $8B net-new revenue across wholesale banking by 2030"
+    },
+    {
+      "id": "msow-revenue-redistributed-2030",
+      "desk": "morgan-stanley",
+      "source": "msow-digital-rails",
+      "kind": "forecast",
+      "metric": "revenue",
+      "value_usd": 82000000000,
+      "approx": false,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-05",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Revenue redistributed across wholesale banking by 2030"
+    },
+    {
+      "id": "mckinsey-stablecoins-2030",
+      "desk": "mckinsey",
+      "source": "mckinsey-beyond-stablecoins",
+      "kind": "forecast",
+      "metric": "stablecoin_supply",
+      "value_usd": 4000000000000,
+      "approx": true,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-05",
+      "scenario": null,
+      "status": "current",
+      "scope": "all",
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Stablecoin adoption by 2030"
+    },
+    {
+      "id": "binance-equities-2030",
+      "desk": "binance-research",
+      "source": "binance-hy2026",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 349000000000,
+      "low_usd": 349000000000,
+      "high_usd": 987000000000,
+      "approx": false,
+      "point_estimate": false,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-07-30",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "equities",
+      "definition": "Tokenized equities – scenario range $349B–$987B by 2030 (value = low end)"
+    },
+    {
+      "id": "securitize-keyrock-today",
+      "desk": "securitize-keyrock",
+      "source": "securitize-keyrock-400t",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 29000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed RWAs, 5 asset classes – the starting point of the $400B path"
+    },
+    {
+      "id": "coingecko-today",
+      "desk": "coingecko",
+      "source": "coingecko-rwa-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 19300000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-03",
+      "published": "2026-05",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)"
+    },
+    {
+      "id": "defillama-today",
+      "desk": "defillama",
+      "source": "defillama-rwafi-q1",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 25200000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-03",
+      "published": "2026-04",
+      "scenario": null,
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": null,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "\"Active\" RWA market cap on public chains"
+    },
+    {
+      "id": "grayscale-today",
+      "desk": "grayscale",
+      "source": "grayscale-megatrend",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 30000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenized assets ex-stablecoins – ~0.01% of global equity & bond markets"
+    },
+    {
+      "id": "grayscale-treasuries-today",
+      "desk": "grayscale",
+      "source": "grayscale-megatrend",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 15000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "treasuries",
+      "definition": "Tokenized U.S. Treasuries"
+    },
+    {
+      "id": "grayscale-commodities-today",
+      "desk": "grayscale",
+      "source": "grayscale-megatrend",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 5000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-04",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "commodities",
+      "definition": "Tokenized commodities (mostly gold)"
+    },
+    {
+      "id": "21shares-today-public",
+      "desk": "21shares",
+      "source": "21shares-midyear",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 31000000000,
+      "approx": true,
+      "point_estimate": null,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-06",
+      "scenario": null,
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": false,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Tokenized assets on public chains, ex-stablecoins"
+    },
+    {
+      "id": "21shares-today-permissioned",
+      "desk": "21shares",
+      "source": "21shares-midyear",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 350000000000,
+      "approx": true,
+      "point_estimate": null,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-06",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": false,
+      "includes_permissioned": true,
+      "asset_class": null,
+      "definition": "Public chains plus Canton & other permissioned networks, ex-stablecoins – no single scope bucket"
+    },
+    {
+      "id": "binance-today-jan",
+      "desk": "binance-research",
+      "source": "binance-hy2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 22000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-01",
+      "published": "2026-07-30",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed (free-float, transferable) value, RWA.xyz data – January 2026 starting point for the H1 growth figure"
+    },
+    {
+      "id": "binance-today",
+      "desk": "binance-research",
+      "source": "binance-hy2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 34000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-07",
+      "published": "2026-07-30",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed (free-float, transferable) value, RWA.xyz data – $22B in Jan → ~$34B mid-Jul",
+      "label": "Binance / RWA.xyz"
+    },
+    {
+      "id": "binance-equities-today",
+      "desk": "binance-research",
+      "source": "binance-hy2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 1700000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-07",
+      "published": "2026-07-30",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "equities",
+      "definition": "Tokenized stocks – +177% in H1 2026"
+    },
+    {
+      "id": "beincrypto-core-today",
+      "desk": "beincrypto-rwaxyz",
+      "source": "beincrypto-rwaxyz-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 60000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-05",
+      "published": "2026-06",
+      "scenario": null,
+      "status": "current",
+      "scope": "broad",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Core tokenized assets across 12 asset classes (rwa.xyz data), 7,000+ products",
+      "label": "BeInCrypto · core"
+    },
+    {
+      "id": "pantera-today",
+      "desk": "pantera",
+      "source": "pantera-tokenization-q1",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 321000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-03",
+      "published": "2026-05",
+      "scenario": null,
+      "status": "current",
+      "scope": "all",
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "542 assets, 11 classes – counts stablecoins and the full tokenized universe"
+    },
+    {
+      "id": "sc-today",
+      "desk": "standard-chartered",
+      "source": "sc-owning-rails",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 340000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-08-10",
+      "scenario": null,
+      "status": "current",
+      "scope": "all",
+      "includes_stablecoins": true,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path"
+    },
+    {
+      "id": "beincrypto-full-today",
+      "desk": "beincrypto-rwaxyz",
+      "source": "beincrypto-rwaxyz-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 695000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-04",
+      "published": "2026-06",
+      "scenario": null,
+      "status": "current",
+      "scope": "all",
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Full settlement layer – represented assets + on-chain settlement positions",
+      "label": "BeInCrypto · full layer"
+    },
+    {
+      "id": "beincrypto-settlement-volume",
+      "desk": "beincrypto-rwaxyz",
+      "source": "beincrypto-rwaxyz-2026",
+      "kind": "today",
+      "metric": "settlement_volume",
+      "value_usd": 8000000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-04",
+      "published": "2026-06",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Monthly on-chain settlement volume, +268% YoY – a flow, not a stock"
+    }
+  ],
   "questions": [
-   "2030 size",
-   "Size today",
-   "Stablecoins",
-   "Lead asset by 2030",
-   "Which rails",
-   "Binding constraint"
+    {
+      "id": "size_2030",
+      "label": "2030 size",
+      "type": "figure",
+      "horizon": 2030
+    },
+    {
+      "id": "size_today",
+      "label": "Size today",
+      "type": "figure"
+    },
+    {
+      "id": "stablecoins",
+      "label": "Stablecoins",
+      "type": "stance",
+      "values": [
+        {
+          "id": "rail",
+          "label": "Rail",
+          "description": "Stablecoins are the settlement rail and on-ramp for tokenized assets"
+        },
+        {
+          "id": "coexist",
+          "label": "Coexist",
+          "description": "Stablecoins, tokenized bank deposits and central-bank money coexist, each for different uses"
+        },
+        {
+          "id": "flawed_money",
+          "label": "Flawed money",
+          "description": "Stablecoins fail on singleness, elasticity and integrity; the future is tokenized central-bank and commercial-bank money"
+        }
+      ]
+    },
+    {
+      "id": "lead_asset",
+      "label": "Lead asset by 2030",
+      "type": "stance",
+      "values": [
+        {
+          "id": "treasuries",
+          "label": "Treasuries",
+          "description": "Tokenized Treasuries stay the anchor asset"
+        },
+        {
+          "id": "treasuries_credit",
+          "label": "Tsy + credit",
+          "description": "Treasuries and private credit – the strongest near-term product-market fit"
+        },
+        {
+          "id": "equities_treasuries",
+          "label": "Equities + Tsy",
+          "description": "Listed equities and Treasuries, pulled on-chain by public-market infrastructure"
+        },
+        {
+          "id": "equities_credit",
+          "label": "Equities / credit",
+          "description": "Equities by addressable market, private credit by current penetration"
+        },
+        {
+          "id": "funds",
+          "label": "Funds",
+          "description": "Tokenized funds"
+        }
+      ]
+    },
+    {
+      "id": "rails",
+      "label": "Which rails",
+      "type": "stance",
+      "values": [
+        {
+          "id": "public",
+          "label": "Public",
+          "description": "Public blockchains"
+        },
+        {
+          "id": "permissioned",
+          "label": "Permissioned",
+          "description": "Permissioned networks (Canton, Kinexys and bank ledgers)"
+        },
+        {
+          "id": "unified_ledger",
+          "label": "Unified ledger",
+          "description": "A unified ledger anchored in central-bank money (Project Agorá)"
+        }
+      ]
+    },
+    {
+      "id": "constraint",
+      "label": "Binding constraint",
+      "type": "stance",
+      "values": [
+        {
+          "id": "market_infra",
+          "label": "Market infra",
+          "description": "Incumbent market infrastructure embedding tokenization (DTCC, NYSE, Nasdaq)"
+        },
+        {
+          "id": "data_interop",
+          "label": "Data & interop rails",
+          "description": "Oracle and interoperability infrastructure decides who wins"
+        },
+        {
+          "id": "convergence",
+          "label": "Convergence",
+          "description": "No single lever – regulation, custody, settlement, liquidity and distribution must reinforce each other"
+        },
+        {
+          "id": "monetary_architecture",
+          "label": "Monetary arch.",
+          "description": "A unified ledger anchored in central-bank money is the prerequisite"
+        },
+        {
+          "id": "safety_first",
+          "label": "Safety first",
+          "description": "Safe settlement assets, legal certainty and international coordination first"
+        }
+      ]
+    }
   ],
-  "groups": [
-   {
-    "g": "Banks",
-    "rows": [
-     {
-      "desk": "Citi",
-      "sub": "Citi Institute · Jun 2026",
-      "refs": [
-       "citi-2030"
-      ],
-      "cells": [
-       {
-        "t": "$5.5T",
-        "cls": "sc-secur"
-       },
-       null,
-       null,
-       {
-        "t": "Equities + Tsy",
-        "cls": "pos-b"
-       },
-       {
-        "t": "Permissioned",
-        "cls": "pos-d"
-       },
-       {
-        "t": "Market infra",
-        "cls": "pos-b"
-       }
+  "positions": [
+    {
+      "desk": "citi",
+      "question": "size_2030",
+      "figures": [
+        "citi-2030"
       ]
-     },
-     {
-      "desk": "Standard Chartered",
-      "sub": "May + Aug 2026",
-      "refs": [
-       "sc-tokenization-defi",
-       "sc-owning-rails",
-       "sc-nonusd-stablecoins"
-      ],
-      "cells": [
-       {
-        "t": "$4T '28",
-        "cls": "sc-public"
-       },
-       {
-        "t": "$340B",
-        "cls": "sc-all"
-       },
-       {
-        "t": "Rail · USD only",
-        "cls": "pos-b"
-       },
-       null,
-       {
-        "t": "Public",
-        "cls": "pos-a"
-       },
-       {
-        "t": "Data & interop rails",
-        "cls": "pos-c"
-       }
+    },
+    {
+      "desk": "citi",
+      "question": "lead_asset",
+      "value": "equities_treasuries"
+    },
+    {
+      "desk": "citi",
+      "question": "rails",
+      "value": "permissioned"
+    },
+    {
+      "desk": "citi",
+      "question": "constraint",
+      "value": "market_infra"
+    },
+    {
+      "desk": "standard-chartered",
+      "question": "size_2030",
+      "figures": [
+        "sc-2028"
       ]
-     },
-     {
-      "desk": "J.P. Morgan",
-      "sub": "Payments · Kinexys",
-      "refs": [
-       "jpm-payments-outlook"
-      ],
-      "cells": [
-       {
-        "t": "$400B AM",
-        "cls": "sc-narrow",
-        "out": true,
-        "title": "Asset-management opportunity, not market size – different unit"
-       },
-       null,
-       null,
-       null,
-       {
-        "t": "Permissioned",
-        "cls": "pos-d"
-       },
-       null
+    },
+    {
+      "desk": "standard-chartered",
+      "question": "size_today",
+      "figures": [
+        "sc-today"
       ]
-     },
-     {
-      "desk": "Morgan Stanley",
-      "sub": "× Oliver Wyman",
-      "refs": [
-       "msow-digital-rails"
+    },
+    {
+      "desk": "standard-chartered",
+      "question": "stablecoins",
+      "value": "rail",
+      "qualifier": "USD only"
+    },
+    {
+      "desk": "standard-chartered",
+      "question": "rails",
+      "value": "public"
+    },
+    {
+      "desk": "standard-chartered",
+      "question": "constraint",
+      "value": "data_interop"
+    },
+    {
+      "desk": "jpmorgan",
+      "question": "size_2030",
+      "figures": [
+        "jpm-am-opportunity"
       ],
-      "cells": [
-       {
-        "t": "$8B revenue",
-        "cls": "pos-c",
-        "out": true,
-        "title": "Revenue, not market size – different unit"
-       },
-       null,
-       null,
-       null,
-       null,
-       null
+      "scope": "narrow"
+    },
+    {
+      "desk": "jpmorgan",
+      "question": "rails",
+      "value": "permissioned"
+    },
+    {
+      "desk": "morgan-stanley",
+      "question": "size_2030",
+      "figures": [
+        "msow-revenue-netnew-2030"
       ]
-     },
-     {
-      "desk": "Deutsche Bank",
-      "sub": "2026",
-      "refs": [
-       "db-digital-money"
+    },
+    {
+      "desk": "deutsche-bank",
+      "question": "stablecoins",
+      "value": "coexist"
+    },
+    {
+      "desk": "securitize-keyrock",
+      "question": "size_2030",
+      "figures": [
+        "securitize-keyrock-2030"
+      ]
+    },
+    {
+      "desk": "securitize-keyrock",
+      "question": "lead_asset",
+      "value": "treasuries_credit"
+    },
+    {
+      "desk": "21shares",
+      "question": "size_today",
+      "figures": [
+        "21shares-today-public",
+        "21shares-today-permissioned"
+      ]
+    },
+    {
+      "desk": "21shares",
+      "question": "lead_asset",
+      "value": "treasuries"
+    },
+    {
+      "desk": "21shares",
+      "question": "rails",
+      "value": "permissioned"
+    },
+    {
+      "desk": "grayscale",
+      "question": "size_today",
+      "figures": [
+        "grayscale-today"
+      ]
+    },
+    {
+      "desk": "grayscale",
+      "question": "rails",
+      "value": "permissioned"
+    },
+    {
+      "desk": "bcg",
+      "question": "size_2030",
+      "figures": [
+        "bcg-2030"
+      ]
+    },
+    {
+      "desk": "mckinsey",
+      "question": "size_2030",
+      "figures": [
+        "mckinsey-stablecoins-2030"
+      ]
+    },
+    {
+      "desk": "mckinsey",
+      "question": "stablecoins",
+      "value": "coexist"
+    },
+    {
+      "desk": "pwc",
+      "question": "size_2030",
+      "figures": [
+        "pwc-funds-2030"
       ],
-      "cells": [
-       null,
-       null,
-       {
-        "t": "Coexist",
-        "cls": "pos-a"
-       },
-       null,
-       null,
-       null
+      "scope": "broad"
+    },
+    {
+      "desk": "pwc",
+      "question": "lead_asset",
+      "value": "funds"
+    },
+    {
+      "desk": "binance-research",
+      "question": "size_2030",
+      "figures": [
+        "binance-2030-base"
       ]
-     }
-    ]
-   },
-   {
-    "g": "Managers & issuers",
-    "rows": [
-     {
-      "desk": "Securitize × Keyrock",
-      "sub": "Apr 2026",
-      "refs": [
-       "securitize-keyrock-400t"
+    },
+    {
+      "desk": "binance-research",
+      "question": "size_today",
+      "figures": [
+        "binance-today"
+      ]
+    },
+    {
+      "desk": "binance-research",
+      "question": "stablecoins",
+      "value": "rail"
+    },
+    {
+      "desk": "binance-research",
+      "question": "lead_asset",
+      "value": "equities_credit"
+    },
+    {
+      "desk": "binance-research",
+      "question": "constraint",
+      "value": "convergence"
+    },
+    {
+      "desk": "pantera",
+      "question": "size_today",
+      "figures": [
+        "pantera-today"
+      ]
+    },
+    {
+      "desk": "beincrypto-rwaxyz",
+      "question": "size_today",
+      "figures": [
+        "beincrypto-core-today",
+        "beincrypto-full-today"
       ],
-      "cells": [
-       {
-        "t": "$400B",
-        "cls": "sc-narrow"
-       },
-       null,
-       null,
-       {
-        "t": "Tsy + credit",
-        "cls": "pos-a"
-       },
-       null,
-       null
+      "scope": "all"
+    },
+    {
+      "desk": "defillama",
+      "question": "size_today",
+      "figures": [
+        "defillama-today"
       ]
-     },
-     {
-      "desk": "21Shares",
-      "sub": "Jun 2026",
-      "refs": [
-       "21shares-midyear"
-      ],
-      "cells": [
-       null,
-       {
-        "t": "$31B–$350B",
-        "cls": "sc-public"
-       },
-       null,
-       {
-        "t": "Treasuries",
-        "cls": "pos-a"
-       },
-       {
-        "t": "Permissioned",
-        "cls": "pos-d"
-       },
-       null
+    },
+    {
+      "desk": "defillama",
+      "question": "rails",
+      "value": "public"
+    },
+    {
+      "desk": "coingecko",
+      "question": "size_today",
+      "figures": [
+        "coingecko-today"
       ]
-     },
-     {
-      "desk": "Grayscale",
-      "sub": "Research · Apr 2026",
-      "refs": [
-       "grayscale-megatrend"
-      ],
-      "cells": [
-       null,
-       {
-        "t": "~$30B",
-        "cls": "sc-narrow"
-       },
-       null,
-       null,
-       {
-        "t": "Permissioned",
-        "cls": "pos-d"
-       },
-       null
-      ]
-     }
-    ]
-   },
-   {
-    "g": "Consultancies",
-    "rows": [
-     {
-      "desk": "BCG",
-      "sub": "Global AM Report · Apr 2026",
-      "refs": [
-       "bcg-gam-2026"
-      ],
-      "cells": [
-       {
-        "t": "$14T",
-        "cls": "sc-broad"
-       },
-       null,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     {
-      "desk": "McKinsey",
-      "sub": "2026",
-      "refs": [
-       "mckinsey-beyond-stablecoins"
-      ],
-      "cells": [
-       {
-        "t": "$4T stablecoin",
-        "cls": "sc-all",
-        "out": true,
-        "title": "Stablecoin adoption, not tokenized RWA market size – different unit"
-       },
-       null,
-       {
-        "t": "Coexist",
-        "cls": "pos-a"
-       },
-       null,
-       null,
-       null
-      ]
-     },
-     {
-      "desk": "PwC",
-      "sub": "2026",
-      "refs": [
-       "pwc-asset-tokenization"
-      ],
-      "cells": [
-       {
-        "t": "$715B funds",
-        "cls": "sc-broad"
-       },
-       null,
-       null,
-       {
-        "t": "Funds",
-        "cls": "pos-d"
-       },
-       null,
-       null
-      ]
-     }
-    ]
-   },
-   {
-    "g": "Crypto research & trackers",
-    "rows": [
-     {
-      "desk": "Binance Research",
-      "sub": "May–Jul 2026",
-      "refs": [
-       "binance-runway",
-       "binance-hy2026"
-      ],
-      "cells": [
-       {
-        "t": "$661B",
-        "cls": "sc-narrow"
-       },
-       {
-        "t": "$34B",
-        "cls": "sc-narrow"
-       },
-       {
-        "t": "Rail",
-        "cls": "pos-b"
-       },
-       {
-        "t": "Equities / credit",
-        "cls": "pos-b"
-       },
-       null,
-       {
-        "t": "Convergence",
-        "cls": "pos-f"
-       }
-      ]
-     },
-     {
-      "desk": "Pantera",
-      "sub": "May 2026",
-      "refs": [
-       "pantera-tokenization-q1"
-      ],
-      "cells": [
-       null,
-       {
-        "t": "$321B",
-        "cls": "sc-all"
-       },
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     {
-      "desk": "BeInCrypto × rwa.xyz",
-      "sub": "Apr–Jun 2026",
-      "refs": [
-       "beincrypto-rwaxyz-2026"
-      ],
-      "cells": [
-       null,
-       {
-        "t": "$60B–$695B",
-        "cls": "sc-all"
-       },
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     {
-      "desk": "DefiLlama",
-      "sub": "Apr 2026",
-      "refs": [
-       "defillama-rwafi-q1"
-      ],
-      "cells": [
-       null,
-       {
-        "t": "$25.2B",
-        "cls": "sc-public"
-       },
-       null,
-       null,
-       {
-        "t": "Public",
-        "cls": "pos-a"
-       },
-       null
-      ]
-     },
-     {
-      "desk": "CoinGecko",
-      "sub": "Q1 2026",
-      "refs": [
-       "coingecko-rwa-2026"
-      ],
-      "cells": [
-       null,
-       {
-        "t": "$19.3B",
-        "cls": "sc-narrow"
-       },
-       null,
-       null,
-       {
-        "t": "Public",
-        "cls": "pos-a"
-       },
-       null
-      ]
-     }
-    ]
-   },
-   {
-    "g": "Official sector",
-    "rows": [
-     {
-      "desk": "BIS",
-      "sub": "Annual Economic Report 2026, Ch. III",
-      "refs": [
-       "bis-aer-2026-ch3"
-      ],
-      "cells": [
-       null,
-       null,
-       {
-        "t": "Flawed money",
-        "cls": "pos-e"
-       },
-       null,
-       {
-        "t": "Unified ledger",
-        "cls": "pos-d"
-       },
-       {
-        "t": "Monetary arch.",
-        "cls": "pos-e"
-       }
-      ]
-     },
-     {
-      "desk": "IMF",
-      "sub": "Tokenized Finance · 2026",
-      "refs": [
-       "imf-tokenized-finance"
-      ],
-      "cells": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       {
-        "t": "Safety first",
-        "cls": "pos-a"
-       }
-      ]
-     },
-     {
-      "desk": "GFMA",
-      "sub": "2026",
-      "refs": [
-       "gfma-digital-money"
-      ],
-      "cells": [
-       null,
-       null,
-       {
-        "t": "Coexist",
-        "cls": "pos-a"
-       },
-       null,
-       null,
-       null
-      ]
-     }
-    ]
-   }
+    },
+    {
+      "desk": "coingecko",
+      "question": "rails",
+      "value": "public"
+    },
+    {
+      "desk": "bis",
+      "question": "stablecoins",
+      "value": "flawed_money"
+    },
+    {
+      "desk": "bis",
+      "question": "rails",
+      "value": "unified_ledger"
+    },
+    {
+      "desk": "bis",
+      "question": "constraint",
+      "value": "monetary_architecture"
+    },
+    {
+      "desk": "imf",
+      "question": "constraint",
+      "value": "safety_first"
+    },
+    {
+      "desk": "gfma",
+      "question": "stablecoins",
+      "value": "coexist"
+    }
   ],
-  "no_position": "HSBC · Barclays · Nomura · BlackRock · Franklin Templeton · Bitwise · Oliver Wyman (standalone) · Deloitte · KPMG · Messari · Galaxy · OMFIF"
- },
- "staircase": {
-  "kicker": "The definitional staircase",
-  "intro": "No new assets appear between these rungs – each step only widens what gets counted.",
-  "lo": 15000000000.0,
-  "hi": 800000000000.0,
-  "rungs": [
-   {
-    "label": "The tracker cluster",
-    "who": "CoinGecko · DefiLlama · Grayscale · Binance/RWA.xyz",
-    "display": "$19–34B",
-    "v_lo": 19300000000.0,
-    "v_hi": 34000000000.0,
-    "step": "Core / free-float tokenized assets, public chains, ex-stablecoins – where every dashboard starts",
-    "mult": "baseline"
-   },
-   {
-    "label": "BeInCrypto · core",
-    "who": "12 asset classes",
-    "display": "~$60B",
-    "v": 60000000000.0,
-    "step": "+ widen the asset list to 12 classes",
-    "mult": "×3 the narrowest"
-   },
-   {
-    "label": "21Shares",
-    "who": "public + permissioned nets, ex-stablecoins",
-    "display": "~$350B",
-    "v": 350000000000.0,
-    "step": "+ permissioned networks (Canton et al.) – stablecoins stay out",
-    "mult": "×18",
-    "fork": "A"
-   },
-   {
-    "label": "Standard Chartered",
-    "who": "public chains + stablecoins",
-    "display": "~$340B",
-    "v": 340000000000.0,
-    "step": "+ stablecoins instead – permissioned networks stay out",
-    "mult": "×18",
-    "fork": "B"
-   },
-   {
-    "label": "BeInCrypto · full layer",
-    "who": "settlement layer",
-    "display": "~$695B",
-    "v": 695000000000.0,
-    "step": "+ on-chain settlement positions – the full settlement layer",
-    "mult": "×36"
-   }
+  "views": {
+    "chart_forecast": [
+      {
+        "figure": "securitize-keyrock-2030",
+        "tooltip": "Distributed RWAs, 5 classes (ex-stablecoins)"
+      },
+      {
+        "figure": "binance-2030-base",
+        "tooltip": "Distributed value, ex-stablecoins · base case cut from $1.6T in May to $661B (0.4% penetration); band = $203B conservative – $1.6T bull. The old base is now the bull case."
+      },
+      {
+        "figure": "sc-2028",
+        "alt": "sc-defi-2030",
+        "label": "Standard Chartered ’28",
+        "alt_label": "$2.7T DeFi-active, 2030",
+        "tooltip": "Public-chain tokenized assets by end-2028 – a 2028 horizon, not 2030; reaffirmed in \"Owning the rails\" (Aug 2026). Hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)"
+      },
+      {
+        "figure": "citi-2030",
+        "tooltip": "Tokenized securities – equities + Treasuries led"
+      },
+      {
+        "figure": "binance-2030-tail",
+        "label": "Binance – tail case",
+        "tooltip": "Equities + commodities + ETFs at 4% penetration (\"exceptional\" scenario, not a base case)"
+      },
+      {
+        "figure": "bcg-2030",
+        "tooltip": "Broadest RWA definition, incl. funds · $55T by 2035 (off-scale, see table)"
+      }
+    ],
+    "chart_today": [
+      {
+        "figure": "coingecko-today",
+        "tooltip": "Tokenized RWAs ex-stablecoins (Q1 2026)"
+      },
+      {
+        "figure": "defillama-today",
+        "tooltip": "\"Active\" RWA market cap, public chains"
+      },
+      {
+        "figure": "grayscale-today",
+        "tooltip": "Tokenized assets ex-stablecoins – ~0.01% of global equity & bond markets; Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities"
+      },
+      {
+        "figure": "21shares-today-public",
+        "alt": "21shares-today-permissioned",
+        "alt_label": "$350B incl. permissioned",
+        "tooltip": "~$31B public chains; hollow dot = ~$350B once Canton & permissioned networks are added. One desk, one date, {stat:permissioned_x}× apart on scope alone."
+      },
+      {
+        "figure": "binance-today",
+        "tooltip": "Distributed (free-float) value – $22B Jan → ~$34B mid-Jul, +50% in H1"
+      },
+      {
+        "figure": "beincrypto-core-today",
+        "tooltip": "Core tokenized assets, 12 classes (rwa.xyz data)"
+      },
+      {
+        "figure": "pantera-today",
+        "tooltip": "542 assets, 11 classes – incl. stablecoins"
+      },
+      {
+        "figure": "sc-today",
+        "tooltip": "Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path (\"Owning the rails\"). Within {stat:fork_gap_pct}% of 21Shares' $350B, by a different route: stablecoins in, permissioned nets out."
+      },
+      {
+        "figure": "beincrypto-full-today",
+        "tooltip": "Full settlement layer – represented + on-chain settlement positions"
+      }
+    ]
+  },
+  "tables": {
+    "forecast": [
+      {
+        "figure": "securitize-keyrock-2030",
+        "note": "from ~$29B today",
+        "counted": "Distributed RWAs, 5 asset classes (ex-stablecoins)",
+        "stance": "Narrowest / free-float only"
+      },
+      {
+        "figure": "binance-2030-base",
+        "note": "base ($203B–$1.6T) · cut from $1.6T in May",
+        "counted": "Distributed value, ex-stablecoins · 0.4% penetration base case",
+        "stance": "Base cut {stat:drift_x}× in {stat:drift_weeks_words} weeks – the old base is now the bull case"
+      },
+      {
+        "figure": "sc-2028",
+        "note": "by end-2028 (public chains) – not a 2030 figure",
+        "counted": "Public-chain tokenized assets; $2.7T DeFi-active by 2030 – restated in “Owning the rails” (Aug 2026)",
+        "stance": "Aggressive, public-chain bet"
+      },
+      {
+        "figure": "citi-2030",
+        "label": "Citi (Citi Institute)",
+        "note": "by 2030",
+        "counted": "Tokenized securities – equities + Treasuries led",
+        "stance": "Securities-centric"
+      },
+      {
+        "figure": "bcg-2030",
+        "label": "BCG (Global AM Report)",
+        "note": "2030 · $55T by 2035",
+        "counted": "Broadest RWA definition, incl. funds",
+        "stance": "Most expansive"
+      },
+      {
+        "figure": "binance-2030-tail",
+        "label": "Binance – tail case",
+        "note": "at 4% penetration",
+        "counted": "Equities + commodities + ETFs (“exceptional” scenario)",
+        "stance": "Stretch / {stat:tail_x}× today’s distributed value"
+      }
+    ],
+    "today": [
+      {
+        "figures": [
+          "coingecko-today"
+        ],
+        "note": "Q1 2026",
+        "definition": "Tokenized RWAs ex-stablecoins (Treasuries, gold, stocks, ETFs)"
+      },
+      {
+        "figures": [
+          "defillama-today"
+        ],
+        "note": "+6× in 14 months",
+        "definition": "\"Active\" RWA market cap on public chains"
+      },
+      {
+        "figures": [
+          "grayscale-today"
+        ],
+        "note": "Apr 2026 · 0.01% of equity + bond markets",
+        "definition": "Tokenized assets ex-stablecoins – Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities"
+      },
+      {
+        "figures": [
+          "binance-today"
+        ],
+        "note": "mid-Jul 2026 · $22B in Jan (+50% H1)",
+        "definition": "Distributed (free-float, transferable) value"
+      },
+      {
+        "figures": [
+          "beincrypto-core-today"
+        ],
+        "note": "7,000+ products · May 2026",
+        "definition": "Core tokenized assets across 12 asset classes (rwa.xyz data)"
+      },
+      {
+        "figures": [
+          "pantera-today"
+        ],
+        "note": "542 assets · 11 classes",
+        "definition": "Broad – counts stablecoins and the full tokenized universe"
+      },
+      {
+        "figures": [
+          "sc-today"
+        ],
+        "note": "Aug 2026 · “Owning the rails”",
+        "definition": "Tokenized assets on-chain incl. stablecoins – the base of the $4T-by-2028 path"
+      },
+      {
+        "figures": [
+          "21shares-today-public",
+          "21shares-today-permissioned"
+        ],
+        "note": "public → incl. permissioned",
+        "definition": "~$31B public chains; ~$350B once Canton & permissioned nets are added"
+      },
+      {
+        "figures": [
+          "beincrypto-full-today"
+        ],
+        "note": "settlement layer · Apr 2026",
+        "definition": "Full settlement layer – represented assets + on-chain settlement positions"
+      }
+    ],
+    "lead_asset": [
+      {
+        "desk": "citi",
+        "lead": "Equities + Treasuries",
+        "why": "Public-market infra (DTCC/NYSE/Nasdaq) pulls listed securities on-chain"
+      },
+      {
+        "desk": "binance-research",
+        "lead": "Equities (TAM) · Credit (penetration)",
+        "why": "Equities have the largest addressable market – stocks +177% H1 to ~$1.7B, scenarios of $349B–$987B by 2030; private credit has the highest current penetration; gold leads commodities"
+      },
+      {
+        "desk": "securitize-keyrock",
+        "lead": "Treasuries + private credit",
+        "why": "Strongest near-term product-market fit and institutional demand"
+      },
+      {
+        "desk": "pwc",
+        "lead": "Tokenized funds",
+        "why": "Fund AUM compounding at 41% to $715B by 2030"
+      },
+      {
+        "desk": "21shares",
+        "lead": "Treasuries anchor",
+        "why": "~$15B tokenized Treasuries underpin the public-chain market"
+      }
+    ]
+  },
+  "staircase": {
+    "kicker": "The definitional staircase",
+    "intro": "No new assets appear between these rungs – each step only widens what gets counted.",
+    "rungs": [
+      {
+        "label": "The tracker cluster",
+        "figures": [
+          "coingecko-today",
+          "defillama-today",
+          "grayscale-today",
+          "binance-today"
+        ],
+        "scope": "narrow",
+        "step": "Core / free-float tokenized assets, public chains, ex-stablecoins – where every dashboard starts"
+      },
+      {
+        "label": "BeInCrypto · core",
+        "who": "12 asset classes",
+        "figures": [
+          "beincrypto-core-today"
+        ],
+        "step": "+ widen the asset list to 12 classes"
+      },
+      {
+        "label": "21Shares",
+        "who": "public + permissioned nets, ex-stablecoins",
+        "figures": [
+          "21shares-today-permissioned"
+        ],
+        "scope": "public",
+        "fork": "A",
+        "step": "+ permissioned networks (Canton et al.) – stablecoins stay out"
+      },
+      {
+        "label": "Standard Chartered",
+        "who": "public chains + stablecoins",
+        "figures": [
+          "sc-today"
+        ],
+        "fork": "B",
+        "step": "+ stablecoins instead – permissioned networks stay out"
+      },
+      {
+        "label": "BeInCrypto · full layer",
+        "who": "settlement layer",
+        "figures": [
+          "beincrypto-full-today"
+        ],
+        "step": "+ on-chain settlement positions – the full settlement layer"
+      }
+    ],
+    "fork_note": "Routes A and B share almost nothing – different assets, different chains – and land within {stat:fork_gap_pct}% of each other. Two lenses, one coincidence."
+  },
+  "revisions": [
+    {
+      "date": "2026-05-15",
+      "desk": "binance-research",
+      "change": "2030 base case published: $1.6T",
+      "note": "“Tokenization’s Trillion-Dollar Runway” – distributed value, ex-stablecoins.",
+      "sources": [
+        "binance-runway"
+      ],
+      "figures": [
+        "binance-2030-may"
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "desk": "standard-chartered",
+      "change": "~$4T tokenized by end-2028",
+      "note": "Digital-assets research note (institutional-client only), via The Block’s coverage.",
+      "sources": [
+        "sc-tokenization-defi"
+      ],
+      "figures": [
+        "sc-2028"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "desk": "binance-research",
+      "change": "2030 base case cut: $1.6T → $661B",
+      "note": "“Half-Year 2026” reframes the scenarios ($203B–$1.6T): the May base becomes the bull case. A {stat:drift_x}× cut, {stat:drift_weeks_words} weeks apart.",
+      "sources": [
+        "binance-hy2026"
+      ],
+      "figures": [
+        "binance-2030-base"
+      ],
+      "drift": {
+        "from": "binance-2030-may",
+        "to": "binance-2030-base"
+      }
+    },
+    {
+      "date": "2026-08-10",
+      "desk": "standard-chartered",
+      "change": "$4T-by-2028 reaffirmed · first sourced “today” figure: ~$340B",
+      "note": "“Chainlink: Owning the rails” – lands within {stat:fork_gap_pct}% of 21Shares’ $350B by a completely different definitional route.",
+      "sources": [
+        "sc-owning-rails"
+      ],
+      "figures": [
+        "sc-today"
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "desk": null,
+      "change": "Source base 61 → 63 reports",
+      "note": "Binance Half-Year 2026 and SC “Owning the rails” folded into the chart, tables and matrix.",
+      "sources": []
+    },
+    {
+      "date": "2026-08-20",
+      "desk": null,
+      "change": "Grayscale extracted · dataset published",
+      "note": "Grayscale’s ~$30B “today” figure and permissioned-rails lean added; every figure on this page now downloadable as data.json / data.csv / positions.csv.",
+      "sources": [
+        "grayscale-megatrend"
+      ],
+      "figures": [
+        "grayscale-today"
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "desk": null,
+      "change": "Corrections · dataset schema v2",
+      "note": "Standard Chartered’s $4T is now labelled as the 2028 figure it is (it sat on the 2030 chart unmarked); desk and forecast counts, the “same month” claim, the permissioned-layer multiple (was ten-fold, now ~{stat:permissioned_x}×) and the Binance cut interval ({stat:drift_weeks_words} weeks, was ten) corrected. Dataset restructured: one record per figure with horizon, as-of date and unit; stable desk ids; defined position vocabularies; JSON Schema and data dictionary.",
+      "sources": []
+    }
   ],
-  "fork_note": "Routes A and B share almost nothing – different assets, different chains – and land within 3% of each other. Two lenses, one coincidence."
- },
- "revisions": [
-  {
-   "d": "15 May 2026",
-   "desk": "Binance Research",
-   "change": "2030 base case published: $1.6T",
-   "note": "“Tokenization’s Trillion-Dollar Runway” – distributed value, ex-stablecoins.",
-   "refs": [
-    "binance-runway"
-   ]
-  },
-  {
-   "d": "26 May 2026",
-   "desk": "Standard Chartered",
-   "change": "~$4T tokenized by end-2028",
-   "note": "Digital-assets research note (institutional-client only), via The Block’s coverage.",
-   "refs": [
-    "sc-tokenization-defi"
-   ]
-  },
-  {
-   "d": "30 Jul 2026",
-   "desk": "Binance Research",
-   "change": "2030 base case cut: $1.6T → $661B",
-   "note": "“Half-Year 2026” reframes the scenarios ($203B–$1.6T): the May base becomes the bull case. A 2.4× cut, ten weeks apart.",
-   "refs": [
-    "binance-hy2026"
-   ],
-   "drift": true
-  },
-  {
-   "d": "10 Aug 2026",
-   "desk": "Standard Chartered",
-   "change": "$4T-by-2028 reaffirmed · first sourced “today” figure: ~$340B",
-   "note": "“Chainlink: Owning the rails” – lands within 3% of 21Shares’ $350B by a completely different definitional route.",
-   "refs": [
-    "sc-owning-rails"
-   ]
-  },
-  {
-   "d": "13 Aug 2026",
-   "desk": "This page",
-   "change": "Source base 61 → 63 reports",
-   "note": "Binance Half-Year 2026 and SC “Owning the rails” folded into the chart, tables and matrix.",
-   "refs": []
-  },
-  {
-   "d": "20 Aug 2026",
-   "desk": "This page",
-   "change": "Grayscale extracted · dataset published",
-   "note": "Grayscale’s ~$30B “today” figure and permissioned-rails lean added; every figure on this page now downloadable as data.json / data.csv / positions.csv.",
-   "refs": [
-    "grayscale-megatrend"
-   ]
+  "copy": {
+    "chart_forecast": {
+      "title": "Market-size forecasts · 2030 horizon (SC: 2028)",
+      "note_log": "Log scale – marks are **dots, not bars**: on a log axis there is no zero, so length means nothing. Read position only.",
+      "note_linear": "Linear scale – the smallest forecast nearly vanishes. *That* {stat:fc_spread}× gap is the disagreement."
+    },
+    "chart_today": {
+      "title": "Market size – today",
+      "note_log": "Log scale – dots, not bars. {stat:td_desks_Words} desks, {stat:td_numbers_words} numbers, same market.",
+      "note_linear": "Linear scale – definitional choices swing today’s number ~{stat:td_spread}×. Colour is the definition."
+    },
+    "chart_byscope": {
+      "title": "2030 forecasts · grouped by scope",
+      "note": "Group the {stat:fc_n_words} forecasts by what they count and the {stat:fc_spread}× spread collapses: within a scope bucket the desks land ≤{stat:scope_max_spread}× apart. Same market – the disagreement is the definition, not the conviction."
+    },
+    "share": {
+      "description": "{stat:reports_read} RWA research reports cross-read: the desks agree tokenization is coming and disagree {stat:fc_spread}× on how big – {stat:fc_lo} to {stat:fc_hi} for the same 2030 horizon. Every desk, every question, one page.",
+      "social": "Same 2030 horizon, a {stat:fc_spread}× disagreement. {stat:reports_read} reports cross-read, {stat:matrix_desks} desks × {stat:questions} questions – where RWA research converges and where it contradicts itself.",
+      "image_alt": "{stat:fc_lo} to {stat:fc_hi} – 2030 tokenization forecasts, same horizon, a {stat:fc_spread}× disagreement",
+      "article": "A cross-read of {stat:reports_read} RWA and tokenization research reports published {stat:window}: the desks converge on the direction of travel and disagree {stat:fc_spread}× on market size."
+    },
+    "no_position_note": "The \"regulatory clarity\" bottleneck (GENIUS · CLARITY · MiCA) is stated collectively across bank research rather than by a named desk, so it is not attributed in the grid."
   }
- ],
- "sources": [
-  {
-   "id": "citi-2030",
-   "group": "Banks",
-   "pub": "Citi (Citi Institute)",
-   "title": "Tokenization 2030: Wall Street On-Chain",
-   "date": "Jun 2026",
-   "url": "https://www.citigroup.com/global/insights/tokenization-2030",
-   "label": "Report ↗"
-  },
-  {
-   "id": "sc-tokenization-defi",
-   "group": "Banks",
-   "pub": "Standard Chartered",
-   "title": "Digital-assets research – ~$4T tokenized by 2028",
-   "date": "May 2026",
-   "url": "https://www.theblock.co/post/401635/standard-chartered-projects-4t-in-tokenized-assets-by-end-2028-with-defi-protocols-primary-beneficiaries",
-   "label": "via The Block ↗",
-   "gate": "client-only note"
-  },
-  {
-   "id": "sc-owning-rails",
-   "group": "Banks",
-   "pub": "Standard Chartered",
-   "title": "Chainlink: Owning the rails",
-   "date": "Aug 2026",
-   "url": "https://www.theblock.co/news/defi/2026-08-10-standard-chartered-chainlink-tokenization-411252",
-   "label": "via The Block ↗",
-   "gate": "client-only note"
-  },
-  {
-   "id": "sc-nonusd-stablecoins",
-   "group": "Banks",
-   "pub": "Standard Chartered × Zodia Markets",
-   "title": "Beyond Concentration: Where Non-USD Stablecoins Can Scale",
-   "date": "Apr 2026",
-   "url": "https://www.sc.com/en/uploads/sites/66/content/docs/where-local-currency-stablecoins-can-scale-report-sc.pdf",
-   "label": "PDF ↗"
-  },
-  {
-   "id": "jpm-payments-outlook",
-   "group": "Banks",
-   "pub": "J.P. Morgan",
-   "title": "Payments Outlook 2026: Five Shifts Powering Payments",
-   "date": "Apr 2026",
-   "url": "https://www.jpmorgan.com/insights/payments/trends-innovation/payments-outlook-trends-2026",
-   "label": "Report ↗"
-  },
-  {
-   "id": "msow-digital-rails",
-   "group": "Banks",
-   "pub": "Morgan Stanley × Oliver Wyman",
-   "title": "Digital Rails, Real Economics: Digital Assets and the Future of Wholesale Banking",
-   "date": "May 2026",
-   "url": "https://www.oliverwyman.com/our-expertise/insights/2026/may/digital-assets-future-wholesale-banking.html",
-   "label": "Report ↗"
-  },
-  {
-   "id": "db-digital-money",
-   "group": "Banks",
-   "pub": "Deutsche Bank",
-   "title": "Digital Money: a perspective on stablecoins, tokenised deposits and CBDCs",
-   "date": "May 2026",
-   "url": "https://flow.db.com/publications/flow-white-papers-and-guides/digital-money-a-perspective-on-stablecoins-tokenised-deposits-and-cbdcs",
-   "label": "Report ↗"
-  },
-  {
-   "id": "securitize-keyrock-400t",
-   "group": "Managers & issuers",
-   "pub": "Securitize × Keyrock",
-   "title": "The $400T Future of Tokenised Assets",
-   "date": "Apr 2026",
-   "url": "https://keyrock.com/the-400t-future-of-tokenised-assets/",
-   "label": "Report ↗"
-  },
-  {
-   "id": "21shares-midyear",
-   "group": "Managers & issuers",
-   "pub": "21Shares",
-   "title": "State of Crypto – Market Outlook 2026, Mid-Year Update",
-   "date": "Jun 2026",
-   "url": "https://cdn.21shares.com/uploads/current-documents/reports/21shares_State-of-crypto-17_Mid-year-check-in.pdf",
-   "label": "PDF ↗"
-  },
-  {
-   "id": "grayscale-megatrend",
-   "group": "Managers & issuers",
-   "pub": "Grayscale Research",
-   "title": "Investing in the Tokenization Megatrend",
-   "date": "Apr 2026",
-   "url": "https://research.grayscale.com/reports/investing-in-the-tokenization-megatrend",
-   "label": "Report ↗"
-  },
-  {
-   "id": "bcg-gam-2026",
-   "group": "Consultancies",
-   "pub": "BCG",
-   "title": "Global Asset Management Report 2026",
-   "date": "Apr 2026",
-   "url": "https://www.bcg.com/publications/2026/an-imperative-for-growth-and-the-new-economics-of-asset-management",
-   "label": "Report ↗"
-  },
-  {
-   "id": "mckinsey-beyond-stablecoins",
-   "group": "Consultancies",
-   "pub": "McKinsey",
-   "title": "Beyond stablecoins: The emerging architecture of on-chain money",
-   "date": "May 2026",
-   "url": "https://www.mckinsey.com/industries/financial-services/our-insights/beyond-stablecoins-the-emerging-architecture-of-on-chain-money",
-   "label": "Report ↗"
-  },
-  {
-   "id": "pwc-asset-tokenization",
-   "group": "Consultancies",
-   "pub": "PwC",
-   "title": "Asset tokenization for asset managers: Trends, risks and opportunities",
-   "date": "Jun 2026",
-   "url": "https://www.pwc.com/us/en/industries/financial-services/library/tokenizing-assets.html",
-   "label": "Report ↗"
-  },
-  {
-   "id": "binance-runway",
-   "group": "Crypto research & trackers",
-   "pub": "Binance Research",
-   "title": "Tokenization's Trillion-Dollar Runway",
-   "date": "May 2026",
-   "url": "https://www.binance.com/research/analysis/tokenization-trillion-dollar-runway",
-   "label": "Report ↗"
-  },
-  {
-   "id": "binance-hy2026",
-   "group": "Crypto research & trackers",
-   "pub": "Binance Research",
-   "title": "Half-Year 2026: On-Chain Markets",
-   "date": "Jul 2026",
-   "url": "https://www.binance.com/en/research/analysis/half-year-2026-onchain-markets",
-   "label": "Report ↗"
-  },
-  {
-   "id": "pantera-tokenization-q1",
-   "group": "Crypto research & trackers",
-   "pub": "Pantera Capital",
-   "title": "The State of Tokenization: Q1 2026",
-   "date": "May 2026",
-   "url": "https://panteracapital.com/article/the-state-of-tokenization-q1-2026-report/",
-   "label": "Report ↗"
-  },
-  {
-   "id": "beincrypto-rwaxyz-2026",
-   "group": "Crypto research & trackers",
-   "pub": "BeInCrypto × RWA.xyz",
-   "title": "The Real State of Tokenization 2026",
-   "date": "Apr–Jun 2026",
-   "url": "https://research.beincrypto.com/tokenization-2026-report-first-edition/",
-   "label": "Report ↗"
-  },
-  {
-   "id": "defillama-rwafi-q1",
-   "group": "Crypto research & trackers",
-   "pub": "DefiLlama (DL Research)",
-   "title": "The State of RWAfi: Q1 2026",
-   "date": "Apr 2026",
-   "url": "https://defillama.com/research/report/the-state-of-rwafi-q1-2026-report",
-   "label": "Report ↗"
-  },
-  {
-   "id": "coingecko-rwa-2026",
-   "group": "Crypto research & trackers",
-   "pub": "CoinGecko",
-   "title": "RWA Report 2026",
-   "date": "May 2026",
-   "url": "https://www.coingecko.com/research/publications/rwa-report-2026",
-   "label": "Report ↗"
-  },
-  {
-   "id": "bis-aer-2026-ch3",
-   "group": "Official sector",
-   "pub": "BIS",
-   "title": "Anchoring trust in money: innovation beyond stablecoins – Annual Economic Report 2026, Ch. III",
-   "date": "Jun 2026",
-   "url": "https://www.bis.org/publ/arpdf/ar2026e3.htm",
-   "label": "Report ↗"
-  },
-  {
-   "id": "imf-tokenized-finance",
-   "group": "Official sector",
-   "pub": "IMF",
-   "title": "Tokenized Finance – IMF Notes 2026/001",
-   "date": "Apr 2026",
-   "url": "https://www.imf.org/en/publications/imf-notes/issues/2026/04/01/tokenized-finance-574921",
-   "label": "Report ↗"
-  },
-  {
-   "id": "gfma-digital-money",
-   "group": "Official sector",
-   "pub": "GFMA",
-   "title": "The Role of Digital Money in Capital Markets",
-   "date": "Apr 2026",
-   "url": "https://www.gfma.org/policies-resources/gfma-publishes-report-on-the-role-of-digital-money-in-capital-markets/",
-   "label": "Report ↗"
-  }
- ]
 }

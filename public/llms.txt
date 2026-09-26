@@ -5,12 +5,19 @@
 Consensus facts: ~0.01% penetration of a $300T+ addressable base; ~$15B tokenized U.S. Treasuries anchor the market; institutional issuers now lead growth; DTCC production launch October 2026 is the shared catalyst.
 
 ## Data
-- [data.json](https://rwaresearch.info/data.json): canonical dataset - every figure, matrix position, revision and source; the page is generated from it
-- [data.csv](https://rwaresearch.info/data.csv): market-size figures, flat table (desk, value, scope category, date, source)
-- [positions.csv](https://rwaresearch.info/positions.csv): 6-question desk-position matrix, flat table
+- [data.json](https://rwaresearch.info/data.json): canonical dataset (schema v2.0.0) - one record per figure with horizon, as-of date, unit and scope; desk positions with defined vocabularies; revisions; sources. The page is generated from it
+- [data.schema.json](https://rwaresearch.info/data.schema.json): JSON Schema for data.json
+- [data.csv](https://rwaresearch.info/data.csv): every figure, one row each (31 rows)
+- [positions.csv](https://rwaresearch.info/positions.csv): the 19-desk x 6-question position matrix, one row per cell
+- [DATA.md](https://github.com/mishablank/RWA-Research-Snapshot/blob/main/DATA.md): data dictionary - every field, column and vocabulary
+
+## Reading the numbers
+- Only rows with metric=market_size are market sizes; revenue, fund AUM and stablecoin figures are different units.
+- Check horizon_year before comparing forecasts: most are 2030, but not all (Standard Chartered's $4T is 2028).
+- status=superseded rows are kept for the revision history; filter to status=current for the latest view.
 
 ## Sources
 - [SOURCES.md](https://github.com/mishablank/RWA-Research-Snapshot/blob/main/SOURCES.md): the 22 reports figures are attributed to, with links
-- Figures are reproduced as reported by each source on the date cited; scopes differ materially between studies and are not directly comparable - that incomparability is the subject of the page.
+- Figures are reproduced as reported by each source on the date cited; scopes and definitions differ materially between studies and are not directly comparable.
 
-Updated 2026-08-20.
+Updated 2026-09-26.
