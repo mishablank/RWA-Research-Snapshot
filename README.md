@@ -96,6 +96,7 @@ public/                      everything Cloudflare serves – nothing else is pu
 tools/render.py              the generator: data.json → index.html regions + derived files
 tools/validate.py            the checks: schema, integrity, derived claims, page-prose lint, --links
 tools/rwalib.py              shared helpers: formatting, dates, placeholders, computed stats
+tools/og-card.html           the share card as a page – screenshot to public/og-card.png (generated)
 .github/workflows/           data-check.yml – validate + sync check on every push/PR
                              link-check.yml – weekly check that every source URL resolves
 SOURCES.md                   the source register in markdown – same 22 entries as the page (generated)
@@ -168,7 +169,15 @@ Both scripts are stdlib-only, Python 3.9+. The generator rewrites the regions of
 
 **Sections are deep-linkable** – every section has an id (`#consensus`, `#map`, `#forecast`, `#denominator`, `#stablecoins`, `#lead-asset`, `#rails`, `#constraint`, `#takeaway`, `#sources`), each `h2` grows a `#` anchor on hover, and a fixed progress rail (`.rail`, shown ≥1280px) tracks the active section via IntersectionObserver.
 
-**Share metadata** in the `<head>` – description, canonical, Open Graph + Twitter cards, JSON-LD `Article` + `Dataset` – is generated from `meta` and `copy.share`. `og-card.png` is a static image: `meta.og_card` records what it says, and the validator fails if its headline numbers drift from the data (and warns when its "Updated" month is stale).
+**Share metadata** in the `<head>` – description, canonical, Open Graph + Twitter cards, JSON-LD `Article` + `Dataset` – is generated from `meta` and `copy.share`. `og-card.png` is a static image rendered from `tools/og-card.html`, which `render.py` generates from the data. `meta.og_card` records what the PNG currently says; the validator fails if its headline numbers drift from the data and warns when its "Updated" month is stale. To re-render:
+
+```bash
+python3 tools/render.py
+npx -y playwright@1.56 screenshot --browser=chromium --viewport-size=1200,630 --wait-for-timeout=500 \
+  "file://$PWD/tools/og-card.html" public/og-card.png
+```
+
+then set `meta.og_card` to match and run `validate.py` again.
 
 **Design tokens** are CSS custom properties in `:root` at [index.html:12](index.html#L12) – paper `#F2EBDD`, ink `#1A1816`, accent `#C44A36`, highlight `#F5E69A`, plus Fraunces (display) and Inter (text), self-hosted as variable WOFF2 latin subsets in `public/fonts/` – the page makes no external requests at all. Scope colours used by the chart and the matrix pills come from the same set, so the two sections stay legible against each other.
 

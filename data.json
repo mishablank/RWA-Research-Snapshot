@@ -23,7 +23,7 @@
       "fc_lo_usd": 400000000000,
       "fc_hi_usd": 14000000000000,
       "fc_spread": 35,
-      "updated": "2026-08"
+      "updated": "2026-09"
     }
   },
   "scopes": [
@@ -1839,6 +1839,13 @@
       "image_alt": "{stat:fc_lo} to {stat:fc_hi} – 2030 tokenization forecasts, same horizon, a {stat:fc_spread}× disagreement",
       "article": "A cross-read of {stat:reports_read} RWA and tokenization research reports published {stat:window}: the desks converge on the direction of travel and disagree {stat:fc_spread}× on market size."
     },
-    "no_position_note": "The \"regulatory clarity\" bottleneck (GENIUS · CLARITY · MiCA) is stated collectively across bank research rather than by a named desk, so it is not attributed in the grid."
+    "no_position_note": "The \"regulatory clarity\" bottleneck (GENIUS · CLARITY · MiCA) is stated collectively across bank research rather than by a named desk, so it is not attributed in the grid.",
+    "og_card": {
+      "kicker": "The state of RWAs · {stat:reports_read} reports cross-read",
+      "site": "rwaresearch.info",
+      "lead": "Same 2030 horizon.",
+      "highlight": "A {stat:fc_spread}× disagreement.",
+      "footer": "Everyone agrees RWAs are coming. Nobody agrees how big."
+    }
   }
 }
