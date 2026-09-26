@@ -8,5 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate data.json (schema, integrity, derived claims, page prose)
+        run: python3 tools/validate.py
       - name: Verify index.html and derived files are in sync with data.json
         run: python3 tools/render.py --check

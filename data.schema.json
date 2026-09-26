@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rwaresearch.info/data.schema.json",
+  "title": "RWA Research Snapshot dataset",
+  "description": "Canonical dataset behind rwaresearch.info. Figures are reproduced as reported; scopes differ between sources and are not directly comparable.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "meta", "scopes", "metrics", "desk_groups", "desks", "sources", "figures", "questions", "positions", "views", "tables", "staircase", "revisions", "copy"],
+  "properties": {
+    "$schema": {"type": "string", "description": "URL of this schema"},
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Semantic version of the data shape; a major bump is a breaking change"},
+    "meta": {"$ref": "#/$defs/meta", "description": "Page and dataset metadata"},
+    "scopes": {"type": "array", "items": {"$ref": "#/$defs/vocab"}, "description": "Scope buckets – what a figure counts"},
+    "metrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}, "description": "Units a figure can be measured in"},
+    "desk_groups": {"type": "array", "items": {"$ref": "#/$defs/group"}, "description": "Desk categories, in page order"},
+    "desks": {"type": "array", "items": {"$ref": "#/$defs/desk"}, "description": "Every desk in the source base, in page order"},
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}, "description": "Reports that figures or positions are attributed to"},
+    "figures": {"type": "array", "items": {"$ref": "#/$defs/figure"}, "description": "One record per sourced number"},
+    "questions": {"type": "array", "items": {"$ref": "#/$defs/question"}, "description": "The matrix columns, with each stance question's value vocabulary"},
+    "positions": {"type": "array", "items": {"$ref": "#/$defs/position"}, "description": "Filled matrix cells – one desk's answer to one question"},
+    "views": {"$ref": "#/$defs/views", "description": "Which figures the chart plots, in order"},
+    "tables": {"$ref": "#/$defs/tables", "description": "The page's study tables, citing figures by id"},
+    "staircase": {"$ref": "#/$defs/staircase", "description": "The definitional staircase in section 05"},
+    "revisions": {"type": "array", "items": {"$ref": "#/$defs/revision"}, "description": "Dated changes to the numbers and to the page"},
+    "copy": {"type": "object", "description": "Editorial strings the generator places on the page; may use {stat:NAME} / {fig:ID} placeholders and **bold** / *em*"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$", "description": "Lower-case stable identifier"},
+    "isodate": {"type": "string", "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(/\\d{4}(-\\d{2}(-\\d{2})?)?)?$", "description": "ISO 8601 date (YYYY, YYYY-MM or YYYY-MM-DD) or interval a/b"},
+    "usd": {"type": "integer", "minimum": 0, "description": "Nominal US dollars"},
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "site", "author", "window", "reports_read", "archived_locally", "published", "updated", "currency", "value_basis", "disclaimer", "license"],
+      "properties": {
+        "title": {"type": "string", "description": "Page title"},
+        "site": {"type": "string", "pattern": "^https://.+/$", "description": "Canonical site URL, trailing slash"},
+        "author": {"type": "string", "description": "Author"},
+        "author_url": {"type": "string", "description": "Author profile link"},
+        "window": {"type": "object", "additionalProperties": false, "required": ["start", "end"], "properties": {"start": {"$ref": "#/$defs/isodate"}, "end": {"$ref": "#/$defs/isodate"}}, "description": "Publication window of the source base"},
+        "reports_read": {"type": "integer", "minimum": 1, "description": "Reports cross-read in the window"},
+        "archived_locally": {"type": "integer", "minimum": 0, "description": "Of those, archived in the (non-public) research corpus"},
+        "published": {"$ref": "#/$defs/isodate", "description": "First publication of the page"},
+        "updated": {"$ref": "#/$defs/isodate", "description": "Last content update"},
+        "currency": {"enum": ["USD"], "description": "Currency of every *_usd field"},
+        "value_basis": {"type": "string", "description": "How values are denominated"},
+        "disclaimer": {"type": "string", "description": "Comparability caveat"},
+        "license": {"type": "string", "description": "Dataset licence"},
+        "og_card": {"type": "object", "additionalProperties": false, "properties": {"reports_read": {"type": "integer"}, "fc_lo_usd": {"$ref": "#/$defs/usd"}, "fc_hi_usd": {"$ref": "#/$defs/usd"}, "fc_spread": {"type": "integer"}, "updated": {"$ref": "#/$defs/isodate"}}, "description": "What the static og-card.png says – checked against the data so the unfurl stays honest"}
+      }
+    },
+    "vocab": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "description"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "label": {"type": "string", "description": "Display label"}, "description": {"type": "string", "description": "What the value means"}}
+    },
+    "metric": {
+      "type": "object",
+      "description": "A unit of measurement. Only market_size figures are comparable market sizes.",
+      "additionalProperties": false,
+      "required": ["id", "label", "short", "unit_note"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "label": {"type": "string", "description": "What is measured"}, "short": {"type": "string", "description": "Suffix shown in matrix cells (empty for market_size)"}, "unit_note": {"type": "string", "description": "Tooltip explaining why the unit differs"}}
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "label": {"type": "string", "description": "Display label"}}
+    },
+    "desk": {
+      "type": "object",
+      "description": "A research desk or publisher. A desk with no positions is listed as 'in the source base, no position'.",
+      "additionalProperties": false,
+      "required": ["id", "name", "group"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "name": {"type": "string", "description": "Canonical name – the same everywhere on the page"},
+        "short": {"type": "string", "description": "Short name for tight spaces"},
+        "group": {"$ref": "#/$defs/id", "description": "desk_groups[].id"},
+        "note": {"type": "string", "description": "Sub-label under the name in the matrix"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "description": "A report. Every figure cites exactly one.",
+      "additionalProperties": false,
+      "required": ["id", "desk", "publisher", "title", "published", "url"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "desk": {"$ref": "#/$defs/id", "description": "desks[].id of the desk it belongs to"},
+        "publisher": {"type": "string", "description": "Publisher credit as printed (may name co-authors)"},
+        "title": {"type": "string", "description": "Report title"},
+        "published": {"$ref": "#/$defs/isodate", "description": "Publication date or interval"},
+        "url": {"type": "string", "pattern": "^https://", "description": "Publisher page or PDF; secondary coverage for client-only notes"},
+        "access": {"enum": ["client-only"], "description": "Set when the report itself is not public"}
+      }
+    },
+    "figure": {
+      "type": "object",
+      "description": "One sourced number with every dimension needed to compare it honestly.",
+      "additionalProperties": false,
+      "required": ["id", "desk", "source", "kind", "metric", "value_usd", "approx", "point_estimate", "horizon", "as_of", "published", "scenario", "status", "scope", "includes_stablecoins", "includes_permissioned", "asset_class", "definition"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "desk": {"$ref": "#/$defs/id", "description": "desks[].id"},
+        "source": {"$ref": "#/$defs/id", "description": "sources[].id"},
+        "label": {"type": "string", "description": "Display label when not just the desk name (a scenario, a sub-scope, a data partner)"},
+        "kind": {"enum": ["today", "forecast"], "description": "A measurement of the market now, or a projection"},
+        "metric": {"$ref": "#/$defs/id", "description": "metrics[].id – what the number measures"},
+        "value_usd": {"$ref": "#/$defs/usd", "description": "Headline value"},
+        "low_usd": {"$ref": "#/$defs/usd", "description": "Low end of a published scenario range"},
+        "high_usd": {"$ref": "#/$defs/usd", "description": "High end of a published scenario range"},
+        "approx": {"type": "boolean", "description": "Source states the number as approximate (~)"},
+        "point_estimate": {"type": ["boolean", "null"], "description": "true = single number, no range published; false = a range exists; null = not recorded"},
+        "horizon": {"type": ["integer", "null"], "minimum": 2026, "description": "Forecast horizon year; null for today figures or when the source states none"},
+        "as_of": {"anyOf": [{"$ref": "#/$defs/isodate"}, {"type": "null"}], "description": "Period measured, when the source states it separately from publication"},
+        "published": {"$ref": "#/$defs/isodate", "description": "When this figure was published – must fall inside its source's date"},
+        "scenario": {"enum": ["base", "bull", "bear", "tail", null], "description": "Scenario label where the source gives one"},
+        "status": {"enum": ["current", "superseded"], "description": "superseded = the desk later replaced it"},
+        "superseded_by": {"$ref": "#/$defs/id", "description": "figures[].id of the replacement; required when superseded"},
+        "reaffirmed_in": {"type": "array", "items": {"$ref": "#/$defs/id"}, "description": "Later sources that restated the figure"},
+        "scope": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}], "description": "scopes[].id; null when no bucket fits or the metric is not a market size"},
+        "includes_stablecoins": {"type": ["boolean", "null"], "description": "Definition counts stablecoins (null = not stated)"},
+        "includes_permissioned": {"type": ["boolean", "null"], "description": "Definition counts permissioned networks (null = not stated)"},
+        "asset_class": {"type": ["string", "null"], "description": "Asset class the figure is limited to; null = all classes in scope"},
+        "definition": {"type": "string", "description": "What the source counts, in one line"}
+      }
+    },
+    "question": {
+      "type": "object",
+      "description": "A matrix column. figure questions cite figures; stance questions pick from values.",
+      "additionalProperties": false,
+      "required": ["id", "label", "type"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "label": {"type": "string", "description": "Column header"},
+        "type": {"enum": ["figure", "stance"], "description": "How cells answer it"},
+        "horizon": {"type": "integer", "description": "Horizon a figure question asks about; off-horizon cells are marked"},
+        "values": {"type": "array", "items": {"$ref": "#/$defs/vocab"}, "description": "Allowed answers for a stance question"}
+      }
+    },
+    "position": {
+      "type": "object",
+      "description": "One desk's answer to one question: figures for a figure question, a value for a stance question.",
+      "additionalProperties": false,
+      "required": ["desk", "question"],
+      "properties": {
+        "desk": {"$ref": "#/$defs/id", "description": "desks[].id"},
+        "question": {"$ref": "#/$defs/id", "description": "questions[].id"},
+        "value": {"$ref": "#/$defs/id", "description": "questions[].values[].id (stance questions)"},
+        "qualifier": {"type": "string", "description": "Desk-specific nuance shown after the value"},
+        "figures": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1, "description": "figures[].id (figure questions); two = a low–high pair"},
+        "scope": {"$ref": "#/$defs/id", "description": "Colour override when the cited figures span buckets"}
+      }
+    },
+    "view_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["figure"],
+      "properties": {
+        "figure": {"$ref": "#/$defs/id", "description": "figures[].id plotted as the mark"},
+        "alt": {"$ref": "#/$defs/id", "description": "Same desk's second figure under a wider scope – the hollow dot"},
+        "alt_label": {"type": "string", "description": "Label for the hollow dot"},
+        "label": {"type": "string", "description": "Row label override"},
+        "scope": {"$ref": "#/$defs/id", "description": "Colour override"},
+        "tooltip": {"type": "string", "description": "Tooltip text; defaults to the figure definition"}
+      }
+    },
+    "views": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chart_forecast", "chart_today"],
+      "properties": {
+        "chart_forecast": {"type": "array", "items": {"$ref": "#/$defs/view_item"}, "description": "2030 forecast chart rows (also the 'by scope' view)"},
+        "chart_today": {"type": "array", "items": {"$ref": "#/$defs/view_item"}, "description": "Market-today chart rows"}
+      }
+    },
+    "tables": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forecast", "today", "lead_asset"],
+      "properties": {
+        "forecast": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["figure", "note", "counted", "stance"], "properties": {"figure": {"$ref": "#/$defs/id"}, "label": {"type": "string"}, "note": {"type": "string"}, "counted": {"type": "string"}, "stance": {"type": "string"}}}, "description": "Section 04 table"},
+        "today": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["figures", "note", "definition"], "properties": {"figures": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}, "label": {"type": "string"}, "note": {"type": "string"}, "definition": {"type": "string"}}}, "description": "Section 05 table"},
+        "lead_asset": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["desk", "lead", "why"], "properties": {"desk": {"$ref": "#/$defs/id"}, "label": {"type": "string"}, "lead": {"type": "string"}, "why": {"type": "string"}}}, "description": "Section 07 table"}
+      }
+    },
+    "staircase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kicker", "intro", "rungs", "fork_note"],
+      "properties": {
+        "kicker": {"type": "string"},
+        "intro": {"type": "string"},
+        "fork_note": {"type": "string"},
+        "rungs": {"type": "array", "minItems": 2, "items": {"type": "object", "additionalProperties": false, "required": ["label", "figures", "step"], "properties": {"label": {"type": "string"}, "who": {"type": "string"}, "figures": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}, "scope": {"$ref": "#/$defs/id"}, "fork": {"enum": ["A", "B"]}, "step": {"type": "string"}}}, "description": "Values and multiples are computed from the cited figures"}
+      }
+    },
+    "revision": {
+      "type": "object",
+      "description": "A dated change – to a desk's numbers or to this page.",
+      "additionalProperties": false,
+      "required": ["date", "desk", "change", "note", "sources"],
+      "properties": {
+        "date": {"$ref": "#/$defs/isodate"},
+        "desk": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}], "description": "desks[].id, or null for a change to this page"},
+        "change": {"type": "string", "description": "What changed"},
+        "note": {"type": "string", "description": "Context"},
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/id"}, "description": "sources[].id"},
+        "figures": {"type": "array", "items": {"$ref": "#/$defs/id"}, "description": "figures[].id the change introduced"},
+        "drift": {"type": "object", "additionalProperties": false, "required": ["from", "to"], "properties": {"from": {"$ref": "#/$defs/id"}, "to": {"$ref": "#/$defs/id"}}, "description": "A desk revising itself: old and new figure ids"}
+      }
+    }
+  }
+}
