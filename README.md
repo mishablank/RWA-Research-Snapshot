@@ -2,7 +2,9 @@
 
 **Everyone agrees RWAs are coming. Nobody agrees how big.**
 
-A single-page editorial synthesis that cross-reads **63 research reports** on real-world assets and tokenization – global banks, asset managers, the Big Four, crypto-native desks and the official sector – published between **29 Mar and 10 Aug 2026**. The finding: the desks converge almost completely on the *direction of travel* and contradict each other on nearly everything you can put a number on.
+A single-page editorial synthesis that cross-reads **70 research reports** on real-world assets and tokenization – global banks, asset managers, the Big Four, crypto-native desks and the official sector – published between **29 Mar and 26 Nov 2026**. The finding: the desks converge almost completely on the *direction of travel* and contradict each other on nearly everything you can put a number on.
+
+> **Updated 26 Nov 2026** – refresh to late November. **New numbers:** same-day readings from the RWA.xyz and DefiLlama dashboards (26 Nov: $41.3B distributed, ~$452B represented, $30.8B "active", stablecoins $284B against a $314B peak in May); Morgan Stanley × Oliver Wyman's first market-size forecast (~$2.3T by 2030, from ~$40B); The Block Research's $39.3B September peak; Deutsche Bank's first numbers (~$39B today, $1.5T–$2T by 2030); the IMF's about $65B and IOSCO's $37B, the first market sizes from the official sector; Pantera's September edition (~$332B, 671 assets); Citi's bear–bull range ($2.7T–$8.2T); Standard Chartered's October note moving its $2T stablecoin target from 2028 to 2030. **Corrections:** Keyrock's starting point is $27B (was ~$29B); the consensus tiles now carry a source and a date; the unsourced "5–6× growth" and "sub-$300M equities" claims are gone. **Thesis check:** with two new forecasts in the narrow bucket, the within-bucket spread widens from ≤1.7× to ≤5.8× – scope still explains most of the 35× gap, no longer nearly all of it. **Prose:** events written as upcoming (DTCC's launch, GENIUS rule-making, the CLARITY vote) now say what happened. The matrix has 22 desks; the window runs to 26 Nov 2026.
 
 > **Updated 26 Sep 2026** – data-accuracy pass. **Corrections:** Standard Chartered's ~$4T is a *2028* figure and was sitting unmarked on the 2030 chart – it is now labelled ’28, and the hero reads "6 forecasts · 5 desks" (not "6 studies, same horizon"); the matrix has 19 desks (share text said 18); "same month" on the denominator section was wrong; the permissioned-layer multiple is ~11× (was ~10×); Binance's base-case cut took eleven weeks (was ten); the tail case is 199× today's distributed value (was 198×); equities are ~$1.7B (one line said ~$1.5B); PwC's $715B is fund AUM and is now outlined as a different unit. **Dataset v2:** one record per figure with `horizon`, `as_of`, `published`, `metric`, `scenario` and `status`; stable desk ids; defined position vocabularies; no HTML in the data; a JSON Schema ([`data.schema.json`](data.schema.json)) and a generated data dictionary ([`DATA.md`](DATA.md)). **CI:** `tools/validate.py` checks schema, referential integrity, ranges, dates and horizons, and lints the page prose so no dollar figure or multiple can be hand-typed without a matching record; every headline number on the page is now computed.
 
@@ -20,7 +22,7 @@ No build step to serve, no dependencies, no framework. One page – [`index.html
 
 1. **The facts of today are settled.** ~0.01% penetration of a $300T+ addressable base, ~$15B of tokenized Treasuries anchoring the market, institutional issuers now leading growth. Nobody disputes this.
 2. **Every forward number is contested.** 35× on 2030 size, 36× on today's size, and a straight split on whether stablecoins are the settlement rail (crypto desks) or a flawed form of money to be superseded (BIS).
-3. **Most of the disagreement is definitional, not factual.** Three choices explain the bulk of it – what counts as an RWA (free-float vs. represented vs. full settlement layer), which chains you count (public-only undercounts ~10×), and whether stablecoins are in.
+3. **Most of the disagreement is definitional, not factual.** Three choices explain the bulk of it – what counts as an RWA (free-float vs. represented vs. full settlement layer), which chains you count (public-only undercounts ~11×), and whether stablecoins are in. Not all of it, though: since the November 2026 refresh, desks counting the same narrow slice still land up to 5.8× apart ($400B to $2.3T) – a real disagreement about pace.
 
 ---
 
@@ -30,13 +32,13 @@ No build step to serve, no dependencies, no framework. One page – [`index.html
 |---|---------|--------------|
 | 01 | Hero | The $400B → $14T tension, the source base by category |
 | 02 | Consensus | The five numbers every desk signs up to |
-| 03 | The matrix | 19 desks × 6 questions on one grid |
+| 03 | The matrix | 22 desks × 6 questions on one grid |
 | 04 | Discrepancy 01 – the 2030 number | Interactive forecast chart + study table |
 | 05 | Discrepancy 02 – the denominator | Why "today's" market size ranges $19.3B → $695B |
 | 06 | Discrepancy 03 – stablecoins | Rail, coexistence layer, or flawed money |
 | 07 | Discrepancy 04 – the lead asset | Treasuries lead now; after that, pick a fight |
 | 08 | Discrepancy 05 – whose chain | Public trackers vs. the permissioned layer nobody sees |
-| 09 | Discrepancy 06 – the constraint | Six desks, six different bottlenecks |
+| 09 | Discrepancy 06 – the constraint | Five desks, five different bottlenecks |
 | 10 | Takeaway | How to read any RWA report without being fooled by scope |
 | R | Revision log | Dated changes to the numbers – and the Binance $1.6T → $661B drift |
 | A | Sources | The register – the 22 reports figures are attributed to, linked to the publisher (see also [`SOURCES.md`](SOURCES.md)) |
@@ -45,7 +47,7 @@ No build step to serve, no dependencies, no framework. One page – [`index.html
 
 ### The chart (section 04)
 
-Three dataset toggles – **2030 forecast / market today / by scope** – and **linear / log**, over the same study dataset. **By scope** regroups the six 2030 forecasts by what they count: within a bucket the desks land ≤1.7× apart, across buckets 35× – the page's thesis, shown rather than asserted. The encoding is deliberate and switches with the scale:
+Three dataset toggles – **2030 forecast / market today / by scope** – and **linear / log**, over the same study dataset. **By scope** regroups the eight forecasts by what they count: within a bucket the desks land ≤5.8× apart, across buckets 35× – definition explains most of the gap, not all of it. The encoding is deliberate and switches with the scale:
 
 - **Linear** → marks are **bars**. Length encodes magnitude from a real zero.
 - **Log** → marks are **dots**. There is no zero on a log axis, so bar length would be meaningless; only position is read.
@@ -59,7 +61,7 @@ Log tick density adapts to plot width (narrow viewports drop to one tick per dec
 
 ### The matrix (section 03)
 
-19 desks down, six questions across, grouped by desk type. Read down a column to see whether a question is settled or split; read across a row for one desk's whole position. Empty rings are desks in the source base that took **no public position** on that question – and most cells are empty, which is itself the finding: 63 reports, few desks answering more than two of these six questions.
+22 desks down, six questions across, grouped by desk type. Read down a column to see whether a question is settled or split; read across a row for one desk's whole position. Empty rings are desks in the source base that took **no public position** on that question – and most cells are empty, which is itself the finding: 63 reports, few desks answering more than two of these six questions.
 
 ---
 
@@ -124,7 +126,7 @@ Then open `http://localhost:8000`. Or with Wrangler, matching the deploy target:
 npx wrangler dev
 ```
 
-Opening `index.html` directly off the filesystem also works; only the Google Fonts request needs network.
+Opening `public/index.html` directly off the filesystem also works; fonts are self-hosted, so nothing needs the network.
 
 ## Deploy
 
@@ -179,7 +181,7 @@ npx -y playwright@1.56 screenshot --browser=chromium --viewport-size=1200,630 --
 
 then set `meta.og_card` to match and run `validate.py` again.
 
-**Design tokens** are CSS custom properties in `:root` at [index.html:12](index.html#L12) – paper `#F2EBDD`, ink `#1A1816`, accent `#C44A36`, highlight `#F5E69A`, plus Fraunces (display) and Inter (text), self-hosted as variable WOFF2 latin subsets in `public/fonts/` – the page makes no external requests at all. Scope colours used by the chart and the matrix pills come from the same set, so the two sections stay legible against each other.
+**Design tokens** are CSS custom properties in `:root` at [public/index.html:43](public/index.html#L43) – paper `#F2EBDD`, ink `#1A1816`, accent `#C44A36`, highlight `#F5E69A`, plus Fraunces (display) and Inter (text), self-hosted as variable WOFF2 latin subsets in `public/fonts/` – the page makes no external requests at all. Scope colours used by the chart and the matrix pills come from the same set, so the two sections stay legible against each other.
 
 ---
 

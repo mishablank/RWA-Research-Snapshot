@@ -288,7 +288,7 @@ def build_revisions(D, S):
         desk = D.desks[r["desk"]]["name"] if r.get("desk") else "This page"
         out.append('      <li><span class="rv-d">%s</span><div class="rv-b">'
                    '<span class="chg"><b>%s</b> – %s</span><small>%s</small>'
-                   % (escape(day_label(r["date"])), escape(desk), escape(resolve(r["change"], D, S)),
+                   % (escape(day_label(r["date"]) if len(r["date"]) > 7 else month_label(r["date"])), escape(desk), escape(resolve(r["change"], D, S)),
                       escape(resolve(r["note"], D, S))))
         if r.get("drift"):
             # base-case walk-down: hollow dot = old base, solid dot = new base, on a log track
