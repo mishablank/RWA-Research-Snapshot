@@ -8,22 +8,22 @@
     "author_url": "https://pl.linkedin.com/in/mishablank",
     "window": {
       "start": "2026-03-29",
-      "end": "2026-08-10"
+      "end": "2026-11-26"
     },
-    "reports_read": 63,
+    "reports_read": 70,
     "archived_locally": 50,
     "published": "2026-07-17",
-    "updated": "2026-09-26",
+    "updated": "2026-11-26",
     "currency": "USD",
     "value_basis": "Nominal USD as reported by each source; no inflation or FX adjustment.",
     "disclaimer": "Figures are reproduced as reported by each source on the date cited; scopes and definitions differ materially between studies and are not directly comparable.",
     "license": "CC BY 4.0 – cite as \"Mike Blank, rwaresearch.info\"",
     "og_card": {
-      "reports_read": 63,
+      "reports_read": 70,
       "fc_lo_usd": 400000000000,
       "fc_hi_usd": 14000000000000,
       "fc_spread": 35,
-      "updated": "2026-09"
+      "updated": "2026-11"
     }
   },
   "scopes": [
@@ -125,7 +125,7 @@
       "name": "Standard Chartered",
       "group": "banks",
       "short": "SC",
-      "note": "May + Aug 2026"
+      "note": "May · Aug · Oct 2026"
     },
     {
       "id": "jpmorgan",
@@ -137,13 +137,13 @@
       "id": "morgan-stanley",
       "name": "Morgan Stanley",
       "group": "banks",
-      "note": "× Oliver Wyman"
+      "note": "× Oliver Wyman · May + Sep 2026"
     },
     {
       "id": "deutsche-bank",
       "name": "Deutsche Bank",
       "group": "banks",
-      "note": "2026"
+      "note": "May + Sep 2026"
     },
     {
       "id": "hsbc",
@@ -238,7 +238,7 @@
       "name": "Pantera Capital",
       "group": "crypto",
       "short": "Pantera",
-      "note": "May 2026"
+      "note": "May + Sep 2026"
     },
     {
       "id": "beincrypto-rwaxyz",
@@ -251,13 +251,26 @@
       "id": "defillama",
       "name": "DefiLlama",
       "group": "crypto",
-      "note": "Apr 2026"
+      "note": "Apr 2026 · dashboard 26 Nov"
     },
     {
       "id": "coingecko",
       "name": "CoinGecko",
       "group": "crypto",
       "note": "Q1 2026"
+    },
+    {
+      "id": "rwa-xyz",
+      "name": "RWA.xyz",
+      "group": "crypto",
+      "note": "Dashboard · 26 Nov 2026"
+    },
+    {
+      "id": "the-block-research",
+      "name": "The Block Research",
+      "group": "crypto",
+      "short": "The Block",
+      "note": "Oct 2026 · commissioned by Binance"
     },
     {
       "id": "messari",
@@ -279,7 +292,13 @@
       "id": "imf",
       "name": "IMF",
       "group": "official",
-      "note": "Tokenized Finance · 2026"
+      "note": "Tokenized Finance · GFSR Oct 2026"
+    },
+    {
+      "id": "iosco",
+      "name": "IOSCO",
+      "group": "official",
+      "note": "Monitoring Report · Nov 2026"
     },
     {
       "id": "gfma",
@@ -321,6 +340,15 @@
       "access": "client-only"
     },
     {
+      "id": "sc-stablecoin-2030",
+      "desk": "standard-chartered",
+      "publisher": "Standard Chartered",
+      "title": "Stablecoin research note – $2T target moved from 2028 to 2030",
+      "published": "2026-10-14",
+      "url": "https://www.theblock.co/news/web3/2026-10-14-standard-chartered-stablecoin-market-report-418578",
+      "access": "client-only"
+    },
+    {
       "id": "sc-nonusd-stablecoins",
       "desk": "standard-chartered",
       "publisher": "Standard Chartered × Zodia Markets",
@@ -345,12 +373,28 @@
       "url": "https://www.oliverwyman.com/our-expertise/insights/2026/may/digital-assets-future-wholesale-banking.html"
     },
     {
+      "id": "msow-breaking-pack",
+      "desk": "morgan-stanley",
+      "publisher": "Morgan Stanley × Oliver Wyman",
+      "title": "Breaking from the Pack: The Race for Above-Market Growth",
+      "published": "2026-09",
+      "url": "https://www.oliverwyman.com/our-expertise/insights/2026/sep/asset-wealth-management-trends-shaping-growth-to-2030.html"
+    },
+    {
       "id": "db-digital-money",
       "desk": "deutsche-bank",
       "publisher": "Deutsche Bank",
       "title": "Digital Money: a perspective on stablecoins, tokenised deposits and CBDCs",
       "published": "2026-05",
       "url": "https://flow.db.com/publications/flow-white-papers-and-guides/digital-money-a-perspective-on-stablecoins-tokenised-deposits-and-cbdcs"
+    },
+    {
+      "id": "db-tokenization-101",
+      "desk": "deutsche-bank",
+      "publisher": "Deutsche Bank Research Institute",
+      "title": "Asset Tokenization 101: The Next Phase of Financial Infrastructure",
+      "published": "2026-09",
+      "url": "https://www.dbresearch.com/PROD/IE-PROD/PROD0000000000652235.pdf"
     },
     {
       "id": "securitize-keyrock-400t",
@@ -425,6 +469,14 @@
       "url": "https://panteracapital.com/article/the-state-of-tokenization-q1-2026-report/"
     },
     {
+      "id": "pantera-tokenization-sep",
+      "desk": "pantera",
+      "publisher": "Pantera Capital",
+      "title": "State of Tokenization: September 2026 Report",
+      "published": "2026-09",
+      "url": "https://panteracapital.com/state-of-tokenization-september-2026-pdf/"
+    },
+    {
       "id": "beincrypto-rwaxyz-2026",
       "desk": "beincrypto-rwaxyz",
       "publisher": "BeInCrypto × RWA.xyz",
@@ -449,6 +501,38 @@
       "url": "https://www.coingecko.com/research/publications/rwa-report-2026"
     },
     {
+      "id": "defillama-rwa-dashboard",
+      "desk": "defillama",
+      "publisher": "DefiLlama",
+      "title": "RWA dashboard – reading of 26 Nov 2026",
+      "published": "2026-11-26",
+      "url": "https://defillama.com/rwa"
+    },
+    {
+      "id": "defillama-stablecoins",
+      "desk": "defillama",
+      "publisher": "DefiLlama",
+      "title": "Stablecoins dashboard – total circulating supply, reading of 26 Nov 2026",
+      "published": "2026-11-26",
+      "url": "https://defillama.com/stablecoins"
+    },
+    {
+      "id": "rwaxyz-dashboard",
+      "desk": "rwa-xyz",
+      "publisher": "RWA.xyz",
+      "title": "RWA.xyz dashboard – reading of 26 Nov 2026",
+      "published": "2026-11-26",
+      "url": "https://app.rwa.xyz/"
+    },
+    {
+      "id": "block-rwa-2026",
+      "desk": "the-block-research",
+      "publisher": "The Block Research (commissioned by Binance)",
+      "title": "RWA Tokenization in 2026: Tokenized Stocks Drive the Next Phase",
+      "published": "2026-10-05",
+      "url": "https://www.theblock.co/research/tokenization/rwa-tokenization-2026-tokenized-stocks-drive-next-phase-417702"
+    },
+    {
       "id": "bis-aer-2026-ch3",
       "desk": "bis",
       "publisher": "BIS",
@@ -463,6 +547,22 @@
       "title": "Tokenized Finance – IMF Notes 2026/001",
       "published": "2026-04",
       "url": "https://www.imf.org/en/publications/imf-notes/issues/2026/04/01/tokenized-finance-574921"
+    },
+    {
+      "id": "imf-gfsr-oct-2026",
+      "desk": "imf",
+      "publisher": "IMF",
+      "title": "Scaling Tokenization: New Efficiencies, New Vulnerabilities – Global Financial Stability Report, October 2026, Ch. 3",
+      "published": "2026-10-13",
+      "url": "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026"
+    },
+    {
+      "id": "iosco-tokenization-2026",
+      "desk": "iosco",
+      "publisher": "IOSCO",
+      "title": "Tokenization of Financial Assets: 2026 Monitoring Report",
+      "published": "2026-11",
+      "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD832.pdf"
     },
     {
       "id": "gfma-digital-money",
@@ -538,6 +638,48 @@
       "definition": "Distributed value, ex-stablecoins · 0.4% penetration base case; range = $203B conservative – $1.6T bull"
     },
     {
+      "id": "db-2030",
+      "desk": "deutsche-bank",
+      "source": "db-tokenization-101",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 1500000000000,
+      "low_usd": 1500000000000,
+      "high_usd": 2000000000000,
+      "approx": false,
+      "point_estimate": false,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-09",
+      "scenario": "base",
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenized real-world assets ex-stablecoins – the report’s “conservative” range of $1.5T–$2T (value = lower estimate)"
+    },
+    {
+      "id": "msow-2030",
+      "desk": "morgan-stanley",
+      "source": "msow-breaking-pack",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 2300000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-09",
+      "scenario": "base",
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenized real-world assets, growing from ~$40B today – a base that matches the distributed, ex-stablecoin count"
+    },
+    {
       "id": "sc-2028",
       "desk": "standard-chartered",
       "source": "sc-tokenization-defi",
@@ -590,8 +732,10 @@
       "kind": "forecast",
       "metric": "market_size",
       "value_usd": 5500000000000,
+      "low_usd": 2700000000000,
+      "high_usd": 8200000000000,
       "approx": false,
-      "point_estimate": true,
+      "point_estimate": false,
       "horizon": 2030,
       "as_of": null,
       "published": "2026-06",
@@ -601,7 +745,7 @@
       "includes_stablecoins": null,
       "includes_permissioned": null,
       "asset_class": "securities",
-      "definition": "Tokenized securities – equities + Treasuries led"
+      "definition": "Tokenized securities – equities + Treasuries led; base case, with a $2.7T bear and an $8.2T bull case"
     },
     {
       "id": "binance-2030-tail",
@@ -662,6 +806,28 @@
       "includes_permissioned": null,
       "asset_class": null,
       "definition": "Broadest RWA definition, incl. funds – 2035 horizon"
+    },
+    {
+      "id": "db-2035",
+      "desk": "deutsche-bank",
+      "source": "db-tokenization-101",
+      "kind": "forecast",
+      "metric": "market_size",
+      "value_usd": 3000000000000,
+      "low_usd": 3000000000000,
+      "high_usd": 4000000000000,
+      "approx": false,
+      "point_estimate": false,
+      "horizon": 2035,
+      "as_of": null,
+      "published": "2026-09",
+      "scenario": "base",
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenized real-world assets ex-stablecoins – $3T–$4T by 2035 (value = lower estimate)"
     },
     {
       "id": "pwc-funds-2030",
@@ -744,6 +910,46 @@
       "definition": "Revenue redistributed across wholesale banking by 2030"
     },
     {
+      "id": "msow-am-addressable-2030",
+      "desk": "morgan-stanley",
+      "source": "msow-breaking-pack",
+      "kind": "forecast",
+      "metric": "am_opportunity",
+      "value_usd": 1300000000000,
+      "approx": true,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-09",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Managed tokenized assets addressable by asset managers by 2030 – a subset of the $2.3T, not a market size"
+    },
+    {
+      "id": "sc-stablecoins-2030",
+      "desk": "standard-chartered",
+      "source": "sc-stablecoin-2030",
+      "kind": "forecast",
+      "metric": "stablecoin_supply",
+      "value_usd": 2000000000000,
+      "approx": false,
+      "point_estimate": null,
+      "horizon": 2030,
+      "as_of": null,
+      "published": "2026-10-14",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Stablecoin market size – the same $2T target, moved from 2028 to 2030 as supply growth stalled"
+    },
+    {
       "id": "mckinsey-stablecoins-2030",
       "desk": "mckinsey",
       "source": "mckinsey-beyond-stablecoins",
@@ -791,8 +997,8 @@
       "source": "securitize-keyrock-400t",
       "kind": "today",
       "metric": "market_size",
-      "value_usd": 29000000000,
-      "approx": true,
+      "value_usd": 27000000000,
+      "approx": false,
       "point_estimate": true,
       "horizon": null,
       "as_of": null,
@@ -803,7 +1009,7 @@
       "includes_stablecoins": false,
       "includes_permissioned": null,
       "asset_class": null,
-      "definition": "Distributed RWAs, 5 asset classes – the starting point of the $400B path"
+      "definition": "Transferable tokenised assets on public blockchains, 5 asset classes – the starting point of the $400B path"
     },
     {
       "id": "coingecko-today",
@@ -838,12 +1044,93 @@
       "as_of": "2026-03",
       "published": "2026-04",
       "scenario": null,
+      "status": "superseded",
+      "scope": "public",
+      "includes_stablecoins": null,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "\"Active\" RWA market cap on public chains",
+      "superseded_by": "defillama-active-nov"
+    },
+    {
+      "id": "defillama-active-nov",
+      "desk": "defillama",
+      "source": "defillama-rwa-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 30830000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
       "status": "current",
       "scope": "public",
       "includes_stablecoins": null,
       "includes_permissioned": false,
       "asset_class": null,
-      "definition": "\"Active\" RWA market cap on public chains"
+      "definition": "\"Active\" RWA AUM on public chains – the part of on-chain value taking real market risk in user or protocol hands"
+    },
+    {
+      "id": "defillama-onchain-nov",
+      "desk": "defillama",
+      "source": "defillama-rwa-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 34500000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": null,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "\"Onchain\" RWA AUM – the total value of each asset that exists on-chain across tracked chains"
+    },
+    {
+      "id": "defillama-stablecoins-today",
+      "desk": "defillama",
+      "source": "defillama-stablecoins",
+      "kind": "today",
+      "metric": "stablecoin_supply",
+      "value_usd": 283980000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Total stablecoin supply in circulation, all pegs"
+    },
+    {
+      "id": "defillama-stablecoins-peak",
+      "desk": "defillama",
+      "source": "defillama-stablecoins",
+      "kind": "today",
+      "metric": "stablecoin_supply",
+      "value_usd": 314390000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-05-17",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Total stablecoin supply at its all-time peak, 17 May 2026"
     },
     {
       "id": "grayscale-today",
@@ -855,7 +1142,7 @@
       "approx": true,
       "point_estimate": true,
       "horizon": null,
-      "as_of": null,
+      "as_of": "2026-04",
       "published": "2026-04",
       "scenario": null,
       "status": "current",
@@ -875,7 +1162,7 @@
       "approx": true,
       "point_estimate": true,
       "horizon": null,
-      "as_of": null,
+      "as_of": "2026-04",
       "published": "2026-04",
       "scenario": null,
       "status": "current",
@@ -895,7 +1182,7 @@
       "approx": true,
       "point_estimate": true,
       "horizon": null,
-      "as_of": null,
+      "as_of": "2026-04",
       "published": "2026-04",
       "scenario": null,
       "status": "current",
@@ -915,7 +1202,7 @@
       "approx": true,
       "point_estimate": null,
       "horizon": null,
-      "as_of": null,
+      "as_of": "2026-06",
       "published": "2026-06",
       "scenario": null,
       "status": "current",
@@ -1007,6 +1294,246 @@
       "definition": "Tokenized stocks – +177% in H1 2026"
     },
     {
+      "id": "block-today",
+      "desk": "the-block-research",
+      "source": "block-rwa-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 39300000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-09",
+      "published": "2026-10-05",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Total onchain RWA value excluding stablecoins – the September 2026 peak, nearly four times the start-of-2025 level"
+    },
+    {
+      "id": "iosco-today-2025",
+      "desk": "iosco",
+      "source": "iosco-tokenization-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 16000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2025-07-01",
+      "published": "2026-11",
+      "scenario": null,
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": false,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Tokenized real-world assets issued on public blockchains on 1 Jul 2025 (RWA.xyz data) – the starting point of IOSCO’s one-year comparison"
+    },
+    {
+      "id": "iosco-today",
+      "desk": "iosco",
+      "source": "iosco-tokenization-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 37000000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-06-30",
+      "published": "2026-11",
+      "scenario": null,
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": false,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Tokenized real-world assets issued on public blockchains (RWA.xyz data), stablecoins excluded"
+    },
+    {
+      "id": "db-today",
+      "desk": "deutsche-bank",
+      "source": "db-tokenization-101",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 39000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-09",
+      "published": "2026-09",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Distributed tokenized asset value excluding stablecoins (RWA.xyz data, 14 Sep 2026)"
+    },
+    {
+      "id": "imf-today",
+      "desk": "imf",
+      "source": "imf-gfsr-oct-2026",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 65000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-07",
+      "published": "2026-10-13",
+      "scenario": null,
+      "status": "current",
+      "scope": "public",
+      "includes_stablecoins": false,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Public market for tokenized RWAs – repos, private tokenized markets and stablecoins excluded"
+    },
+    {
+      "id": "msow-today",
+      "desk": "morgan-stanley",
+      "source": "msow-breaking-pack",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 40000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": null,
+      "published": "2026-09",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Tokenized real-world assets today – the base of the $2.3T path"
+    },
+    {
+      "id": "rwaxyz-distributed-today",
+      "desk": "rwa-xyz",
+      "source": "rwaxyz-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 41270000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": "narrow",
+      "includes_stablecoins": false,
+      "includes_permissioned": false,
+      "asset_class": null,
+      "definition": "Distributed asset value – tokens investors can subscribe to, hold and transfer on-chain; stablecoins excluded"
+    },
+    {
+      "id": "rwaxyz-represented-today",
+      "desk": "rwa-xyz",
+      "source": "rwaxyz-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 451770000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": false,
+      "includes_permissioned": true,
+      "asset_class": null,
+      "definition": "Represented asset value – the blockchain used as a record-keeping layer only, with no on-chain transfer or distribution; not counted in the distributed figure"
+    },
+    {
+      "id": "rwaxyz-treasuries-today",
+      "desk": "rwa-xyz",
+      "source": "rwaxyz-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 14110000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "treasuries",
+      "definition": "Tokenized U.S. Treasury debt incl. money-market funds, distributed value"
+    },
+    {
+      "id": "rwaxyz-commodities-today",
+      "desk": "rwa-xyz",
+      "source": "rwaxyz-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 7310000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "commodities",
+      "definition": "Tokenized commodities, distributed value – gold is the largest part"
+    },
+    {
+      "id": "rwaxyz-stocks-today",
+      "desk": "rwa-xyz",
+      "source": "rwaxyz-dashboard",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 3610000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": null,
+      "includes_permissioned": null,
+      "asset_class": "equities",
+      "definition": "Tokenized stocks, distributed value"
+    },
+    {
+      "id": "rwaxyz-stablecoins-today",
+      "desk": "rwa-xyz",
+      "source": "rwaxyz-dashboard",
+      "kind": "today",
+      "metric": "stablecoin_supply",
+      "value_usd": 273090000000,
+      "approx": false,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-11-26",
+      "published": "2026-11-26",
+      "scenario": null,
+      "status": "current",
+      "scope": null,
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "Total stablecoin value as RWA.xyz counts it – a narrower count than DefiLlama’s same-day total"
+    },
+    {
       "id": "beincrypto-core-today",
       "desk": "beincrypto-rwaxyz",
       "source": "beincrypto-rwaxyz-2026",
@@ -1040,12 +1567,33 @@
       "as_of": "2026-03",
       "published": "2026-05",
       "scenario": null,
+      "status": "superseded",
+      "scope": "all",
+      "includes_stablecoins": true,
+      "includes_permissioned": null,
+      "asset_class": null,
+      "definition": "593 assets, 11 classes – counts stablecoins and the full tokenized universe (542 of the assets are scored)",
+      "superseded_by": "pantera-today-q2"
+    },
+    {
+      "id": "pantera-today-q2",
+      "desk": "pantera",
+      "source": "pantera-tokenization-sep",
+      "kind": "today",
+      "metric": "market_size",
+      "value_usd": 332000000000,
+      "approx": true,
+      "point_estimate": true,
+      "horizon": null,
+      "as_of": "2026-06",
+      "published": "2026-09",
+      "scenario": null,
       "status": "current",
       "scope": "all",
       "includes_stablecoins": true,
       "includes_permissioned": null,
       "asset_class": null,
-      "definition": "542 assets, 11 classes – counts stablecoins and the full tokenized universe"
+      "definition": "671 assets – counts stablecoins and the full tokenized universe; data to 30 Jun 2026"
     },
     {
       "id": "sc-today",
@@ -1300,7 +1848,28 @@
       "desk": "morgan-stanley",
       "question": "size_2030",
       "figures": [
-        "msow-revenue-netnew-2030"
+        "msow-2030"
+      ]
+    },
+    {
+      "desk": "morgan-stanley",
+      "question": "size_today",
+      "figures": [
+        "msow-today"
+      ]
+    },
+    {
+      "desk": "deutsche-bank",
+      "question": "size_2030",
+      "figures": [
+        "db-2030"
+      ]
+    },
+    {
+      "desk": "deutsche-bank",
+      "question": "size_today",
+      "figures": [
+        "db-today"
       ]
     },
     {
@@ -1415,7 +1984,7 @@
       "desk": "pantera",
       "question": "size_today",
       "figures": [
-        "pantera-today"
+        "pantera-today-q2"
       ]
     },
     {
@@ -1431,7 +2000,7 @@
       "desk": "defillama",
       "question": "size_today",
       "figures": [
-        "defillama-today"
+        "defillama-active-nov"
       ]
     },
     {
@@ -1452,6 +2021,21 @@
       "value": "public"
     },
     {
+      "desk": "rwa-xyz",
+      "question": "size_today",
+      "figures": [
+        "rwaxyz-distributed-today",
+        "rwaxyz-represented-today"
+      ]
+    },
+    {
+      "desk": "the-block-research",
+      "question": "size_today",
+      "figures": [
+        "block-today"
+      ]
+    },
+    {
       "desk": "bis",
       "question": "stablecoins",
       "value": "flawed_money"
@@ -1468,8 +2052,22 @@
     },
     {
       "desk": "imf",
+      "question": "size_today",
+      "figures": [
+        "imf-today"
+      ]
+    },
+    {
+      "desk": "imf",
       "question": "constraint",
       "value": "safety_first"
+    },
+    {
+      "desk": "iosco",
+      "question": "size_today",
+      "figures": [
+        "iosco-today"
+      ]
     },
     {
       "desk": "gfma",
@@ -1488,15 +2086,24 @@
         "tooltip": "Distributed value, ex-stablecoins · base case cut from $1.6T in May to $661B (0.4% penetration); band = $203B conservative – $1.6T bull. The old base is now the bull case."
       },
       {
+        "figure": "db-2030",
+        "tooltip": "Tokenized real-world assets ex-stablecoins – a self-described conservative range of $1.5T–$2T (bar = lower estimate), from ~$39B in Sep 2026; $3T–$4T by 2035."
+      },
+      {
+        "figure": "msow-2030",
+        "label": "Morgan Stanley × OW",
+        "tooltip": "Tokenized real-world assets, from ~$40B today (Sep 2026). The desk’s first market-size forecast – its May report sized revenue only."
+      },
+      {
         "figure": "sc-2028",
         "alt": "sc-defi-2030",
         "label": "Standard Chartered ’28",
         "alt_label": "$2.7T DeFi-active, 2030",
-        "tooltip": "Public-chain tokenized assets by end-2028 – a 2028 horizon, not 2030; reaffirmed in \"Owning the rails\" (Aug 2026). Hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)"
+        "tooltip": "Public-chain tokenized assets by end-2028 – a 2028 horizon, not 2030; reaffirmed in \"Owning the rails\" (Aug 2026). In Oct 2026 SC moved its $2T stablecoin target from 2028 to 2030; this total has not been publicly restated. Hollow dot = $2.7T DeFi-active by 2030 (same desk, 2030 horizon)"
       },
       {
         "figure": "citi-2030",
-        "tooltip": "Tokenized securities – equities + Treasuries led"
+        "tooltip": "Tokenized securities – equities + Treasuries led; band = $2.7T bear – $8.2T bull"
       },
       {
         "figure": "binance-2030-tail",
@@ -1514,12 +2121,12 @@
         "tooltip": "Tokenized RWAs ex-stablecoins (Q1 2026)"
       },
       {
-        "figure": "defillama-today",
-        "tooltip": "\"Active\" RWA market cap, public chains"
+        "figure": "defillama-active-nov",
+        "tooltip": "\"Active\" RWA AUM, public chains – 26 Nov 2026 reading ($25.2B in Mar). Counting everything on-chain, the same dashboard shows $34.5B."
       },
       {
         "figure": "grayscale-today",
-        "tooltip": "Tokenized assets ex-stablecoins – ~0.01% of global equity & bond markets; Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities"
+        "tooltip": "Tokenized assets ex-stablecoins (rwa.xyz data, 26 Apr 2026) – ~0.01% of global equity & bond markets; Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities"
       },
       {
         "figure": "21shares-today-public",
@@ -1532,12 +2139,34 @@
         "tooltip": "Distributed (free-float) value – $22B Jan → ~$34B mid-Jul, +50% in H1"
       },
       {
+        "figure": "iosco-today",
+        "tooltip": "Tokenized real-world assets issued on public blockchains, 30 Jun 2026 (RWA.xyz data) – up from ~$16B a year earlier"
+      },
+      {
+        "figure": "db-today",
+        "tooltip": "Distributed tokenized asset value excluding stablecoins – RWA.xyz data, 14 Sep 2026"
+      },
+      {
+        "figure": "block-today",
+        "tooltip": "Total onchain RWA value excluding stablecoins – the Sep 2026 peak"
+      },
+      {
+        "figure": "rwaxyz-distributed-today",
+        "alt": "rwaxyz-represented-today",
+        "alt_label": "$452B represented",
+        "tooltip": "$41.3B distributed on 26 Nov 2026; hollow dot = ~$452B “represented” – recorded on a ledger but not transferable on-chain. One tracker, one day, {stat:permissioned_x}× apart on scope alone."
+      },
+      {
         "figure": "beincrypto-core-today",
         "tooltip": "Core tokenized assets, 12 classes (rwa.xyz data)"
       },
       {
-        "figure": "pantera-today",
-        "tooltip": "542 assets, 11 classes – incl. stablecoins"
+        "figure": "imf-today",
+        "tooltip": "Public market for tokenized RWAs as of Jul 2026 – repos, private tokenized markets and stablecoins excluded"
+      },
+      {
+        "figure": "pantera-today-q2",
+        "tooltip": "671 assets, data to 30 Jun 2026 – incl. stablecoins ($321B across 593 assets in Q1)"
       },
       {
         "figure": "sc-today",
@@ -1553,7 +2182,7 @@
     "forecast": [
       {
         "figure": "securitize-keyrock-2030",
-        "note": "from ~$29B today",
+        "note": "from $27B today",
         "counted": "Distributed RWAs, 5 asset classes (ex-stablecoins)",
         "stance": "Narrowest / free-float only"
       },
@@ -1564,15 +2193,29 @@
         "stance": "Base cut {stat:drift_x}× in {stat:drift_weeks_words} weeks – the old base is now the bull case"
       },
       {
+        "figure": "db-2030",
+        "label": "Deutsche Bank Research",
+        "note": "by 2030 · range $1.5T–$2T · $3T–$4T by 2035",
+        "counted": "Tokenized real-world assets, ex-stablecoins – from ~$39B in Sep 2026",
+        "stance": "“Conservative” by its own label – a gradual move onto digital rails, banks keep their roles"
+      },
+      {
+        "figure": "msow-2030",
+        "label": "Morgan Stanley × Oliver Wyman",
+        "note": "by 2030 · from ~$40B today",
+        "counted": "Tokenized real-world assets; ~$1.3T of it addressable by asset managers",
+        "stance": "New in September – the desk’s first market-size call; May’s report sized revenue only"
+      },
+      {
         "figure": "sc-2028",
         "note": "by end-2028 (public chains) – not a 2030 figure",
-        "counted": "Public-chain tokenized assets; $2.7T DeFi-active by 2030 – restated in “Owning the rails” (Aug 2026)",
+        "counted": "Public-chain tokenized assets; $2.7T DeFi-active by 2030 – restated in “Owning the rails” (Aug 2026). Oct 2026: the $2T stablecoin target slipped to 2030; this total has not been publicly restated",
         "stance": "Aggressive, public-chain bet"
       },
       {
         "figure": "citi-2030",
         "label": "Citi (Citi Institute)",
-        "note": "by 2030",
+        "note": "by 2030 · bear $2.7T – bull $8.2T",
         "counted": "Tokenized securities – equities + Treasuries led",
         "stance": "Securities-centric"
       },
@@ -1601,16 +2244,16 @@
       },
       {
         "figures": [
-          "defillama-today"
+          "defillama-active-nov"
         ],
-        "note": "+6× in 14 months",
-        "definition": "\"Active\" RWA market cap on public chains"
+        "note": "26 Nov 2026 · $25.2B in Mar",
+        "definition": "\"Active\" RWA AUM on public chains; $34.5B counting everything on-chain"
       },
       {
         "figures": [
           "grayscale-today"
         ],
-        "note": "Apr 2026 · 0.01% of equity + bond markets",
+        "note": "26 Apr 2026 · 0.01% of equity + bond markets",
         "definition": "Tokenized assets ex-stablecoins – Treasuries ~$15B, commodities ~$5B, plus credit, funds, equities"
       },
       {
@@ -1622,6 +2265,35 @@
       },
       {
         "figures": [
+          "iosco-today"
+        ],
+        "note": "30 Jun 2026 · ~$16B a year earlier",
+        "definition": "Tokenized real-world assets issued on public blockchains (RWA.xyz data)"
+      },
+      {
+        "figures": [
+          "db-today"
+        ],
+        "note": "14 Sep 2026",
+        "definition": "Distributed tokenized asset value, excluding stablecoins (RWA.xyz data)"
+      },
+      {
+        "figures": [
+          "block-today"
+        ],
+        "note": "Sep 2026 peak",
+        "definition": "Total onchain RWA value, excluding stablecoins"
+      },
+      {
+        "figures": [
+          "rwaxyz-distributed-today",
+          "rwaxyz-represented-today"
+        ],
+        "note": "26 Nov 2026 · distributed → represented",
+        "definition": "$41.3B investors can hold and transfer on-chain; ~$452B more is only recorded on a ledger"
+      },
+      {
+        "figures": [
           "beincrypto-core-today"
         ],
         "note": "7,000+ products · May 2026",
@@ -1629,9 +2301,16 @@
       },
       {
         "figures": [
-          "pantera-today"
+          "imf-today"
         ],
-        "note": "542 assets · 11 classes",
+        "note": "Jul 2026",
+        "definition": "Public market for tokenized RWAs – repos, private tokenized markets and stablecoins excluded"
+      },
+      {
+        "figures": [
+          "pantera-today-q2"
+        ],
+        "note": "671 assets · data to 30 Jun 2026 · $321B in Q1",
         "definition": "Broad – counts stablecoins and the full tokenized universe"
       },
       {
@@ -1646,7 +2325,7 @@
           "21shares-today-public",
           "21shares-today-permissioned"
         ],
-        "note": "public → incl. permissioned",
+        "note": "early Jun 2026 · public → incl. permissioned",
         "definition": "~$31B public chains; ~$350B once Canton & permissioned nets are added"
       },
       {
@@ -1693,12 +2372,15 @@
         "label": "The tracker cluster",
         "figures": [
           "coingecko-today",
-          "defillama-today",
+          "defillama-active-nov",
           "grayscale-today",
-          "binance-today"
+          "binance-today",
+          "block-today",
+          "rwaxyz-distributed-today"
         ],
         "scope": "narrow",
-        "step": "Core / free-float tokenized assets, public chains, ex-stablecoins – where every dashboard starts"
+        "step": "Core / free-float tokenized assets, public chains, ex-stablecoins – where every dashboard starts",
+        "who": "CoinGecko · DefiLlama · Grayscale · Binance · The Block · RWA.xyz"
       },
       {
         "label": "BeInCrypto · core",
@@ -1811,11 +2493,101 @@
       ]
     },
     {
+      "date": "2026-09",
+      "desk": "morgan-stanley",
+      "change": "First market-size forecast: ~$2.3T by 2030",
+      "note": "“Breaking from the Pack” projects tokenized real-world assets growing from ~$40B to ~$2.3T by 2030. The desk’s May report, “Digital Rails, Real Economics”, had sized revenue only.",
+      "sources": [
+        "msow-breaking-pack"
+      ],
+      "figures": [
+        "msow-2030"
+      ]
+    },
+    {
+      "date": "2026-09",
+      "desk": "deutsche-bank",
+      "change": "First numbers: ~$39B today, $1.5T–$2T by 2030",
+      "note": "“Asset Tokenization 101” moves the desk from a stance to a forecast – tokenized real-world assets ex-stablecoins, $3T–$4T by 2035, labelled conservative.",
+      "sources": [
+        "db-tokenization-101"
+      ],
+      "figures": [
+        "db-2030",
+        "db-today"
+      ]
+    },
+    {
+      "date": "2026-09",
+      "desk": "pantera",
+      "change": "New edition: ~$321B → ~$332B, 593 → 671 assets",
+      "note": "The September “State of Tokenization” report (data to 30 Jun 2026) supersedes the Q1 edition; stablecoins are still counted in.",
+      "sources": [
+        "pantera-tokenization-sep"
+      ],
+      "figures": [
+        "pantera-today-q2"
+      ]
+    },
+    {
       "date": "2026-09-26",
       "desk": null,
       "change": "Corrections · dataset schema v2",
       "note": "Standard Chartered’s $4T is now labelled as the 2028 figure it is (it sat on the 2030 chart unmarked); desk and forecast counts, the “same month” claim, the permissioned-layer multiple (was ten-fold, now ~{stat:permissioned_x}×) and the Binance cut interval ({stat:drift_weeks_words} weeks, was ten) corrected. Dataset restructured: one record per figure with horizon, as-of date and unit; stable desk ids; defined position vocabularies; JSON Schema and data dictionary.",
       "sources": []
+    },
+    {
+      "date": "2026-10-13",
+      "desk": "imf",
+      "change": "First market size from the Fund: about $65B",
+      "note": "The Global Financial Stability Report’s tokenization chapter sizes the public market for tokenized RWAs as of July 2026, leaving out repos, private tokenized markets and stablecoins.",
+      "sources": [
+        "imf-gfsr-oct-2026"
+      ],
+      "figures": [
+        "imf-today"
+      ]
+    },
+    {
+      "date": "2026-10-14",
+      "desk": "standard-chartered",
+      "change": "$2T stablecoin target pushed from 2028 to 2030",
+      "note": "Supply growth has stalled this year, the bank says, while usage keeps rising. The ~$4T-by-end-2028 call on this page counts stablecoins and has not been publicly restated. Client-only note, via The Block’s coverage.",
+      "sources": [
+        "sc-stablecoin-2030"
+      ],
+      "figures": [
+        "sc-stablecoins-2030"
+      ]
+    },
+    {
+      "date": "2026-11",
+      "desk": "iosco",
+      "change": "$37B on public blockchains at end-June",
+      "note": "IOSCO’s 2026 monitoring report, on RWA.xyz data: up from ~$16B on 1 Jul 2025. Its verdict: progressing, but transitional and fragmented.",
+      "sources": [
+        "iosco-tokenization-2026"
+      ],
+      "figures": [
+        "iosco-today"
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "desk": null,
+      "change": "Refresh to late November · source base 63 → 70 reports",
+      "note": "Same-day readings from the RWA.xyz and DefiLlama dashboards (26 Nov) join the spring-vintage tracker numbers; DefiLlama’s $25.2B is superseded by its $30.8B reading. Seven reports published since August are folded in – Morgan Stanley × Oliver Wyman, Deutsche Bank, Pantera, The Block Research, the IMF, IOSCO and Standard Chartered’s October note. Citi’s bear–bull range added. Keyrock’s starting point corrected to $27B, the figure on its own page. The consensus numbers now carry a source and a date. Events the page described as upcoming – DTCC’s launch, the GENIUS rule-making, the CLARITY vote – rewritten as what happened.",
+      "sources": [
+        "rwaxyz-dashboard",
+        "defillama-rwa-dashboard",
+        "defillama-stablecoins",
+        "block-rwa-2026"
+      ],
+      "figures": [
+        "rwaxyz-distributed-today",
+        "defillama-active-nov",
+        "block-today"
+      ]
     }
   ],
   "copy": {
@@ -1831,7 +2603,7 @@
     },
     "chart_byscope": {
       "title": "2030 forecasts · grouped by scope",
-      "note": "Group the {stat:fc_n_words} forecasts by what they count and the {stat:fc_spread}× spread collapses: within a scope bucket the desks land ≤{stat:scope_max_spread}× apart. Same market – the disagreement is the definition, not the conviction."
+      "note": "Group the {stat:fc_n_words} forecasts by what they count and the {stat:fc_spread}× spread narrows: within a scope bucket the desks land ≤{stat:scope_max_spread}× apart. Definition explains most of the gap – not all of it."
     },
     "share": {
       "description": "{stat:reports_read} RWA research reports cross-read: the desks agree tokenization is coming and disagree {stat:fc_spread}× on how big – {stat:fc_lo} to {stat:fc_hi} for the same 2030 horizon. Every desk, every question, one page.",

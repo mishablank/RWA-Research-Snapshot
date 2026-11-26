@@ -1,14 +1,14 @@
 # The State of RWAs – Where the Research Disagrees
 
-> A cross-read of 63 RWA & tokenization research reports published 29 Mar – 10 Aug 2026. The desks converge on the direction of travel and disagree ~35x on 2030 market size ($400B to $14T) and ~36x on today's size ($19.3B to $695B). Most of the disagreement is definitional: what counts as an RWA, which chains are counted, and whether stablecoins are in.
+> A cross-read of 70 RWA & tokenization research reports published 29 Mar – 26 Nov 2026. The desks converge on the direction of travel and disagree ~35x on 2030 market size ($400B to $14T) and ~36x on today's size ($19.3B to $695B). Most of the disagreement is definitional: what counts as an RWA, which chains are counted, and whether stablecoins are in.
 
 Consensus facts: ~0.01% penetration of a $300T+ addressable base; ~$15B tokenized U.S. Treasuries anchor the market; institutional issuers now lead growth; DTCC production launch October 2026 is the shared catalyst.
 
 ## Data
 - [data.json](https://rwaresearch.info/data.json): canonical dataset (schema v2.0.0) - one record per figure with horizon, as-of date, unit and scope; desk positions with defined vocabularies; revisions; sources. The page is generated from it
 - [data.schema.json](https://rwaresearch.info/data.schema.json): JSON Schema for data.json
-- [data.csv](https://rwaresearch.info/data.csv): every figure, one row each (31 rows)
-- [positions.csv](https://rwaresearch.info/positions.csv): the 19-desk x 6-question position matrix, one row per cell
+- [data.csv](https://rwaresearch.info/data.csv): every figure, one row each (53 rows)
+- [positions.csv](https://rwaresearch.info/positions.csv): the 22-desk x 6-question position matrix, one row per cell
 - [DATA.md](https://github.com/mishablank/RWA-Research-Snapshot/blob/main/DATA.md): data dictionary - every field, column and vocabulary
 
 ## Reading the numbers
@@ -17,7 +17,7 @@ Consensus facts: ~0.01% penetration of a $300T+ addressable base; ~$15B tokenize
 - status=superseded rows are kept for the revision history; filter to status=current for the latest view.
 
 ## Sources
-- [SOURCES.md](https://github.com/mishablank/RWA-Research-Snapshot/blob/main/SOURCES.md): the 22 reports figures are attributed to, with links
+- [SOURCES.md](https://github.com/mishablank/RWA-Research-Snapshot/blob/main/SOURCES.md): the 32 reports figures are attributed to, with links
 - Figures are reproduced as reported by each source on the date cited; scopes and definitions differ materially between studies and are not directly comparable.
 
-Updated 2026-09-26.
+Updated 2026-11-26.

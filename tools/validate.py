@@ -15,20 +15,14 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from rwalib import (ROOT, DATA_PATH, SCHEMA_PATH, Data, load_json, parse_date, compute_stats,
                     iter_copy_strings, PH_RE, fmt_usd)
 
-# Dollar amounts the prose quotes that are not yet figure records. Each is a
-# consensus number with no source attached – tracked in GitHub issue #3
-# (per-figure provenance). Remove an entry once it becomes a sourced figure.
+# Dollar amounts the prose quotes that are not figure records. Tracked in GitHub
+# issue #3 (per-figure provenance). Remove an entry once it becomes a sourced figure.
 KNOWN_UNSOURCED_USD = {
-    300e12: "addressable base ($300T+)",
-    250e9: "stablecoin supply ($250B+)",
-    200e9: "Treasuries held in stablecoin reserves ($200B+)",
-    300e6: "tokenized equities at the start of the period (sub-$300M)",
+    300e12: "size of global securities markets (~$300T) – Grayscale, Apr 2026; a context number, not a figure record",
+    200e9: "Treasuries held in stablecoin reserves ($200B+) – still unsourced",
 }
 # Multiples quoted as reported by a source rather than computed from the data.
-KNOWN_REPORTED_RATIOS = {
-    "5–6×": "distributed-RWA growth since early 2025 – consensus, unsourced (#3)",
-    "6×": "DefiLlama-reported growth in 14 months",
-}
+KNOWN_REPORTED_RATIOS = {}
 
 errors, warnings = [], []
 def err(msg): errors.append(msg)

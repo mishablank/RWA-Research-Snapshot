@@ -13,7 +13,7 @@ Generated from [`data.schema.json`](data.schema.json) and the vocabularies in [`
 |---|---|
 | `data.json` | Canonical dataset. Everything else is generated from it. |
 | `data.schema.json` | JSON Schema (draft 2020-12) for data.json, enforced in CI. |
-| `data.csv` | One row per figure – 31 rows. |
+| `data.csv` | One row per figure – 53 rows. |
 | `positions.csv` | One row per filled matrix cell (desk × question). |
 | `llms.txt` | Summary for LLM crawlers. |
 
@@ -21,7 +21,7 @@ Generated from [`data.schema.json`](data.schema.json) and the vocabularies in [`
 
 1. **Filter on `metric`.** Only `market_size` figures are market sizes. Revenue, fund AUM, stablecoin supply and settlement volume are different units and never belong on one axis.
 2. **Check `horizon`.** Forecasts are mostly 2030, not all – compare like with like.
-3. **Check `scope`.** The scope bucket, `includes_stablecoins` and `includes_permissioned` explain most of the spread between desks. Within a bucket the 2030 forecasts land ≤1.7× apart; across buckets, 35×.
+3. **Check `scope`.** The scope bucket, `includes_stablecoins` and `includes_permissioned` explain most of the spread between desks. Within a bucket the 2030 forecasts land ≤5.8× apart; across buckets, 35×.
 4. **Filter `status = current`** for the latest view; superseded figures stay for the revision history.
 
 ## `data.json` – top level
